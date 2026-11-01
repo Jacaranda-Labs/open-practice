@@ -7,6 +7,8 @@
 - [Free AI API keys and guides](https://open-practice.zlnew.workers.dev/api-keys/)
 - [Academy courses](https://open-practice.zlnew.workers.dev/academy/)
 - [Learn: beginners, seniors, kids](https://open-practice.zlnew.workers.dev/learn/)
+- [Earn by Doing: useful work, honest offers](https://open-practice.zlnew.workers.dev/earn/)
+- [Earn by Doing starter builds (12 workshops, 40 starter kits)](https://open-practice.zlnew.workers.dev/earn/builds/)
 - [AI glossary](https://open-practice.zlnew.workers.dev/glossary/)
 - [Prompt library](https://open-practice.zlnew.workers.dev/prompts/)
 - [AI tools directory](https://open-practice.zlnew.workers.dev/ai-tools/)

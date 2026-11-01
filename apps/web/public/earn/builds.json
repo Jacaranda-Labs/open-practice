@@ -1,0 +1,1582 @@
+{
+ "builds": [
+  {
+   "num": 1,
+   "slug": "offer-sheet",
+   "url": "/earn/builds/offer-sheet/",
+   "h1": "Make an offer someone can say yes to",
+   "name": "Offer Sheet Builder",
+   "track": "First Customer",
+   "makes": [
+    "Niche brief",
+    "Offer sheet",
+    "Price hypothesis"
+   ],
+   "methods": [
+    9,
+    18,
+    33,
+    39
+   ],
+   "pack": "/resources/earn/packs/01-offer-sheet.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Niche brief)",
+     "flags": "im",
+     "label": "Has a “Niche brief” section",
+     "fix": "Add a heading line “## Niche brief” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Problem interview)",
+     "flags": "im",
+     "label": "Has a “Problem interview” section",
+     "fix": "Add a heading line “## Problem interview” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(the offer|offer)",
+     "flags": "im",
+     "label": "Has a “The offer” section",
+     "fix": "Add a heading line “## The offer” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Price hypothesis)",
+     "flags": "im",
+     "label": "Has a “Price hypothesis” section",
+     "fix": "Add a heading line “## Price hypothesis” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^\\d+[.)]\\s",
+     "min": 5,
+     "what": "numbered interview questions"
+    },
+    {
+     "t": "re",
+     "re": "(exclusions?|not included)\\s*:",
+     "flags": "im",
+     "label": "Lists exclusions",
+     "fix": "Add “Exclusions: …” so the buyer knows where the job ends."
+    },
+    {
+     "t": "re",
+     "re": "timeline\\s*:.*\\d",
+     "flags": "im",
+     "label": "Timeline names a number of days",
+     "fix": "Write “Timeline: 5 days from yes to delivery”."
+    },
+    {
+     "t": "re",
+     "re": "first price\\s*:.*\\d",
+     "flags": "im",
+     "label": "First price is a real number",
+     "fix": "Write a number with a currency, e.g. “First price: US$40”."
+    },
+    {
+     "t": "has",
+     "field": "buyer",
+     "name": "buyer"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 200,
+     "max": 900
+    }
+   ],
+   "template": "# Offer sheet: {deliverable} for {buyer}\n\n## Niche brief\n- Buyer: {buyer}\n- The job they hate: {problem}\n- Where I can reach five of them this week: [[a place you can actually reach them, e.g. a market row, a group you already belong to]]\n- Why me: {skill}\n\n## Problem interview\n1. Tell me about the last time this happened: {problem}. What did you do?\n2. [[a question about what it cost them: time, money or customers]]\n3. [[a question about what they have tried already]]\n4. [[a question about who decides and who pays]]\n5. If this were solved, what would be different next month?\n\nNotes after the interviews: [[what you heard, in their words, and how many said it hurts]]\n\n## The offer\n- What you get: {deliverable}\n- Exclusions: [[what is not included]]\n- Timeline: [[number]] days from yes to delivery\n- Revisions: [[number]] rounds\n- What I need from you: [[access, files or an hour of your time]]\n\n## Price hypothesis\n- First price: {price}\n- Why this number: [[hours it takes × your hourly rate, or what they pay now for a worse fix]]\n- How I will test it: [[e.g. say the price to five buyers and count who asks how to start]]\n- I will change the price if: [[a rule, e.g. all five say yes at once → raise it next time]]\n\n## Boundary\n- No guaranteed results, no invented testimonials and no fake deadlines.\n- [[one limit specific to this offer]]\n\n## Evidence so far\n{proof}\n[[what you have checked yourself, with dates]]\n",
+   "fields": [
+    "skill",
+    "buyer",
+    "problem",
+    "deliverable",
+    "price",
+    "proof"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Offer sheet: a quick-reply set and booking script for hair salon owners in Avondale\n\n## Niche brief\n- Buyer: hair salon owners in Avondale with two to six chairs\n- The job they hate: WhatsApp booking enquiries go unanswered on busy Saturdays\n- Where I can reach five of them this week: the salons on the two shopping rows I pass every day\n- Why me: I keep tidy spreadsheets and write clear WhatsApp messages for my church group\n\n## Problem interview\n1. Tell me about the last Saturday when enquiries piled up. What did you do?\n2. How many of those people booked somewhere else, as far as you know?\n3. What have you tried already: a helper on the phone, a booking app, anything else?\n4. Who answers the business phone, and who would pay to fix this?\n5. If this were solved, what would be different next month?\n\nNotes after the interviews: four of five owners said Saturday mornings are the worst. Two said “by the time I answer, they have gone to the next salon”. One already uses quick replies and did not see a problem.\n\n## The offer\n- What you get: a set of 12 WhatsApp Business quick replies, a booking script for the person on the phone, and a one-page price list image\n- Exclusions: no booking software, no paid adverts, no managing the phone for you\n- Timeline: 3 days from yes to delivery\n- Revisions: 2 rounds\n- What I need from you: 30 minutes to list your services and prices, and your current greeting message\n\n## Price hypothesis\n- First price: US$40 one-off setup\n- Why this number: about four hours of work at US$10 an hour, and less than the value of two lost bookings\n- How I will test it: say the price to the five owners I interviewed and count who asks how to start\n- I will change the price if: four or more say yes at once, then the next offer is US$55\n\n## Boundary\n- No guaranteed results, no invented testimonials and no fake deadlines.\n- I will not message the salon's customers myself or see their contact list.\n\n## Evidence so far\nTwo owners told me on 3 November that they lose Saturday bookings.\nI counted unanswered enquiries with one owner's permission: 9 waited more than an hour last Saturday.\n",
+   "exampleValues": {
+    "skill": "tidy spreadsheets and clear WhatsApp messages",
+    "buyer": "hair salon owners in Avondale",
+    "problem": "WhatsApp booking enquiries go unanswered on busy Saturdays",
+    "deliverable": "a quick-reply set and booking script",
+    "price": "US$40 one-off setup"
+   }
+  },
+  {
+   "num": 2,
+   "slug": "local-page-kit",
+   "url": "/earn/builds/local-page-kit/",
+   "h1": "Build a local business page",
+   "name": "Local Business Page Kit",
+   "track": "Client Service",
+   "makes": [
+    "Tested demo",
+    "Launch checklist",
+    "Client handoff"
+   ],
+   "methods": [
+    1,
+    2,
+    8,
+    20
+   ],
+   "pack": "/resources/earn/packs/02-local-page-kit.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Page copy)",
+     "flags": "im",
+     "label": "Has a “Page copy” section",
+     "fix": "Add a heading line “## Page copy” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(demo test plan|test plan)",
+     "flags": "im",
+     "label": "Has a “Demo test plan” section",
+     "fix": "Add a heading line “## Demo test plan” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Launch checklist)",
+     "flags": "im",
+     "label": "Has a “Launch checklist” section",
+     "fix": "Add a heading line “## Launch checklist” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(client handoff|handoff)",
+     "flags": "im",
+     "label": "Has a “Client handoff” section",
+     "fix": "Add a heading line “## Client handoff” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^headline\\s*:\\s*\\S",
+     "flags": "im",
+     "label": "Has a headline line",
+     "fix": "Add “Headline: …” under Page copy."
+    },
+    {
+     "t": "count",
+     "re": "\\d+(?:[.,]\\d+)?",
+     "min": 3,
+     "label": "Shows real prices or numbers",
+     "fix": "List services with prices the owner confirmed."
+    },
+    {
+     "t": "lines",
+     "match": "^-\\s*\\[[ x]\\]",
+     "min": 8,
+     "what": "checklist items (- [ ] …)"
+    },
+    {
+     "t": "re",
+     "re": "(owner.s name|in the owner)",
+     "flags": "im",
+     "label": "Accounts stay in the owner’s name",
+     "fix": "Say that the domain and accounts are registered in the owner’s name."
+    },
+    {
+     "t": "not",
+     "re": "\\b(5[- ]star|award[- ]winning|#1|number one|best in (?:town|the city))\\b",
+     "flags": "i",
+     "label": "No invented ratings or awards",
+     "fix": "Remove ratings and awards unless the owner can show them."
+    },
+    {
+     "t": "has",
+     "field": "business",
+     "name": "business name"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 220,
+     "max": 1000
+    }
+   ],
+   "template": "# Page kit: {business}\n\n## Page copy\nHeadline: [[under 10 words: what they do and for whom]]\nOne line: [[one sentence a passer-by would understand]]\n\nServices and prices:\n{services}\n\nWhere and when: {area}\nContact button: [[the words on the button, e.g. “WhatsApp us to book”]] → {contact}\nProof shown on the page: {proof}\n\n## Demo test plan\n- Phone test: [[open the demo on a phone on mobile data; how many seconds until the text shows?]]\n- Contrast: [[can you read every line in sunlight?]]\n- Contact test: [[press the contact button; does it open the right number with a message ready?]]\n- Links: [[open every link; list any that fail]]\n- Facts: the owner checked every price, the hours and the number on [[date]]\n\n## Launch checklist\n- [ ] Owner approved the copy in writing\n- [ ] Prices and phone number checked against the owner's list\n- [ ] Page loads on a phone in under [[number]] seconds\n- [ ] Every image is the owner's own, or free to use, and has alt text\n- [ ] Contact button tested from a second phone\n- [ ] The domain or free web address is registered in the owner's name\n- [ ] [[one more check specific to this business]]\n- [ ] Handoff note sent and read\n\n## Client handoff\n- To change a price: [[the exact steps, in plain words]]\n- Who owns what: [[domain, hosting account, email: all in the owner's name]]\n- What may cost money later: [[e.g. a domain renewal each year; nothing else]]\n- How to get help: [[how to reach you and what you charge for changes, if anything]]\n\n## Boundary\n- No invented reviews, awards or customer numbers. Only proof the owner gave permission for.\n- [[one more limit, e.g. I do not run paid adverts]]\n",
+   "fields": [
+    "business",
+    "services",
+    "area",
+    "contact",
+    "proof"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Page kit: Tendai’s Shoe Repairs, a shoe and bag repair stall\n\n## Page copy\nHeadline: Shoe and bag repairs while you shop\nOne line: Heels, zips and straps fixed at the Fife Avenue market, most jobs ready the same day.\n\nServices and prices:\n- Heel replacement — US$5\n- Zip repair — US$4\n- Bag strap — US$3\n- Resole (leather) — US$12\n\nWhere and when: Fife Avenue market, row C, Mon–Sat 8:00–17:00\nContact button: “WhatsApp Tendai to book” → WhatsApp only, replies within the hour\nProof shown on the page: four before-and-after photos Tendai took of real repairs\n\n## Demo test plan\n- Phone test: on a budget Android phone with mobile data, the text showed in 2 seconds and the photos in 4\n- Contrast: all text readable outdoors at noon; the grey caption was too light, so it is now dark brown\n- Contact test: the button opened WhatsApp with “Hello Tendai, I need a repair:” ready to send\n- Links: 3 links, all open; the map link pointed to the wrong row and was fixed\n- Facts: Tendai checked every price, the hours and the number on 4 November\n\n## Launch checklist\n- [x] Owner approved the copy in writing\n- [x] Prices and phone number checked against the owner's list\n- [x] Page loads on a phone in under 3 seconds\n- [x] Every image is the owner's own, or free to use, and has alt text\n- [x] Contact button tested from a second phone\n- [x] The free web address is registered in the owner's name\n- [x] Opening hours repeated next to the button for Saturday shoppers\n- [ ] Handoff note sent and read\n\n## Client handoff\n- To change a price: open the page editor, find the price list, change the number, press Publish. It takes two minutes.\n- Who owns what: the web address and the hosting account are in Tendai's name, with his email.\n- What may cost money later: nothing, unless he buys a custom domain (about US$12 a year).\n- How to get help: WhatsApp me; small text changes are free for the first month.\n\n## Boundary\n- No invented reviews, awards or customer numbers. Only proof the owner gave permission for.\n- I do not run paid adverts or manage his WhatsApp.\n",
+   "exampleValues": {
+    "business": "Tendai’s Shoe Repairs, a shoe and bag repair stall",
+    "services": "Heel replacement — US$5",
+    "area": "Fife Avenue market, Mon–Sat 8:00–17:00",
+    "contact": "WhatsApp only"
+   }
+  },
+  {
+   "num": 3,
+   "slug": "customer-reply-kit",
+   "url": "/earn/builds/customer-reply-kit/",
+   "h1": "Create a customer-reply kit",
+   "name": "Customer Reply Kit",
+   "track": "Client Service",
+   "makes": [
+    "FAQ",
+    "Response library",
+    "Escalation matrix"
+   ],
+   "methods": [
+    3,
+    4,
+    5,
+    29
+   ],
+   "pack": "/resources/earn/packs/03-customer-reply-kit.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(FAQ)",
+     "flags": "im",
+     "label": "Has a “FAQ” section",
+     "fix": "Add a heading line “## FAQ” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Response library)",
+     "flags": "im",
+     "label": "Has a “Response library” section",
+     "fix": "Add a heading line “## Response library” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Escalation matrix)",
+     "flags": "im",
+     "label": "Has a “Escalation matrix” section",
+     "fix": "Add a heading line “## Escalation matrix” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Missing information)",
+     "flags": "im",
+     "label": "Has a “Missing information” section",
+     "fix": "Add a heading line “## Missing information” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^###\\s",
+     "min": 3,
+     "what": "FAQ questions (### …)"
+    },
+    {
+     "t": "lines",
+     "match": "^-\\s*when ",
+     "min": 6,
+     "what": "library replies (- When …)"
+    },
+    {
+     "t": "lines",
+     "match": "→.*→",
+     "min": 4,
+     "what": "escalation rules (trigger → who → how fast)"
+    },
+    {
+     "t": "not",
+     "re": "\\+?\\d[\\d ()-]{8,}\\d|[\\w.+-]+@[\\w-]+\\.[\\w.]+",
+     "flags": "",
+     "label": "No phone numbers or email addresses copied in",
+     "fix": "Remove personal contact details; use a placeholder like “the shop number”."
+    },
+    {
+     "t": "has",
+     "field": "business",
+     "name": "business"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 220,
+     "max": 1000
+    }
+   ],
+   "template": "# Customer reply kit: {business}\n\n## FAQ\nQuestions customers ask (no names or numbers kept):\n{questions}\n\n### [[question 1, in the customer's words]]\n[[answer in 1–3 sentences, using only these facts:]]\n{facts}\n\n### [[question 2]]\n[[answer]]\n\n### [[question 3]]\n[[answer]]\n\n## Response library\nTone: {tone}\n- When someone asks the price: [[reply under 60 words]]\n- When someone asks about delivery: [[reply]]\n- When you cannot do what they ask: [[a kind no, with an alternative]]\n- When an order is confirmed: [[reply that repeats what, when and how much]]\n- When someone is upset: [[reply that thanks them and says a person will call]]\n- When you do not know the answer: [[reply that promises a time, not an answer]]\n\n## Escalation matrix\nAlways handled by a person: {human}\n- [[trigger, e.g. the word “refund”]] → [[who]] → [[within how long]]\n- [[trigger]] → [[who]] → [[how long]]\n- [[trigger]] → [[who]] → [[how long]]\n- [[trigger]] → [[who]] → [[how long]]\n\n## Missing information\n[[anything a reply needs that the owner has not confirmed yet]]\n\n## Boundary\n- Every price and policy here was confirmed by the owner. Nothing invented.\n- Customer names, numbers and messages were removed before writing this kit.\n",
+   "fields": [
+    "business",
+    "questions",
+    "facts",
+    "tone",
+    "human"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Customer reply kit: a home bakery selling cakes to order\n\n## FAQ\nQuestions customers ask (no names or numbers kept): price, delivery, sugar-free options, how early to order, payment.\n\n### How much is a birthday cake?\nCakes start at US$15 for a 20 cm sponge. Fillings and writing are included; figures and photos cost extra.\n\n### Do you deliver?\nYes, within 5 km for US$2. Further away, you can collect from the house.\n\n### How early do I need to order?\nThree days before. For weddings and orders over 30 people, two weeks.\n\n## Response library\nTone: Warm and short\n- When someone asks the price: Hello! Birthday cakes start at US$15 for a 20 cm sponge, writing included. What date is it for?\n- When someone asks about delivery: We deliver within 5 km for US$2, or you can collect. Which area are you in?\n- When you cannot do what they ask: I'm sorry, we can't do that one. We can do a vanilla cake with a printed photo instead. Would that work?\n- When an order is confirmed: Thank you! One chocolate cake, 20 cm, \"Happy 7th Tino\", Saturday at 10:00, US$17 with delivery.\n- When someone is upset: Thank you for telling us, and I'm sorry. The owner will call you today to sort it out.\n- When you do not know the answer: Good question. Let me check with the baker and reply by 3 pm.\n\n## Escalation matrix\nAlways handled by a person: complaints, refunds, allergies, anything about money\n- The words \"allergy\", \"nuts\" or \"gluten\" → the baker → before the order is accepted\n- Any complaint or refund request → the owner → a call the same day\n- Orders over 30 people → the owner → within 24 hours\n- Payment did not arrive → the owner → within 2 hours\n\n## Missing information\nThe owner has not confirmed whether sugar-free cakes are possible. Until then, the reply is \"let me check\".\n\n## Boundary\n- Every price and policy here was confirmed by the owner. Nothing invented.\n- Customer names, numbers and messages were removed before writing this kit.\n",
+   "exampleValues": {
+    "business": "a home bakery selling cakes to order",
+    "questions": "How much is a birthday cake?",
+    "facts": "Cakes from US$15",
+    "human": "complaints, refunds, allergies"
+   }
+  },
+  {
+   "num": 4,
+   "slug": "spreadsheet-cleanup",
+   "url": "/earn/builds/spreadsheet-cleanup/",
+   "h1": "Clean a real spreadsheet safely",
+   "name": "Spreadsheet Cleanup Plan",
+   "track": "Data & Spreadsheets",
+   "makes": [
+    "Rules log",
+    "Cleaned file",
+    "Validation report"
+   ],
+   "methods": [
+    16,
+    23,
+    27
+   ],
+   "pack": "/resources/earn/packs/04-spreadsheet-cleanup.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Safety first)",
+     "flags": "im",
+     "label": "Has a “Safety first” section",
+     "fix": "Add a heading line “## Safety first” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Rules log)",
+     "flags": "im",
+     "label": "Has a “Rules log” section",
+     "fix": "Add a heading line “## Rules log” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Validation report)",
+     "flags": "im",
+     "label": "Has a “Validation report” section",
+     "fix": "Add a heading line “## Validation report” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Handoff)",
+     "flags": "im",
+     "label": "Has a “Handoff” section",
+     "fix": "Add a heading line “## Handoff” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^\\d+[.)]\\s",
+     "min": 3,
+     "what": "numbered cleaning rules"
+    },
+    {
+     "t": "re",
+     "re": "rows before\\s*:\\s*[\\d,]+.*rows after\\s*:\\s*[\\d,]+",
+     "flags": "im",
+     "label": "Reports row counts before and after",
+     "fix": "Write “Rows before: 1,240 · rows after: 1,198”."
+    },
+    {
+     "t": "re",
+     "re": "\\bcopy\\b",
+     "flags": "im",
+     "label": "Works on a copy",
+     "fix": "Say that you work on a copy and never edit the original."
+    },
+    {
+     "t": "re",
+     "re": "spot checks?",
+     "flags": "im",
+     "label": "Includes hand spot checks",
+     "fix": "Compare three rows by hand and write the row numbers."
+    },
+    {
+     "t": "has",
+     "field": "sheet",
+     "name": "spreadsheet"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 180,
+     "max": 900
+    }
+   ],
+   "template": "# Clean-up plan: {sheet}\n\n## Safety first\n- I work on a copy named [[file name]]. The original is never edited.\n- Personal data: {personal}. [[how you protect it: hide or remove the column before using AI, never paste it anywhere]]\n- Size at the start: {size}\n\n## Rules log\nProblems found:\n{problems}\n\n1. [[rule: what you change]] — column [[letter]] — why: [[reason]] — method: [[formula or step]]\n2. [[rule]] — column [[letter]] — why: [[reason]] — method: [[formula or step]]\n3. [[rule]] — column [[letter]] — why: [[reason]] — method: [[formula or step]]\n\n## Validation report\n- Rows before: [[number]] · rows after: [[number]]\n- Duplicates removed: [[number]], listed in the tab “removed”\n- Values changed: [[number]], listed in the tab “changes”\n- Check total before: [[number]] · after: [[number]] · difference explained: [[why]]\n- Spot checks (three rows compared by hand): [[row numbers and result]]\n- The goal works: {goal} → [[the formula or pivot that proves it]]\n\n## Handoff\n- The client receives: the cleaned copy, the rules log and this report\n- The client must check: [[the one or two things only they can confirm]]\n\n## Boundary\n- Nothing was deleted without being listed. The original file is untouched.\n- No personal data was pasted into an AI tool.\n",
+   "fields": [
+    "sheet",
+    "size",
+    "problems",
+    "personal",
+    "goal"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Clean-up plan: a hardware shop’s stock list\n\n## Safety first\n- I work on a copy named stock-clean-2026-11-04.xlsx. The original is never edited.\n- Personal data: supplier phone numbers in column H. I hid column H before asking AI for formulas and never pasted any row.\n- Size at the start: 1,240 rows, 9 columns\n\n## Rules log\nProblems found: duplicate products, prices typed as text, supplier names spelled three ways.\n\n1. Merge exact duplicates — column B (product code) — why: the same code appears twice — method: sort by code, compare rows, keep the newer count\n2. Convert prices to numbers — column E — why: 312 prices were text — method: =VALUE(SUBSTITUTE(E2,\"$\",\"\"))\n3. One spelling per supplier — column G — why: \"Hardline\", \"Hard Line\" and \"HARDLINE\" — method: lookup table in the tab \"suppliers\"\n\n## Validation report\n- Rows before: 1,240 · rows after: 1,198\n- Duplicates removed: 42, listed in the tab “removed”\n- Values changed: 391, listed in the tab “changes”\n- Check total before: 1,240 rows of stock · after: 1,198 · difference explained: the 42 duplicates, each checked\n- Spot checks (three rows compared by hand): rows 15, 402 and 1,103 match the paper stock book\n- The goal works: total stock value by supplier → a pivot table on column G, total US$18,406\n\n## Handoff\n- The client receives: the cleaned copy, the rules log and this report\n- The client must check: the 6 products where the two duplicate counts disagreed\n\n## Boundary\n- Nothing was deleted without being listed. The original file is untouched.\n- No personal data was pasted into an AI tool.\n",
+   "exampleValues": {
+    "sheet": "a hardware shop’s stock list",
+    "size": "1,240 rows, 9 columns",
+    "personal": "supplier phone numbers in column H",
+    "goal": "total stock value by supplier"
+   }
+  },
+  {
+   "num": 5,
+   "slug": "clip-pack",
+   "url": "/earn/builds/clip-pack/",
+   "h1": "Turn one recording into a clip pack",
+   "name": "Clip Pack Planner",
+   "track": "Creative Production",
+   "makes": [
+    "Clips",
+    "Captions",
+    "Rights log",
+    "Approval sheet"
+   ],
+   "methods": [
+    6,
+    13,
+    36
+   ],
+   "pack": "/resources/earn/packs/05-clip-pack.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Clips)",
+     "flags": "im",
+     "label": "Has a “Clips” section",
+     "fix": "Add a heading line “## Clips” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Captions)",
+     "flags": "im",
+     "label": "Has a “Captions” section",
+     "fix": "Add a heading line “## Captions” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Rights log)",
+     "flags": "im",
+     "label": "Has a “Rights log” section",
+     "fix": "Add a heading line “## Rights log” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Approval sheet)",
+     "flags": "im",
+     "label": "Has a “Approval sheet” section",
+     "fix": "Add a heading line “## Approval sheet” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "count",
+     "re": "\\b\\d{1,2}:\\d{2}\\b",
+     "min": 6,
+     "label": "Every clip has start and end timestamps",
+     "fix": "Write start and end times like 04:10 – 04:52."
+    },
+    {
+     "t": "lines",
+     "match": "hook\\s*:",
+     "min": 3,
+     "what": "clip hooks"
+    },
+    {
+     "t": "lines",
+     "match": "approved by",
+     "min": 3,
+     "what": "approval lines"
+    },
+    {
+     "t": "re",
+     "re": "music",
+     "flags": "im",
+     "label": "Rights log covers music",
+     "fix": "Say whether there is music and whether it is allowed."
+    },
+    {
+     "t": "has",
+     "field": "source",
+     "name": "source video"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 180,
+     "max": 900
+    }
+   ],
+   "template": "# Clip pack: {source}\n\n## Clips\nMoments noted:\n{moments}\n\n### Clip 1: [[short title]]\n[[start mm:ss]] – [[end mm:ss]] · why it stands alone: [[reason]]\n\n### Clip 2: [[short title]]\n[[start]] – [[end]] · why it stands alone: [[reason]]\n\n### Clip 3: [[short title]]\n[[start]] – [[end]] · why it stands alone: [[reason]]\n\n## Captions\nFor {audience} on {platform}\n- Clip 1 hook: [[under 12 words]] · caption: [[what was actually said, no exaggeration]]\n- Clip 2 hook: [[hook]] · caption: [[caption]]\n- Clip 3 hook: [[hook]] · caption: [[caption]]\n\n## Rights log\n- Video owner: {owner}\n- Music in the background: [[none / whose / allowed?]]\n- Other people seen or heard: [[who, and did they agree?]]\n- Logos or other people's content on screen: [[what, and is it allowed?]]\n\n## Approval sheet\n- Clip 1: approved by [[name or role]] on [[date]] · changes: [[none / what]]\n- Clip 2: approved by [[name or role]] on [[date]] · changes: [[changes]]\n- Clip 3: approved by [[name or role]] on [[date]] · changes: [[changes]]\n\n## Boundary\n- Nothing is posted before the owner approves it. No invented quotes.\n- [[one more limit, e.g. no faces of minors without a parent's written yes]]\n",
+   "fields": [
+    "source",
+    "owner",
+    "audience",
+    "moments",
+    "platform"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Clip pack: a 45-minute youth talk on saving money\n\n## Clips\nMoments noted: the 50-cent jar story, three rules for a first pay cheque, a question from the audience.\n\n### Clip 1: The 50-cent jar\n04:10 – 04:52 · why it stands alone: a complete story with a clear ending\n\n### Clip 2: Three rules for your first pay\n17:30 – 18:25 · why it stands alone: a numbered list people can screenshot\n\n### Clip 3: \"What if my family needs the money?\"\n31:05 – 31:58 · why it stands alone: a real question and a short honest answer\n\n## Captions\nFor 16–25-year-olds on Facebook Reels and WhatsApp Status\n- Clip 1 hook: She saved one coin a day for a year · caption: Sister Rumbi's 50-cent jar, and what she bought with it.\n- Clip 2 hook: Three rules before you spend your first pay · caption: Pay yourself first, wait a week for big buys, tell one person your plan.\n- Clip 3 hook: When family asks for your savings · caption: A question from the floor and the pastor's answer, unedited.\n\n## Rights log\n- Video owner: the youth pastor, written yes on WhatsApp on 2 November\n- Music in the background: none in the chosen clips\n- Other people seen or heard: the person asking in clip 3 agreed in writing; her face is cropped out\n- Logos or other people's content on screen: a bank poster at 17:40, cropped out to be safe\n\n## Approval sheet\n- Clip 1: approved by the youth pastor on 5 November · changes: none\n- Clip 2: approved by the youth pastor on 5 November · changes: fix the spelling of \"cheque\"\n- Clip 3: approved by the youth pastor on 6 November · changes: start two seconds later\n\n## Boundary\n- Nothing is posted before the owner approves it. No invented quotes.\n- No faces of anyone under 18 without a parent's written yes.\n",
+   "exampleValues": {
+    "source": "a 45-minute youth talk on saving money",
+    "owner": "the youth pastor, written yes on WhatsApp",
+    "audience": "16–25-year-olds",
+    "platform": "Facebook Reels and WhatsApp Status"
+   }
+  },
+  {
+   "num": 6,
+   "slug": "article-refresh",
+   "url": "/earn/builds/article-refresh/",
+   "h1": "Refresh an outdated article",
+   "name": "Article Refresh Report",
+   "track": "Research & Content",
+   "makes": [
+    "Source log",
+    "Revised article",
+    "Change report"
+   ],
+   "methods": [
+    11,
+    19,
+    38
+   ],
+   "pack": "/resources/earn/packs/06-article-refresh.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Source log)",
+     "flags": "im",
+     "label": "Has a “Source log” section",
+     "fix": "Add a heading line “## Source log” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Changes)",
+     "flags": "im",
+     "label": "Has a “Changes” section",
+     "fix": "Add a heading line “## Changes” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(revised sections?|revised article)",
+     "flags": "im",
+     "label": "Has a “Revised sections” section",
+     "fix": "Add a heading line “## Revised sections” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Change report)",
+     "flags": "im",
+     "label": "Has a “Change report” section",
+     "fix": "Add a heading line “## Change report” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "source\\s*:",
+     "min": 3,
+     "what": "claims with a named source"
+    },
+    {
+     "t": "lines",
+     "match": "^\\d+[.)]\\s.*→",
+     "min": 3,
+     "what": "numbered changes (before → after)"
+    },
+    {
+     "t": "count",
+     "re": "checked\\s+\\S+",
+     "min": 3,
+     "label": "Each claim has a date checked",
+     "fix": "Add “checked 4 November 2026” to each claim."
+    },
+    {
+     "t": "has",
+     "field": "article",
+     "name": "article"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 180,
+     "max": 1200
+    }
+   ],
+   "template": "# Article refresh: {article}\n\n## Source log\nClaims to check:\n{claims}\n\n- Claim 1: [[the claim]] → [[still true / changed / could not verify]] · source: [[primary source name]] · checked [[date]]\n- Claim 2: [[claim]] → [[result]] · source: [[source]] · checked [[date]]\n- Claim 3: [[claim]] → [[result]] · source: [[source]] · checked [[date]]\n\n## Changes\n1. [[before]] → [[after]] · why: [[reason]]\n2. [[before]] → [[after]] · why: [[reason]]\n3. [[before]] → [[after]] · why: [[reason]]\n- Internal links added or fixed: [[which pages on the same site now link here, or from here]]\n\n## Revised sections\nWritten for: {reader}\n[[the rewritten paragraphs only, in plain language]]\n\n## Change report\nFor {owner}:\n- Changed: [[summary]]\n- Kept as it was: [[what still works and why]]\n- Please confirm: [[anything only the owner can confirm]]\n\n## Boundary\n- Every changed fact has a named source and a date. Nothing is invented.\n- An AI tool was not used as a source for any fact.\n",
+   "fields": [
+    "article",
+    "owner",
+    "claims",
+    "reader"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Article refresh: “How to open a market stall” guide, written in 2022\n\n## Source log\nClaims to check: the stall licence fee, where to apply, the opening hours rule.\n\n- Claim 1: the licence fee is US$10 a month → changed · source: the town council's 2026 fee schedule · checked 4 November 2026\n- Claim 2: apply at the market office → still true · source: phone call to the market office · checked 4 November 2026\n- Claim 3: stalls may open at 6:00 → could not verify · source: council by-laws page (not updated since 2023) · checked 4 November 2026\n\n## Changes\n1. \"US$10 a month\" → \"US$12 a month (2026 schedule)\" · why: the fee went up in January\n2. A dead link to the old council site → the current fee schedule page · why: the old link returns an error\n3. \"Bring three photos\" → \"Bring two photos and your ID\" · why: the market office said so on the phone\n- Internal links added or fixed: linked to the blog's budgeting post from step 4, and fixed a link to the old contact page\n\n## Revised sections\nWritten for: first-time traders who want the steps in order\nStep 2 now reads: Go to the market office with two photos and your ID. The licence costs US$12 a month under the 2026 fee schedule. Ask about opening hours when you apply, because the published rule may be out of date.\n\n## Change report\nFor a community business blog:\n- Changed: the fee, one dead link and the documents list\n- Kept as it was: the step order and the budgeting section, which are still accurate\n- Please confirm: the opening-hours rule, which no current source states\n\n## Boundary\n- Every changed fact has a named source and a date. Nothing is invented.\n- An AI tool was not used as a source for any fact.\n",
+   "exampleValues": {
+    "article": "“How to open a market stall” guide, written in 2022",
+    "owner": "a community business blog",
+    "reader": "first-time traders who want the steps in order"
+   }
+  },
+  {
+   "num": 7,
+   "slug": "content-month",
+   "url": "/earn/builds/content-month/",
+   "h1": "Package a month of social content",
+   "name": "Monthly Content Pack",
+   "track": "Retainer Service",
+   "makes": [
+    "Content system",
+    "Drafts",
+    "Approval calendar"
+   ],
+   "methods": [
+    14,
+    12,
+    2
+   ],
+   "pack": "/resources/earn/packs/07-content-month.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Content system)",
+     "flags": "im",
+     "label": "Has a “Content system” section",
+     "fix": "Add a heading line “## Content system” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Drafts)",
+     "flags": "im",
+     "label": "Has a “Drafts” section",
+     "fix": "Add a heading line “## Drafts” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Approval calendar)",
+     "flags": "im",
+     "label": "Has a “Approval calendar” section",
+     "fix": "Add a heading line “## Approval calendar” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Measures)",
+     "flags": "im",
+     "label": "Has a “Measures” section",
+     "fix": "Add a heading line “## Measures” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^###\\s*week",
+     "min": 4,
+     "what": "weekly drafts (### Week …)"
+    },
+    {
+     "t": "lines",
+     "match": "based on\\s*:",
+     "min": 8,
+     "what": "themes and drafts tied to a fact"
+    },
+    {
+     "t": "lines",
+     "match": "^visual\\s*:",
+     "min": 4,
+     "what": "visual briefs (Visual: …)"
+    },
+    {
+     "t": "re",
+     "re": "no reply means",
+     "flags": "im",
+     "label": "Says what happens if the owner does not reply",
+     "fix": "Add “no reply means nothing is posted”."
+    },
+    {
+     "t": "has",
+     "field": "business",
+     "name": "business"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 220,
+     "max": 1100
+    }
+   ],
+   "template": "# Monthly content pack: {business}\n\n## Content system\nReal facts:\n{facts}\n\n- Week 1 theme: [[theme]] · based on: [[fact]]\n- Week 2 theme: [[theme]] · based on: [[fact]]\n- Week 3 theme: [[theme]] · based on: [[fact]]\n- Week 4 theme: [[theme]] · based on: [[fact]]\n- Never posted: [[e.g. customer photos without a yes, prices not confirmed, other businesses]]\n\n## Drafts\nVoice: {voice}\n\n### Week 1\n[[draft under 80 words]]\nVisual: [[photo or graphic idea the owner can shoot on a phone]]\nBased on: [[fact]]\n\n### Week 2\n[[draft]]\nVisual: [[photo or graphic idea]]\nBased on: [[fact]]\n\n### Week 3\n[[draft]]\nVisual: [[photo or graphic idea]]\nBased on: [[fact]]\n\n### Week 4\n[[draft]]\nVisual: [[photo or graphic idea]]\nBased on: [[fact]]\n\n## Approval calendar\nChannel: {channel}\n- Drafts sent to the owner every [[day]] by [[time]]\n- Owner replies by [[day]]; no reply means [[nothing is posted]]\n- Posting days: [[days]]\n\n## Measures\n- [[something to count, e.g. enquiries that mention a post]]\n- [[a second measure]]\n\n## Boundary\n- Every post is based on a fact the owner confirmed. No invented offers, prices or reviews.\n- Nothing is posted without the owner's approval.\n",
+   "fields": [
+    "business",
+    "facts",
+    "voice",
+    "channel"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Monthly content pack: a tailoring shop that makes work uniforms and suits\n\n## Content system\nReal facts: suits ready in 7 days, alterations on clothes bought elsewhere, open since 2015, two tailors with 30 years between them.\n\n- Week 1 theme: behind the seams · based on: two tailors with 30 years between them\n- Week 2 theme: fix what you already own · based on: alterations on clothes bought elsewhere\n- Week 3 theme: seven days to a suit · based on: suits ready in 7 days\n- Week 4 theme: ten years on the same corner · based on: open since 2015\n- Never posted: customer photos without a written yes, unconfirmed prices, comments about other shops\n\n## Drafts\nVoice: proud of the craft, a bit funny, never pushy\n\n### Week 1\nBaba Moyo has been cutting cloth since before most of our customers were born. Mai Tsitsi checks every buttonhole twice. Between them: 30 years and very strong opinions about lapels.\nVisual: both tailors at the cutting table, hands only\nBased on: two tailors with 30 years between them\n\n### Week 2\nBought a jacket that almost fits? Bring it in. We take in, let out, shorten and rescue clothes from any shop. Your favourite shirt deserves a second life.\nVisual: a before-and-after of a jacket taken in at the waist\nBased on: alterations on clothes bought elsewhere\n\n### Week 3\nMonday: measurements. Wednesday: first fitting. Next Monday: you walk out in a suit made for you. Seven days, no shortcuts.\nVisual: three photos, one per fitting day, of the same suit\nBased on: suits ready in 7 days\n\n### Week 4\nSame corner, same scissors, since 2015. Thank you to everyone who keeps walking up our steps.\nVisual: the shop front in morning light\nBased on: open since 2015\n\n## Approval calendar\nChannel: Facebook page and WhatsApp Status, 3 times a week\n- Drafts sent to the owner every Friday by 16:00\n- Owner replies by Sunday; no reply means nothing is posted\n- Posting days: Monday, Wednesday, Friday\n\n## Measures\n- Enquiries that mention a post, counted in a notebook at the counter\n- Alteration jobs per week, compared with last month\n\n## Boundary\n- Every post is based on a fact the owner confirmed. No invented offers, prices or reviews.\n- Nothing is posted without the owner's approval.\n",
+   "exampleValues": {
+    "business": "a tailoring shop that makes work uniforms and suits",
+    "facts": "Suits ready in 7 days",
+    "voice": "proud of the craft, a bit funny",
+    "channel": "Facebook page and WhatsApp Status, 3 times a week"
+   }
+  },
+  {
+   "num": 8,
+   "slug": "journey-audit",
+   "url": "/earn/builds/journey-audit/",
+   "h1": "Audit a public customer journey",
+   "name": "Customer Journey Audit",
+   "track": "Sales & Research",
+   "makes": [
+    "Evidence pack",
+    "Prioritized fixes",
+    "Mini-demo"
+   ],
+   "methods": [
+    18,
+    20,
+    21
+   ],
+   "pack": "/resources/earn/packs/08-journey-audit.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Journey)",
+     "flags": "im",
+     "label": "Has a “Journey” section",
+     "fix": "Add a heading line “## Journey” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Evidence pack)",
+     "flags": "im",
+     "label": "Has a “Evidence pack” section",
+     "fix": "Add a heading line “## Evidence pack” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Prioritised fixes)",
+     "flags": "im",
+     "label": "Has a “Prioritised fixes” section",
+     "fix": "Add a heading line “## Prioritised fixes” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Mini-demo)",
+     "flags": "im",
+     "label": "Has a “Mini-demo” section",
+     "fix": "Add a heading line “## Mini-demo” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^\\d+[.)]\\s.*evidence\\s*:",
+     "min": 4,
+     "what": "journey steps with evidence"
+    },
+    {
+     "t": "lines",
+     "match": "impact\\s*:\\s*(high|medium|low).*effort\\s*:\\s*(high|medium|low)",
+     "min": 4,
+     "what": "fixes rated for impact and effort"
+    },
+    {
+     "t": "re",
+     "re": "^before\\s*:.*\\n(?:.*\\n)?^after\\s*:",
+     "flags": "im",
+     "label": "Mini-demo shows before and after",
+     "fix": "Write a “Before:” line and an “After:” line for the top fix."
+    },
+    {
+     "t": "has",
+     "field": "goal",
+     "name": "customer goal"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 200,
+     "max": 1000
+    }
+   ],
+   "template": "# Journey audit: {business}\n\n## Journey\nCustomer goal: {goal}\nSteps taken:\n{steps}\n\n1. [[step]] → [[what happened]] · evidence: [[screenshot name, time and date]]\n2. [[step]] → [[what happened]] · evidence: [[evidence]]\n3. [[step]] → [[what happened]] · evidence: [[evidence]]\n4. [[step]] → [[what happened]] · evidence: [[evidence]]\n\n## Evidence pack\nProblems seen:\n{found}\nStored in: [[folder name]] · [[number]] screenshots, all from public pages or with permission\n\n## Prioritised fixes\n- [[fix]] · impact: [[high/medium/low]] · effort: [[high/medium/low]] · why: [[reason]]\n- [[fix]] · impact: [[impact]] · effort: [[effort]] · why: [[reason]]\n- [[fix]] · impact: [[impact]] · effort: [[effort]] · why: [[reason]]\n- [[fix]] · impact: [[impact]] · effort: [[effort]] · why: [[reason]]\n\n## Mini-demo\nTop fix: [[the fix]]\nBefore: [[what a customer sees now]]\nAfter: [[what they would see]]\n\n## Boundary\n- Only public touchpoints were used, or the business asked for this audit. No fake enquiries that waste staff time.\n- I report what I observed. I do not guess at the business's sales or numbers.\n",
+   "fields": [
+    "business",
+    "goal",
+    "steps",
+    "found"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Journey audit: a driving instructor, practice audit with his permission\n\n## Journey\nCustomer goal: book a first lesson\nSteps taken: searched, opened the Facebook page, sent a WhatsApp, waited for a reply.\n\n1. Searched \"driving lessons Belvedere\" → the page appears fourth, with no photo · evidence: 01-search.png, 10:01, 4 November\n2. Opened the Facebook page → last post from March, no prices · evidence: 02-page.png, 10:03, 4 November\n3. Sent \"How much is a first lesson?\" on WhatsApp → no automatic greeting · evidence: 03-message.png, 10:05, 4 November\n4. Waited for a reply → reply after 26 hours, asking me to call · evidence: 04-reply.png, 12:11, 5 November\n\n## Evidence pack\nProblems seen: no prices anywhere, a reply after 26 hours, old posts.\nStored in: audit-instructor-nov · 4 screenshots, all from public pages or with permission\n\n## Prioritised fixes\n- Add a WhatsApp Business greeting with prices and lesson times · impact: high · effort: low · why: answers the first question instantly\n- Pin a post with prices and the booking steps · impact: high · effort: low · why: the page has no prices today\n- Reply within two hours on weekdays · impact: high · effort: medium · why: a learner waiting 26 hours books elsewhere\n- Post one learner pass photo a month, with permission · impact: medium · effort: low · why: the page looks inactive\n\n## Mini-demo\nTop fix: a WhatsApp Business greeting\nBefore: silence until he is free to type, sometimes a day later.\nAfter: \"Hello! First lesson US$15, 45 minutes, Mon–Sat. Reply with a day and time and I will confirm today.\"\n\n## Boundary\n- Only public touchpoints were used, or the business asked for this audit. No fake enquiries that waste staff time.\n- I report what I observed. I do not guess at the business's sales or numbers.\n",
+   "exampleValues": {
+    "business": "a driving instructor, practice audit with his permission",
+    "goal": "book a first lesson"
+   }
+  },
+  {
+   "num": 9,
+   "slug": "workflow-map",
+   "url": "/earn/builds/workflow-map/",
+   "h1": "Map and prototype one workflow",
+   "name": "Workflow Map & Test Run",
+   "track": "Automation",
+   "makes": [
+    "Process map",
+    "Test run",
+    "Handoff notes"
+   ],
+   "methods": [
+    21,
+    24,
+    25,
+    30
+   ],
+   "pack": "/resources/earn/packs/09-workflow-map.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Process map)",
+     "flags": "im",
+     "label": "Has a “Process map” section",
+     "fix": "Add a heading line “## Process map” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Test run)",
+     "flags": "im",
+     "label": "Has a “Test run” section",
+     "fix": "Add a heading line “## Test run” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Failure plan)",
+     "flags": "im",
+     "label": "Has a “Failure plan” section",
+     "fix": "Add a heading line “## Failure plan” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Handoff notes)",
+     "flags": "im",
+     "label": "Has a “Handoff notes” section",
+     "fix": "Add a heading line “## Handoff notes” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^\\d+[.)]\\s.*→.*→",
+     "min": 4,
+     "what": "mapped steps (input → action → output)"
+    },
+    {
+     "t": "re",
+     "re": "\\[HUMAN\\]",
+     "flags": "m",
+     "label": "Marks at least one human decision",
+     "fix": "Put [HUMAN] on a step where a person must decide."
+    },
+    {
+     "t": "lines",
+     "match": "expected\\s*:.*actual\\s*:",
+     "min": 3,
+     "what": "test cases with expected and actual results"
+    },
+    {
+     "t": "re",
+     "re": "unusual|edge case",
+     "flags": "im",
+     "label": "Tests an unusual case",
+     "fix": "Add a test for a message or record that breaks the pattern."
+    },
+    {
+     "t": "re",
+     "re": "to stop it",
+     "flags": "im",
+     "label": "Explains how to stop it",
+     "fix": "Add “To stop it: …” to the handoff notes."
+    },
+    {
+     "t": "has",
+     "field": "task",
+     "name": "task"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 180,
+     "max": 1000
+    }
+   ],
+   "template": "# Workflow: {task}\n\n## Process map\nTrigger: {trigger}\nSteps today:\n{steps}\n\n1. [[input]] → [[action]] → [[output]]\n2. [[input]] → [[action]] → [[output]]\n3. [HUMAN] [[input]] → [[the decision a person makes]] → [[output]]\n4. [[input]] → [[action]] → [[output]]\n\n## Test run\nTool: {tool}. Sample data: invented, [[number]] records.\n- Test 1 (normal): [[case]] · expected: [[result]] · actual: [[result]]\n- Test 2 (normal): [[case]] · expected: [[result]] · actual: [[result]]\n- Test 3 (unusual): [[e.g. a message with no address]] · expected: [[result]] · actual: [[result]]\n\n## Failure plan\n- If a step fails: [[what happens, e.g. the order stays in the inbox and is flagged]]\n- Who is told: [[person]] by [[how]]\n\n## Handoff notes\n- To run it: [[steps]]\n- To stop it: [[steps]]\n- Data stored in: [[where]]; personal data: {data}\n- Accounts owned by: [[the client, in their name]]\n\n## Boundary\n- Tested on invented sample data only. A person decides on every [HUMAN] step.\n- [[one more limit, e.g. it never sends messages to customers by itself]]\n",
+   "fields": [
+    "task",
+    "trigger",
+    "steps",
+    "tool",
+    "data"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Workflow: turning order messages into a delivery list each morning\n\n## Process map\nTrigger: a new order message on WhatsApp\nSteps today: read the message, copy details into a sheet, group by area, send the list to the driver.\n\n1. Order message → copy name, item, area and time into the order form → a new row in the sheet\n2. New row → a formula looks up the delivery fee for the area → row with fee\n3. [HUMAN] Rows with \"special request\" → the owner reads and approves or calls the customer → approved rows\n4. Approved rows at 07:30 → a filter view sorted by area → the driver's list, shared as view-only\n\n## Test run\nTool: Google Sheets formulas. Sample data: invented, 12 records.\n- Test 1 (normal): an order in Avondale for 10:00 · expected: fee US$2, in the Avondale group · actual: as expected\n- Test 2 (normal): two orders, same customer · expected: two rows, flagged as same customer · actual: not flagged, fixed with COUNTIF\n- Test 3 (unusual): a message with no area · expected: row marked \"ask area\" · actual: fee showed #N/A, fixed with IFERROR\n\n## Failure plan\n- If a step fails: the row turns red and stays off the driver's list\n- Who is told: the owner, by a red count at the top of the sheet she checks at 07:15\n\n## Handoff notes\n- To run it: fill the form for each order; open the \"driver\" view at 07:30 and share it\n- To stop it: stop using the form; the sheet keeps working as a normal list\n- Data stored in: the owner's Google Drive; personal data: customer names, addresses, phone numbers\n- Accounts owned by: the owner, in her name\n\n## Boundary\n- Tested on invented sample data only. A person decides on every [HUMAN] step.\n- It never sends messages to customers by itself.\n",
+   "exampleValues": {
+    "task": "turning order messages into a delivery list each morning",
+    "trigger": "a new order message on WhatsApp",
+    "data": "customer names, addresses, phone numbers"
+   }
+  },
+  {
+   "num": 10,
+   "slug": "weekly-report",
+   "url": "/earn/builds/weekly-report/",
+   "h1": "Build a weekly business report",
+   "name": "Weekly Business Report",
+   "track": "Reporting & Data",
+   "makes": [
+    "Report",
+    "Formulas",
+    "QA tests"
+   ],
+   "methods": [
+    26,
+    17
+   ],
+   "pack": "/resources/earn/packs/10-weekly-report.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Measures)",
+     "flags": "im",
+     "label": "Has a “Measures” section",
+     "fix": "Add a heading line “## Measures” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Formulas)",
+     "flags": "im",
+     "label": "Has a “Formulas” section",
+     "fix": "Add a heading line “## Formulas” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(qa tests|quality checks)",
+     "flags": "im",
+     "label": "Has a “QA tests” section",
+     "fix": "Add a heading line “## QA tests” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(One-page report)",
+     "flags": "im",
+     "label": "Has a “One-page report” section",
+     "fix": "Add a heading line “## One-page report” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "informs\\s*:.*formula\\s*:",
+     "min": 4,
+     "what": "measures tied to a decision and a formula"
+    },
+    {
+     "t": "re",
+     "re": "^\\s*=\\w+\\(",
+     "flags": "im",
+     "label": "Contains real spreadsheet formulas",
+     "fix": "Write at least one formula that starts with “=” on its own line."
+    },
+    {
+     "t": "lines",
+     "match": "hand count\\s*:\\s*[\\d,.]+",
+     "min": 3,
+     "what": "QA tests with a hand count"
+    },
+    {
+     "t": "has",
+     "field": "business",
+     "name": "business"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 180,
+     "max": 1000
+    }
+   ],
+   "template": "# Weekly report: {business}\n\n## Measures\nDecisions each week:\n{decisions}\n\n- [[measure]] · informs: [[decision]] · formula: [[formula]]\n- [[measure]] · informs: [[decision]] · formula: [[formula]]\n- [[measure]] · informs: [[decision]] · formula: [[formula]]\n- [[measure]] · informs: [[decision]] · formula: [[formula]]\n\nCandidates I dropped, and why: [[which ones did not lead to a decision]]\n{measures}\n\n## Formulas\nData comes from: {data}\n```\n[[formula 1, e.g. =SUMIFS(C:C, A:A, \">=\"&B1)]]\n[[formula 2]]\n```\n\n## QA tests\n- Test 1: [[what you count by hand]] · hand count: [[number]] · formula: [[number]] · [[match / fixed]]\n- Test 2: [[test]] · hand count: [[number]] · formula: [[number]] · [[result]]\n- Test 3: [[an empty or odd week]] · hand count: [[number]] · formula: [[number]] · [[result]]\n\n## One-page report\n- Top line: [[the one number the owner reads first, compared with last week]]\n- Then: [[the other measures, each with an arrow up or down]]\n- Last: [[one sentence: what to decide this week]]\n\n## Boundary\n- Every formula was checked against a hand count. Example numbers are invented.\n- The report shows what happened. It does not predict sales.\n",
+   "fields": [
+    "business",
+    "decisions",
+    "data",
+    "measures"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Weekly report: a small grocery shop\n\n## Measures\nDecisions each week: what to restock, whether to stay open later on Fridays, which supplier to pay first.\n\n- Sales this week vs last week · informs: whether the week was normal · formula: SUMIFS on the Amount column by week\n- Top 10 items by quantity · informs: what to restock · formula: a pivot of Item by Quantity, top 10\n- Sales after 18:00 on Friday · informs: whether to stay open later · formula: SUMIFS with a time condition\n- Supplier bills due within 7 days · informs: who to pay first · formula: FILTER on the Bills tab by due date\n\nCandidates I dropped, and why: \"customers per day\", because the notebook does not record it.\n\n## Formulas\nData comes from: a sales notebook copied into a sheet each evening\n```\n=SUMIFS(Sales!C:C, Sales!A:A, \">=\"&B1, Sales!A:A, \"<\"&B1+7)\n=SUMIFS(Sales!C:C, Sales!A:A, \">=\"&B1, Sales!B:B, \">=18:00\", Sales!D:D, \"Fri\")\n=FILTER(Bills!A:C, Bills!C:C <= TODAY()+7)\n```\n\n## QA tests\n- Test 1: sales on Monday 3 November · hand count: 214.50 · formula: 214.50 · match\n- Test 2: bread loaves sold this week · hand count: 96 · formula: 91 · fixed: five rows typed \"Bread \" with a space\n- Test 3: a week with a public holiday · hand count: 0 for the holiday · formula: 0 · match\n\n## One-page report\n- Top line: sales this week, US$1,412, up 6% on last week\n- Then: top 10 items, Friday late sales, bills due, each with an arrow up or down\n- Last: one sentence, e.g. \"Restock bread and cooking oil; pay the dairy supplier by Thursday\"\n\n## Boundary\n- Every formula was checked against a hand count. Example numbers are invented.\n- The report shows what happened. It does not predict sales.\n",
+   "exampleValues": {
+    "business": "a small grocery shop",
+    "data": "a sales notebook copied into a sheet each evening"
+   }
+  },
+  {
+   "num": 11,
+   "slug": "template-product",
+   "url": "/earn/builds/template-product/",
+   "h1": "Make a niche template product",
+   "name": "Template Product Kit",
+   "track": "Digital Product",
+   "makes": [
+    "Product files",
+    "Licence",
+    "Listing copy"
+   ],
+   "methods": [
+    31,
+    34,
+    35
+   ],
+   "pack": "/resources/earn/packs/11-template-product.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Product files)",
+     "flags": "im",
+     "label": "Has a “Product files” section",
+     "fix": "Add a heading line “## Product files” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(licen[cs]e)",
+     "flags": "im",
+     "label": "Has a “Licence” section",
+     "fix": "Add a heading line “## Licence” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Listing copy)",
+     "flags": "im",
+     "label": "Has a “Listing copy” section",
+     "fix": "Add a heading line “## Listing copy” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Proof)",
+     "flags": "im",
+     "label": "Has a “Proof” section",
+     "fix": "Add a heading line “## Proof” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^\\s*-\\s*step\\s*\\d",
+     "min": 5,
+     "what": "instruction steps"
+    },
+    {
+     "t": "re",
+     "re": "validation\\s*:",
+     "flags": "im",
+     "label": "Shows validation evidence",
+     "fix": "Add “Validation: …” with evidence that other people need it."
+    },
+    {
+     "t": "re",
+     "re": "you may not\\s*:",
+     "flags": "im",
+     "label": "Licence says what buyers may not do",
+     "fix": "Add “You may not: …” to the licence."
+    },
+    {
+     "t": "re",
+     "re": "refunds?\\s*:",
+     "flags": "im",
+     "label": "States refund terms",
+     "fix": "Add “Refunds: …”."
+    },
+    {
+     "t": "re",
+     "re": "not for\\s*:",
+     "flags": "im",
+     "label": "Says who it is not for",
+     "fix": "Add “Not for: …” to the listing."
+    },
+    {
+     "t": "re",
+     "re": "^title\\s*:\\s*.{3,60}$",
+     "flags": "im",
+     "label": "Listing title is under 60 characters",
+     "fix": "Shorten the title to 60 characters or fewer."
+    },
+    {
+     "t": "not",
+     "re": "\\b(bestsell|best-sell|thousands of (happy )?(buyers|customers)|\\d+\\+? (sales|happy customers))",
+     "flags": "i",
+     "label": "No invented sales or popularity claims",
+     "fix": "Remove sales numbers and popularity claims you cannot show."
+    },
+    {
+     "t": "has",
+     "field": "template",
+     "name": "template"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 160,
+     "max": 900
+    }
+   ],
+   "template": "# Template product: {template}\n\n## Product files\n1. [[main file name]] · [[what it is]]\n2. [[instructions file]] · start-here steps:\n   - Step 1: [[make a copy]]\n   - Step 2: [[step]]\n   - Step 3: [[step]]\n   - Step 4: [[step]]\n   - Step 5: [[step]]\n3. [[example file filled with invented data]]\n\n## Licence\n- You may: [[e.g. use it for your own business, change it]]\n- You may not: [[e.g. resell or share the file]]\n- Refunds: [[e.g. within 7 days if it does not open or work as described]]\n\n## Listing copy\nTitle: [[under 60 characters]]\nDescription: [[two sentences: the problem, and what this template does about it]]\nFor: {buyer}\nIncluded: [[the files above, in buyer words]]\nNot for: [[who should not buy it]]\nPrice: {price}\n\n## Proof\n- Origin: {origin}\n- Validation: [[evidence that others need it, e.g. five people asked for a copy]]\n- [[one checkable fact, e.g. works in Google Sheets and Excel; tested on a phone]]\n\n## Boundary\n- No income claims, invented reviews or sales numbers. I made every file myself.\n- [[one more limit, e.g. not financial or tax advice]]\n",
+   "fields": [
+    "template",
+    "buyer",
+    "origin",
+    "price"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Template product: a Google Sheets budget for market traders\n\n## Product files\n1. trader-budget.xlsx · the template, with tabs for daily sales, stock, home money and a weekly summary\n2. START-HERE.pdf · start-here steps:\n   - Step 1: open the file and choose \"Make a copy\"\n   - Step 2: type your opening cash in the yellow cell\n   - Step 3: each evening, enter the day's sales and spending\n   - Step 4: move home money in the \"home\" tab, never from the till\n   - Step 5: on Sunday, read the summary tab\n3. trader-budget-example.xlsx · a month filled with invented numbers\n\n## Licence\n- You may: use it for your own business and change it however you like\n- You may not: resell, share or upload the file anywhere\n- Refunds: within 7 days if it does not open or work as described\n\n## Listing copy\nTitle: Market Trader Budget (Google Sheets & Excel)\nDescription: Shop money and home money get mixed up, and the week ends without knowing if you made anything. This sheet keeps them apart and shows the answer every Sunday.\nFor: traders who mix shop money and home money\nIncluded: the budget sheet, a filled example and a start-here guide\nNot for: businesses with staff or VAT returns\nPrice: US$7\n\n## Proof\n- Origin: I built it for my aunt’s stall and used it for a year\n- Validation: six traders on her row asked for a copy; four used it for a month and kept going\n- Works in Google Sheets and Excel; tested on a phone and a laptop\n\n## Boundary\n- No income claims, invented reviews or sales numbers. I made every file myself.\n- It is a tracking tool, not financial or tax advice.\n",
+   "exampleValues": {
+    "template": "a Google Sheets budget for market traders",
+    "buyer": "traders who mix shop money and home money",
+    "origin": "I built it for my aunt’s stall and used it for a year",
+    "price": "US$7"
+   }
+  },
+  {
+   "num": 12,
+   "slug": "micro-tool-test",
+   "url": "/earn/builds/micro-tool-test/",
+   "h1": "Validate a one-problem micro-tool",
+   "name": "Micro-tool Validation Plan",
+   "track": "Small AI Tool",
+   "makes": [
+    "Interviews",
+    "Manual prototype",
+    "Test plan"
+   ],
+   "methods": [
+    39,
+    40,
+    32
+   ],
+   "pack": "/resources/earn/packs/12-micro-tool-test.zip",
+   "checks": [
+    {
+     "t": "blanks"
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Interviews)",
+     "flags": "im",
+     "label": "Has a “Interviews” section",
+     "fix": "Add a heading line “## Interviews” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Manual prototype)",
+     "flags": "im",
+     "label": "Has a “Manual prototype” section",
+     "fix": "Add a heading line “## Manual prototype” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Test plan)",
+     "flags": "im",
+     "label": "Has a “Test plan” section",
+     "fix": "Add a heading line “## Test plan” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Data and safety)",
+     "flags": "im",
+     "label": "Has a “Data and safety” section",
+     "fix": "Add a heading line “## Data and safety” and fill it in."
+    },
+    {
+     "t": "re",
+     "re": "^##\\s*(Boundary)",
+     "flags": "im",
+     "label": "Has a “Boundary” section",
+     "fix": "Add a heading line “## Boundary” and fill it in."
+    },
+    {
+     "t": "lines",
+     "match": "^\\d+[.)]\\s",
+     "min": 5,
+     "what": "interview questions"
+    },
+    {
+     "t": "lines",
+     "match": "pain\\s*:\\s*[1-5]",
+     "min": 2,
+     "what": "interview log lines with a pain score"
+    },
+    {
+     "t": "re",
+     "re": "stop rule\\s*:.*\\d",
+     "flags": "im",
+     "label": "Has a stop rule with a number",
+     "fix": "Write a stop rule with a number, e.g. “fewer than 3 of 5 users”."
+    },
+    {
+     "t": "re",
+     "re": "timebox\\s*:\\s*\\d+",
+     "flags": "im",
+     "label": "Has a timebox in days",
+     "fix": "Write “Timebox: 14 days”."
+    },
+    {
+     "t": "has",
+     "field": "idea",
+     "name": "idea"
+    },
+    {
+     "t": "not",
+     "re": "passive income|get rich|risk[- ]free|overnight|(?<!no |not |never |without )guaranteed? (?:results|income|sales|rankings?|leads|returns|profit)|\\b(?:10|100)x\\b",
+     "flags": "i",
+     "label": "No hype: no guaranteed results, passive income or overnight claims",
+     "fix": "Delete the promise. Say what you will deliver and how you will check it instead."
+    },
+    {
+     "t": "words",
+     "min": 180,
+     "max": 1000
+    }
+   ],
+   "template": "# Micro-tool test: {idea}\n\n## Interviews\nFor: {user}\n1. Tell me about the last time you had to deal with this: {job}.\n2. [[question about how long it took]]\n3. [[question about what it cost them or what they lost]]\n4. [[question about what they tried]]\n5. [[question about who else is involved]]\n\nLog (no names):\n- [[role]] · [[date]] · quote: “[[their words]]” · pain: [[1–5]]\n- [[role]] · [[date]] · quote: “[[their words]]” · pain: [[1–5]]\n\n## Manual prototype\nFor one user, by hand:\n- Step 1: [[how they send you the input]]\n- Step 2: [[what you do]]\n- Step 3: [[what they receive and how fast]]\n- Measure: [[e.g. time saved, whether they use it again next week]]\n\n## Test plan\n- Smallest tool: [[the one job it does, nothing else]] · built with {stack}\n- Success measure 1: [[a number]]\n- Success measure 2: [[a number]]\n- Success measure 3: [[a number]]\n- Stop rule: [[e.g. if fewer than 3 of 5 users use it twice, stop or change the idea]]\n- Timebox: [[number]] days\n\n## Data and safety\n[[what data it touches, where it is stored, who can see it]]\n\n## Boundary\n- Interview results are real and recorded without names. No invented users or demand.\n- [[one more limit, e.g. it drafts quotes; a person checks every price]]\n",
+   "fields": [
+    "idea",
+    "user",
+    "job",
+    "stack"
+   ],
+   "example": "> Worked example. The business, people and numbers are invented to show the shape of a finished deliverable.\n\n# Micro-tool test: a tool that turns a voice note into a printed quotation\n\n## Interviews\nFor: plumbers and electricians who quote on site\n1. Tell me about the last time you had to deal with this: write quotes by hand at night.\n2. How long did that quote take, from the site visit to sending it?\n3. Have you ever lost a job because the quote arrived late?\n4. What have you tried: templates, an app, asking someone else?\n5. Who else sees the quote before the customer does?\n\nLog (no names):\n- plumber · 6 November · quote: “I lose about one job a week because the quote is late” · pain: 5\n- electrician · 7 November · quote: “My daughter types them on Sundays” · pain: 4\n- plumber · 7 November · quote: “Customers just want a number on WhatsApp” · pain: 2\n\n## Manual prototype\nFor one user, by hand:\n- Step 1: he sends a voice note after the site visit\n- Step 2: I type the items and prices into a quote template and check the maths\n- Step 3: he receives a PDF on WhatsApp within 2 hours\n- Measure: whether he sends me a second voice note within a week, and hours saved per quote\n\n## Test plan\n- Smallest tool: voice note in, draft quote out, nothing else · built with a web page, a free AI key, Cloudflare free tier\n- Success measure 1: 3 of 5 tradespeople use it at least twice in two weeks\n- Success measure 2: a quote takes under 10 minutes from voice note to PDF\n- Success measure 3: no price errors in 10 checked quotes\n- Stop rule: if fewer than 3 of 5 use it twice, stop or change the idea\n- Timebox: 14 days\n\n## Data and safety\nVoice notes and quotes contain customer addresses. They are deleted after 30 days and never used to train anything.\n\n## Boundary\n- Interview results are real and recorded without names. No invented users or demand.\n- It drafts quotes; a person checks every price before sending.\n",
+   "exampleValues": {
+    "idea": "a tool that turns a voice note into a printed quotation",
+    "user": "plumbers and electricians who quote on site",
+    "job": "write quotes by hand at night",
+    "stack": "a web page, a free AI key, Cloudflare free tier"
+   }
+  }
+ ],
+ "kits": {
+  "1": {
+   "kit": "/resources/earn/methods/01-local-business-website-in-a-day.md",
+   "build": "local-page-kit"
+  },
+  "2": {
+   "kit": "/resources/earn/methods/02-google-business-profile-content-kit.md",
+   "build": "local-page-kit"
+  },
+  "3": {
+   "kit": "/resources/earn/methods/03-ethical-review-response-desk.md",
+   "build": "customer-reply-kit"
+  },
+  "4": {
+   "kit": "/resources/earn/methods/04-faq-and-customer-reply-kit.md",
+   "build": "customer-reply-kit"
+  },
+  "5": {
+   "kit": "/resources/earn/methods/05-whatsapp-catalogue-and-reply-setup.md",
+   "build": "customer-reply-kit"
+  },
+  "6": {
+   "kit": "/resources/earn/methods/06-short-form-video-repurposing-studio.md",
+   "build": "clip-pack"
+  },
+  "7": {
+   "kit": "/resources/earn/methods/07-product-description-cleanup-service.md",
+   "build": "article-refresh"
+  },
+  "8": {
+   "kit": "/resources/earn/methods/08-menu-price-list-and-service-sheet-redesign.md",
+   "build": "local-page-kit"
+  },
+  "9": {
+   "kit": "/resources/earn/methods/09-proposal-and-quotation-kit.md",
+   "build": "offer-sheet"
+  },
+  "10": {
+   "kit": "/resources/earn/methods/10-cv-and-linkedin-evidence-pack.md",
+   "build": "article-refresh"
+  },
+  "11": {
+   "kit": "/resources/earn/methods/11-research-backed-blog-refresh-service.md",
+   "build": "article-refresh"
+  },
+  "12": {
+   "kit": "/resources/earn/methods/12-newsletter-production-service.md",
+   "build": "content-month"
+  },
+  "13": {
+   "kit": "/resources/earn/methods/13-podcast-show-notes-package.md",
+   "build": "clip-pack"
+  },
+  "14": {
+   "kit": "/resources/earn/methods/14-social-content-system-for-one-niche.md",
+   "build": "content-month"
+  },
+  "15": {
+   "kit": "/resources/earn/methods/15-presentation-cleanup-and-speaker-note-service.md",
+   "build": "article-refresh"
+  },
+  "16": {
+   "kit": "/resources/earn/methods/16-data-cleaning-and-spreadsheet-repair.md",
+   "build": "spreadsheet-cleanup"
+  },
+  "17": {
+   "kit": "/resources/earn/methods/17-survey-and-feedback-insight-report.md",
+   "build": "weekly-report"
+  },
+  "18": {
+   "kit": "/resources/earn/methods/18-competitor-public-presence-audit.md",
+   "build": "offer-sheet"
+  },
+  "19": {
+   "kit": "/resources/earn/methods/19-seo-content-brief-studio.md",
+   "build": "article-refresh"
+  },
+  "20": {
+   "kit": "/resources/earn/methods/20-accessibility-quick-audit-service.md",
+   "build": "local-page-kit"
+  },
+  "21": {
+   "kit": "/resources/earn/methods/21-lead-response-workflow-setup.md",
+   "build": "journey-audit"
+  },
+  "22": {
+   "kit": "/resources/earn/methods/22-appointment-booking-content-outreach-system.md",
+   "build": "workflow-map"
+  },
+  "23": {
+   "kit": "/resources/earn/methods/23-crm-cleanup-and-follow-up-rescue.md",
+   "build": "spreadsheet-cleanup"
+  },
+  "24": {
+   "kit": "/resources/earn/methods/24-inbox-triage-design.md",
+   "build": "workflow-map"
+  },
+  "25": {
+   "kit": "/resources/earn/methods/25-meeting-to-action-workflow.md",
+   "build": "workflow-map"
+  },
+  "26": {
+   "kit": "/resources/earn/methods/26-weekly-business-report-automation.md",
+   "build": "weekly-report"
+  },
+  "27": {
+   "kit": "/resources/earn/methods/27-document-to-database-setup.md",
+   "build": "spreadsheet-cleanup"
+  },
+  "28": {
+   "kit": "/resources/earn/methods/28-internal-knowledge-base-starter.md",
+   "build": "customer-reply-kit"
+  },
+  "29": {
+   "kit": "/resources/earn/methods/29-simple-website-faq-assistant.md",
+   "build": "customer-reply-kit"
+  },
+  "30": {
+   "kit": "/resources/earn/methods/30-automation-audit-and-workflow-map.md",
+   "build": "workflow-map"
+  },
+  "31": {
+   "kit": "/resources/earn/methods/31-niche-template-shop.md",
+   "build": "template-product"
+  },
+  "32": {
+   "kit": "/resources/earn/methods/32-local-information-data-product.md",
+   "build": "micro-tool-test"
+  },
+  "33": {
+   "kit": "/resources/earn/methods/33-paid-niche-research-brief.md",
+   "build": "offer-sheet"
+  },
+  "34": {
+   "kit": "/resources/earn/methods/34-original-mini-course-from-real-expertise.md",
+   "build": "template-product"
+  },
+  "35": {
+   "kit": "/resources/earn/methods/35-game-ui-asset-micro-studio.md",
+   "build": "template-product"
+  },
+  "36": {
+   "kit": "/resources/earn/methods/36-honest-faceless-explainer-channel-with-owned-offer.md",
+   "build": "clip-pack"
+  },
+  "37": {
+   "kit": "/resources/earn/methods/37-expert-led-niche-newsletter-service-funnel.md",
+   "build": "content-month"
+  },
+  "38": {
+   "kit": "/resources/earn/methods/38-human-edited-niche-affiliate-resource.md",
+   "build": "article-refresh"
+  },
+  "39": {
+   "kit": "/resources/earn/methods/39-one-problem-micro-tool.md",
+   "build": "offer-sheet"
+  },
+  "40": {
+   "kit": "/resources/earn/methods/40-browser-extension-or-spreadsheet-add-on-for-one-workflow.md",
+   "build": "micro-tool-test"
+  }
+ },
+ "contract": "/resources/earn/offer-contract.md",
+ "allKits": "/resources/earn/earn-method-kits.zip"
+}
