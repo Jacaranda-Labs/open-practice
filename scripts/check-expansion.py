@@ -6,15 +6,28 @@ os.environ.setdefault('OPENBLAS_NUM_THREADS','1');os.environ.setdefault('OMP_NUM
 R=Path(__file__).resolve().parent.parent;sys.path.insert(0,str(R/'curriculum/expansion'))
 from lab_engine import run
 from profiles import PROFILES
-scope=json.loads((R/'curriculum/expansion/scope.json').read_text());courses=json.loads((R/'apps/web/public/courses.json').read_text());new=[c for c in courses if c.get('sourceListingNumber')]
-assert len(courses)==36 and len(new)==30
-assert {c['sourceListingNumber'] for c in new}=={p['source'] for p in PROFILES}
+scope=json.loads((R/'curriculum/expansion/scope.json').read_text());courses=json.loads((R/'apps/web/public/courses.json').read_text())
+# 2026-10-27 the library merged 36 overlapping paths into 20 with modules (mergedFrom). Every one of
+# the thirty original projects must still have a home: its own course or a module of a merged one.
+home={}
+for c in courses:
+ home[c['id']]=c
+ for m in c.get('mergedFrom') or []:home[m]=c
+assert len(PROFILES)==30 and all(p['id'] in home for p in PROFILES),[p['id'] for p in PROFILES if p['id'] not in home]
+sources={p['source'] for p in PROFILES}
+listed={c['sourceListingNumber'] for c in courses if c.get('sourceListingNumber')}
+assert listed<=sources
 assert len(scope['incorporated'])==11
 assert len(scope['conditional_not_published'])==27 and len(scope['held_not_published'])==6
-assert not ({c['sourceListingNumber'] for c in new}&set(scope['conditional_not_published']+scope['held_not_published']))
+assert not (sources&set(scope['conditional_not_published']+scope['held_not_published']))
 for s in scope['incorporated']:
- c=next(c for c in new if c['id']==s['course']);l=c['lessons'][s['lesson']-1]
- assert s['listing'] in l['supportingInputs'] and s['title'] in l['text']
+ c=home[s['course']]
+ assert any(s['listing'] in (l.get('supportingInputs') or []) and s['title'] in l['text'] for l in c['lessons']),s
+# every lesson in the library, merged or not, keeps the original depth bar
+for c in courses:
+ assert all(len(l['text'])>500 and len(l['example'])>100 for l in c['lessons']),c['id']
+ assert all(len(l['steps'])>=5 and len(l['expected'])>=2 for l in c['lessons']),c['id']
+new=[{'id':p['id']} for p in PROFILES]
 checks=0;cells=0;extensions=0
 with tempfile.TemporaryDirectory(prefix='open-practice-reference-') as tmp:
  old=os.getcwd();os.chdir(tmp)
@@ -33,9 +46,6 @@ with tempfile.TemporaryDirectory(prefix='open-practice-reference-') as tmp:
      with contextlib.redirect_stdout(io.StringIO()):exec(''.join(cell['source']),ns)
      cells+=1
    if len(notebook['cells'])>4:extensions+=1
-   assert len(c['lessons'])==6
-   assert all(len(l['text'])>500 and len(l['example'])>100 for l in c['lessons'])
-   assert all(len(l['steps'])>=5 and len(l['expected'])>=2 for l in c['lessons'])
    checks+=1
   assert (Path(tmp)/'checked-chart.svg').is_file()
  finally:os.chdir(old)
