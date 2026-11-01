@@ -2,6 +2,7 @@ name: Publish secure reading fallback
 on:
   push:
     branches: [main]
+    paths-ignore: ['**.md', 'docs/**']   # 2026-11-01 Actions budget: docs-only pushes publish nothing new
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,6 +14,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 6
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
