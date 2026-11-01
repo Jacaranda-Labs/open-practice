@@ -1,4 +1,4 @@
-# Make Mula: useful work, honest offers: practice files
+# Earn by Doing: useful work, honest offers: practice files
 
 Original educational fixture, CC BY 4.0. All data is fictional or authored.
 

@@ -68,7 +68,7 @@ dict(slug='cold-email-writer', name='Cold Email Writer', cat='writing', emoji='�
  selfcheck=['Is the observation true and checkable?','Would you be fine if the recipient posted this email publicly?','Are you sending only to business addresses with a legitimate reason?'],
  tips=['Send fewer, better emails: 10 researched beats 500 blasted.','Follow up once, a week later, then stop.','Laws differ by country — include who you are and honour every opt-out.'],
  faq=[('Is cold emailing legal?','In many countries, business-to-business outreach is allowed if you are honest about who you are, have a legitimate reason and honour opt-outs; some countries are stricter. Check the rules where you and your recipients are.'),('How many follow-ups should I send?','One polite follow-up is usually enough. Repeated chasing hurts your reputation and your email deliverability.')],
- course='make-mula', related=['email-subject-lines','email-writer','linkedin-bio'], ext='txt'),
+ course='earn-by-doing', related=['email-subject-lines','email-writer','linkedin-bio'], ext='txt'),
 
 dict(slug='cover-letter-writer', name='Cover Letter Writer', cat='writing', emoji='📄',
  h1='Write a cover letter matched to one job',
@@ -97,7 +97,7 @@ dict(slug='product-description', name='Product Description Generator', cat='writ
  selfcheck=['Would a buyer know exactly what arrives?','Are photos needed to support any claim?','Is the price and delivery clear?'],
  tips=['Answer the three questions buyers ask in your DMs — in the description.','Benefits sell, specs reassure. You need both.','Use the words buyers search for, not your internal names.'],
  faq=[('What makes a good product description?','It tells the buyer what the product is, who it suits, what it does for them, and the facts — size, material, price and delivery — in a scannable layout.'),('How long should it be?','Most work well at 80–200 words with bullets. Expensive or technical items may need more detail lower down.')],
- course='make-mula', related=['social-bio','hashtag-generator','faq-generator'], ext='txt'),
+ course='earn-by-doing', related=['social-bio','hashtag-generator','faq-generator'], ext='txt'),
 
 dict(slug='faq-generator', name='FAQ Generator', cat='writing', emoji='❓',
  h1='Build an FAQ from real customer questions',
@@ -197,7 +197,7 @@ dict(slug='social-bio', name='Social Media Bio Generator', cat='social', emoji='
  selfcheck=['Can a stranger tell what you do in 3 seconds?','Is the call to action something you can respond to quickly?','Does your profile photo match the bio?'],
  tips=['Your bio is a signpost, not a CV.','Update it when your offer changes.','Use the same core sentence across platforms for recognition.'],
  faq=[('What are the bio character limits?','At the time of writing: Instagram about 150, TikTok about 80, X 160, WhatsApp Business about 139. Platforms change limits, so check yours when you paste.'),('Should I put a link in my bio?','Yes, if it goes somewhere useful — a booking page, catalogue or WhatsApp chat.')],
- course='make-mula', related=['linkedin-bio','hashtag-generator','business-name-generator'], ext='txt'),
+ course='earn-by-doing', related=['linkedin-bio','hashtag-generator','business-name-generator'], ext='txt'),
 
 dict(slug='hashtag-generator', name='Hashtag Generator', cat='social', emoji='#️⃣',
  h1='Choose hashtags with a strategy, not a pile',
@@ -226,7 +226,7 @@ dict(slug='business-name-generator', name='Business Name Generator', cat='busine
  selfcheck=['Say the top name over the phone to a friend — can they spell it?','Does it mean anything awkward in local languages?','Could it grow if you add new services?'],
  tips=['Search the national company registry before printing anything.','Avoid names that box you into one product or street.','Check that the name is not a trademark in your category.'],
  faq=[('How do I check if a business name is taken?','Search your country’s company registry, try the domain in a registrar, check social handles, and search the name with your city on Google and on the trademark database.'),('Should the domain match exactly?','It helps, but a short, clear variation (adding your city or a word like “hq”) is fine if the main name is unique.')],
- course='make-mula', related=['social-bio','swot-analysis','landing-page-generator'], ext='txt'),
+ course='earn-by-doing', related=['social-bio','swot-analysis','landing-page-generator'], ext='txt'),
 
 dict(slug='swot-analysis', name='SWOT Analysis Generator', cat='business', emoji='🧭',
  h1='Run a SWOT that leads to decisions',

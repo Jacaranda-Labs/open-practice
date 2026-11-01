@@ -35,7 +35,7 @@ try{
  await checkArrowPlacement();
  for(const width of [320,360,390,768,1024]){
   await page.setViewportSize({width,height:900});
-  for(const route of ['/','/dashboard.html','/library.html','/activities.html','/tools.html','/builds/make-mula.html']){
+  for(const route of ['/','/dashboard.html','/library.html','/activities.html','/tools.html','/builds/earn-by-doing.html']){
    await page.goto(base+route);await page.locator('main:visible').first().waitFor();
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false,route+' at '+width);
   }

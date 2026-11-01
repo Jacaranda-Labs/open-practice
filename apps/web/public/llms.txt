@@ -77,7 +77,7 @@
 - [Join two datasets without multiplying the truth](https://open-practice.zlnew.workers.dev/builds/data-wrangling.html): Deliver a wrangling pipeline with inputs, tests and a reproducible handoff.
 - [Use a pipeline and a genuinely held-out set](https://open-practice.zlnew.workers.dev/builds/sklearn-lab.html): Ship a versioned experiment bundle with inputs, tests and a reproducible handoff.
 - [Find clusters—and show why they are not facts](https://open-practice.zlnew.workers.dev/builds/clustering-lab.html): Ship a clustering exploration note with inputs, tests and a reproducible handoff.
-- [Make Mula: useful work, honest offers](https://open-practice.zlnew.workers.dev/builds/make-mula.html): Decide from actual evidence with inputs, tests and a reproducible handoff.
+- [Earn by Doing: useful work, honest offers](https://open-practice.zlnew.workers.dev/builds/earn-by-doing.html): Decide from actual evidence with inputs, tests and a reproducible handoff.
 
 ## Facts
 - Not accredited; self-review is not assessment.

@@ -1,0 +1,4 @@
+{
+  "_note": "Renamed build paths: old id -> new id. Old progress, cloud rows, links and downloads follow the new id (scripts/course_merge.py). Never delete an entry.",
+  "make-mula": "earn-by-doing"
+}

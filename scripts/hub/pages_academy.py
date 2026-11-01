@@ -6,7 +6,7 @@ GOALS = [
     ('Data & spreadsheets', 'Clean, join, report and chart data you can defend.', ['sheets', 'data-wrangling', 'data-report']),
     ('Build with code & APIs', 'Pages, automations, API clients and reproducible cloud labs.', ['web', 'automation', 'api-integration', 'evidence-assistant', 'python-records', 'reproducible-cloud-lab']),
     ('Machine learning', 'Honest baselines, pipelines, classification and clustering.', ['measured-ml', 'sklearn-lab', 'text-classification', 'clustering-lab']),
-    ('Plan, create & earn', 'Plans that obey constraints, creative briefs and honest offers.', ['project-planning', 'visual-brief', 'make-mula']),
+    ('Plan, create & earn', 'Plans that obey constraints, creative briefs and honest offers.', ['project-planning', 'visual-brief', 'earn-by-doing']),
 ]
 
 def course_card(c):

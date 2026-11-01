@@ -18,13 +18,13 @@ try{
   const results=await Promise.all(expected.slice(start,start+6).map(async url=>{const r=await context.request.get(base+url);assert.equal(r.status(),200,url);const bytes=await r.body();assert.ok(bytes.length>20,url);return createHash('sha256').update(bytes).digest('hex')}));
   for(const hash of results){assert.ok(!hashes.has(hash),'Identical download payload');hashes.add(hash);done++}
  }
- for(const query of ['Make Mula','Fictional expenses']){await page.locator('#hub-search').fill(query);assert.equal(await page.locator('.resource-card').count(),1)}
- await page.locator('#hub-search').fill('Make Mula');const grouped=page.locator('.resource-card');
+ for(const query of ['Earn by Doing','Fictional expenses']){await page.locator('#hub-search').fill(query);assert.equal(await page.locator('.resource-card').count(),1)}
+ await page.locator('#hub-search').fill('Earn by Doing');const grouped=page.locator('.resource-card');
  for(const label of ['Handbook · MD','Practice pack · ZIP']){const download=page.waitForEvent('download');await grouped.getByRole('link',{name:label+' ↓',exact:true}).click();const d=await download;assert.equal(await d.failure(),null);assert.match(d.suggestedFilename(),label.startsWith('Handbook')?/\.md$/:/\.zip$/)}
  await page.screenshot({path:dir+'/grouped-course-downloads.png'});
  await page.locator('#hub-search').fill('unfindable-library-test-92845');assert.equal(await page.locator('.resource-card').count(),0);assert.match(await page.locator('#hub-results').textContent(),/0 of 55/);
  await page.locator('#hub-search').fill('');assert.equal(await page.locator('.resource-card').count(),55);
  const nojs=await browser.newContext({javaScriptEnabled:false}),readable=await nojs.newPage();await readable.goto(base+'/library.html');assert.equal(await readable.locator('.resource-card').count(),55);assert.equal(await readable.locator('.library-downloads a').count(),91);assert.match(await readable.locator('#hub-results').textContent(),/55 resources/);await nojs.close();
- for(const width of [360,390,768,1024]){await page.setViewportSize({width,height:900});await page.goto(base+'/library.html');await page.locator('#hub-search[data-search-bound=true]').waitFor();assert.equal(await page.locator('.resource-card').count(),55);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);await page.locator('#hub-search').fill('Make Mula');await page.screenshot({path:dir+'/grouped-course-'+width+'.png'})}
+ for(const width of [360,390,768,1024]){await page.setViewportSize({width,height:900});await page.goto(base+'/library.html');await page.locator('#hub-search[data-search-bound=true]').waitFor();assert.equal(await page.locator('.resource-card').count(),55);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);await page.locator('#hub-search').fill('Earn by Doing');await page.screenshot({path:dir+'/grouped-course-'+width+'.png'})}
  assert.deepEqual(errors,[]);const report={uniqueCards:55,groupedCourses:20,downloadsChecked:done,uniquePayloadHashes:hashes.size,downloadFormatsTested:['MD','ZIP'],searchAndReset:true,noJavaScript:true,responsiveWidths:[360,390,768,1024],pageErrors:errors};await writeFile(dir+'/result.json',JSON.stringify(report,null,2));console.log('PASS:',JSON.stringify(report));
 }finally{await browser.close()}

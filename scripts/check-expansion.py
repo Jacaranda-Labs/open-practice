@@ -57,5 +57,5 @@ assert run('campaign-evidence',{'impressions':0,'clicks':0,'spend':10})['cpc'] i
 assert run('preprocessing-lab',{'train':[2,None,4],'test':[999,None]})['training_mean']==3
 assert run('constraint-planner',{'tasks':['A','B','C'],'slots':[1,2]})['valid_schedules']==0
 assert run('inventory-planning',{'demand':[10,12,14],'stock':20,'safety':2})['reorder']==0
-assert run('make-mula',{'price':30,'tool_cost':3,'fees':2,'delivery_hours':2,'selling_hours':1,'support_hours':1,'refund':10})['net_before_tax']==15
+assert run('earn-by-doing',{'price':30,'tool_cost':3,'fees':2,'delivery_hours':2,'selling_hours':1,'support_hours':1,'refund':10})['net_before_tax']==15
 print(json.dumps({'references_passed':checks,'notebook_code_cells_executed':cells,'optional_experiment_notebooks':extensions,'supporting_inputs_verified':11,'excluded_inputs_unpublished':33,'network_calls':0,'scope':'Synthetic/reference checks, not external provider or learner validation.'},indent=2))

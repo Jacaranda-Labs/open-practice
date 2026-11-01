@@ -119,7 +119,7 @@ FINDER = {
   'build': [['/free-tools/website-generator/', 'Website Generator'], ['/free-tools/telegram-bot-creator/', 'Telegram Bot Creator'], ['/free-tools/chrome-extension-creator/', 'Chrome Extension Creator']],
   'learn': [['/learn/beginners/', 'Start here: 10 lessons'], ['/learn/beginners/first-prompt/', 'Write your first good prompt'], ['/glossary/', 'AI glossary']],
   'data': [['/builds/sheets.html', 'Make messy data useful'], ['/prompts/data/', 'Data prompts'], ['/free-tools/json-formatter/', 'JSON Formatter']],
-  'earn': [['/builds/make-mula.html', 'Make Mula: honest offers'], ['/free-tools/landing-page-generator/', 'Landing Page Generator'], ['/free-tools/cold-email-writer/', 'Cold Email Writer']],
+  'earn': [['/builds/earn-by-doing.html', 'Earn by Doing: honest offers'], ['/free-tools/landing-page-generator/', 'Landing Page Generator'], ['/free-tools/cold-email-writer/', 'Cold Email Writer']],
   'new': [['/learn/beginners/what-is-ai/', 'What AI is — and is not']], 'dev': [['/builds/api-integration.html', 'Connect an AI API safely']],
   'more': [['/academy/', 'Pick a full project path']], 'no': [['/api-keys/groq/', 'Get a free Groq key (optional)']], 'what': [['/learn/beginners/free-ai-key/', 'What an AI key is, in 10 minutes']],
  },

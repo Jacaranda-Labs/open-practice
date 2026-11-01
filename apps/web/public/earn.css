@@ -1,0 +1,54 @@
+/* Earn by Doing category styling — built on the Open Practice design system. */
+
+.catalog-section { margin: 34px 0 42px; }
+.catalog-intro { max-width: 760px; color: var(--muted); font-size: 12px; line-height: 1.8; margin: -3px 0 18px; }
+
+/* The five learning tracks use the same editorial cards as Open Practice hubs. */
+.track-card { min-height: 174px; }
+.track-card .track-outcome { display: inline-block; margin-top: auto; padding-top: 8px; color: var(--red); font: 700 9px/1.6 var(--sans); letter-spacing: .06em; text-transform: uppercase; }
+
+/* Portfolio builds: familiar Open Practice card, number, track label and artefact. */
+.path-card { min-height: 100%; }
+.path-card .card-body { min-height: 100%; padding: 22px; }
+.path-card .path-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.path-card .card-num { font-size: 21px; }
+.path-card .card-track { text-align: right; font-size: 9px; }
+.path-card h3 { font-size: 24px; }
+.path-card .card-project { border-left: 3px solid var(--gold); background: #fff8e7; border-radius: 0 10px 10px 0; padding: 11px 13px; }
+.path-card .card-project b { color: var(--red); }
+.path-card .card-bottom { margin-top: auto; }
+
+/* Method directory: details stay legible while retaining the site's warm, quiet surfaces. */
+.method-card .card-body { display: flex; flex-direction: column; height: 100%; padding: 21px; }
+.method-card .method-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.method-card .method-index { color: #84766a; font: 700 9px/1.5 var(--sans); letter-spacing: .06em; white-space: nowrap; }
+.method-card h3 { font-size: 22px; line-height: 1.2; margin: 9px 0 7px; }
+.method-card .method-buyer { color: var(--muted); font-size: 12px; line-height: 1.75; margin: 0 0 12px; }
+.method-card .method-buyer b { display: block; color: var(--red); font: 700 9px/1.5 var(--sans); letter-spacing: .07em; margin-bottom: 3px; }
+.method-points { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 14px; }
+.method-points > div { min-width: 0; padding: 10px 11px; border: 1px solid #f0e2d0; border-radius: 10px; background: #fff9f1; }
+.method-points b { display: block; color: var(--wine); font: 700 9px/1.5 var(--sans); letter-spacing: .05em; text-transform: uppercase; }
+.method-points span { display: block; color: var(--muted); font-size: 11px; line-height: 1.65; margin-top: 3px; }
+.method-card .card-bottom { margin-top: auto; }
+.method-count { color: var(--muted); font-size: 11px; margin: -8px 0 15px; }
+.method-count strong { color: var(--wine); }
+.no-results { border: 1px solid var(--line); border-radius: 14px; background: #fff; padding: 20px; color: var(--muted); font-size: 13px; }
+
+/* Universal lesson contract and source cards. */
+.lesson-card { min-height: 132px; }
+.lesson-card small { color: var(--red); }
+.lesson-card .lesson-why { margin-top: 2px; }
+.source-card { min-height: 150px; }
+.source-card .source-note { color: var(--muted); font-size: 11px; line-height: 1.7; }
+.source-tools { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+.source-tools a { font-size: 11px; }
+
+@media (max-width: 720px) {
+  .catalog-section { margin: 28px 0 34px; }
+  .path-card .card-body, .method-card .card-body { padding: 19px 16px; }
+  .path-card h3 { font-size: 23px; }
+  .method-points { grid-template-columns: 1fr; }
+  .method-card h3 { font-size: 23px; }
+  .path-card .path-top { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .path-card .card-track { text-align: left; }
+}

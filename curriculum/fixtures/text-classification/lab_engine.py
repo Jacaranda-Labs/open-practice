@@ -129,7 +129,7 @@ def run(kind,d):
   labels=KMeans(n_clusters=2,random_state=7,n_init=10).fit_predict(d['points']);groups={}
   for id,label in zip(d['ids'],labels):groups.setdefault(int(label),[]).append(id)
   members=sorted(sorted(v) for v in groups.values());return {'groups':members,'sizes':[len(v) for v in members]}
- if kind=='make-mula':
+ if kind=='earn-by-doing':
   hours=d['delivery_hours']+d['selling_hours']+d['support_hours']
   if hours<=0:raise ValueError('Positive total hours required.')
   net=d['price']-d['tool_cost']-d['fees']-d.get('refund',0);return {'net_before_tax':net,'total_hours':hours,'effective_hourly_before_tax':net/hours}

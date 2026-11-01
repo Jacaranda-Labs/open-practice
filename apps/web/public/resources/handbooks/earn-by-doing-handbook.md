@@ -1,6 +1,6 @@
-# Make Mula: useful work, honest offers
+# Earn by Doing: useful work, honest offers
 
-Open Practice / Make Mula / curriculum 1.0
+Open Practice / Earn by Doing / curriculum 1.0
 
 Estimated guided practice: 6h 55m estimated. This estimate has not been learner-tested.
 

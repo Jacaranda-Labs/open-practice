@@ -10076,10 +10076,10 @@
     ]
   },
   {
-    "id": "make-mula",
+    "id": "earn-by-doing",
     "num": "20",
-    "title": "Make Mula: useful work, honest offers",
-    "track": "Make Mula",
+    "title": "Earn by Doing: useful work, honest offers",
+    "track": "Earn by Doing",
     "level": "Portfolio capstone",
     "project": "Decide from actual evidence with inputs, tests and a reproducible handoff.",
     "time": "6h 55m estimated",
@@ -10087,7 +10087,7 @@
     "description": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials. Includes 1 extra module: “Create a campaign pack without invented performance”.",
     "lessons": [
       {
-        "id": "make-mula-01",
+        "id": "earn-by-doing-01",
         "title": "Find a problem through discovery",
         "estimatedMinutes": 35,
         "text": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials.\n\nAsk three consenting potential users about their current workaround; keep simulations explicitly labelled. Inspect the supplied input before using any tool. Write the decision rules in your own words and calculate one small result independently. The reference output is an answer key for this deliberately bounded fixture, not proof of general capability.\n\nPolicy for this project: Include selling, delivery, checking and support time. Payment-country eligibility must be verified before selling; no false residency, borrowed accounts or bypassing provider restrictions. Learning completion does not require earning money.\n\nFor learners across regions underserved or excluded by mainstream providers: verify country eligibility, language, account/identity requirements, data terms, cost, quota and connectivity before choosing a cloud service. Use only legitimate available alternatives; never bypass restrictions or invent a country/account. No service access? Complete the labelled manual/fixture route without claiming a live AI run.\n\nProject clinic: Discovery is listening before proposing automation. Ask about the most recent time the task occurred: what triggered it, who did it, how long it took, what went wrong and what the consequence was. Avoid leading questions such as 'Would you pay for my AI tool?' Ask permission to keep anonymous notes; do not record private documents or collect payment details. Three conversations reveal hypotheses, not a representative market.",
@@ -10115,11 +10115,11 @@
           "Explain and retain a testable result and its limits."
         ],
         "task": "Ask three consenting potential users about their current workaround; keep simulations explicitly labelled. Open input.json and expected.json from the practice pack; keep an unmodified original. Record a manual prediction and the relevant rule before consulting the answer key. Perform one small change and predict its effect before rerunning. Keep the result and your reasoning in the lesson notes; do not mark a simulated run as live. Use the discovery guide in market-evidence.md for three permission-based conversations, or clearly label a rehearsal; separate exact observations from your interpretation.",
-        "resourcePack": "/resources/packs/make-mula-practice-pack.zip",
+        "resourcePack": "/resources/packs/earn-by-doing-practice-pack.zip",
         "supportingInputs": []
       },
       {
-        "id": "make-mula-02",
+        "id": "earn-by-doing-02",
         "title": "Build and break one sample",
         "estimatedMinutes": 35,
         "text": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials.\n\nChoose checked reports, approved replies, verified content or a tiny web tool. Establish a baseline before changing prompts or code. Keep the original input immutable. Record expected values, observed values and whether each comparison passed. If the expected file conflicts with a justified policy, investigate rather than forcing a convenient match.\n\nPolicy for this project: Include selling, delivery, checking and support time. Payment-country eligibility must be verified before selling; no false residency, borrowed accounts or bypassing provider restrictions. Learning completion does not require earning money.\n\nProject clinic: Choose one lane, not a general AI agency: a checked report, approved reply pack, verified content pack or tiny web calculator. Write acceptance criteria before building. A report buyer might require totals that reconcile, visible rejected rows and a readable one-page explanation. Make the same sample manually first so speed and accuracy can be compared. A synthetic shop example remains a portfolio demonstration until a real buyer supplies authorised requirements.",
@@ -10147,11 +10147,11 @@
           "Explain and retain a testable result and its limits."
         ],
         "task": "Choose checked reports, approved replies, verified content or a tiny web tool. Open input.json and expected.json from the practice pack; keep an unmodified original. Record expected and observed values separately; explain every mismatch. Perform one small change and predict its effect before rerunning. Keep the result and your reasoning in the lesson notes; do not mark a simulated run as live. Select an existing Open Practice report, replies, editing or web project; create the deliverables and write three buyer-readable acceptance criteria.",
-        "resourcePack": "/resources/packs/make-mula-practice-pack.zip",
+        "resourcePack": "/resources/packs/earn-by-doing-practice-pack.zip",
         "supportingInputs": []
       },
       {
-        "id": "make-mula-03",
+        "id": "earn-by-doing-03",
         "title": "Price the full workflow",
         "estimatedMinutes": 35,
         "text": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials.\n\nInclude selling and support time, fees, rework and refund assumptions. Build one inspectable transformation or bounded AI prompt. Keep calculation and validation deterministic where possible. If you make a permitted hosted call, save the actual response separately from the authored examples and verify its material claims; the supplied reference never simulates a live model.\n\nPolicy for this project: Include selling, delivery, checking and support time. Payment-country eligibility must be verified before selling; no false residency, borrowed accounts or bypassing provider restrictions. Learning completion does not require earning money.\n\nProject clinic: Pricing is a hypothesis, not a number copied from an income guide. In the fixture, a price of 30 minus tool cost 3 and fees 2 leaves 25 before tax. Four hours include two delivering, one selling and one supporting, so the effective return is 6.25 per hour before tax. Equipment, connectivity, foreign-exchange charges and additional rework may reduce it further. A refund of 10 leaves 15 and changes the return to 3.75. If no one pays, earned income is zero.",
@@ -10179,11 +10179,11 @@
           "Explain and retain a testable result and its limits."
         ],
         "task": "Include selling and support time, fees, rework and refund assumptions. Open hosted-lab.ipynb and the reference code from the practice pack; keep an unmodified original. Record expected and observed values separately; explain every mismatch. Perform A marketplace unavailable in the learner region is a stop condition until a legitimate route is verified. Keep the result and your reasoning in the lesson notes; do not mark a simulated run as live. Run the supplied cost fixture, then add your own clearly labelled cost assumptions and one refund/rework scenario; do not enter bank or identity documents.",
-        "resourcePack": "/resources/packs/make-mula-practice-pack.zip",
+        "resourcePack": "/resources/packs/earn-by-doing-practice-pack.zip",
         "supportingInputs": []
       },
       {
-        "id": "make-mula-04",
+        "id": "earn-by-doing-04",
         "title": "Check access and test the offer",
         "estimatedMinutes": 35,
         "text": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials.\n\nVerify regional payout and identity rules, then use a small appropriate personalised approach with opt-outs. Change one assumption at a time and predict the result first. Retain the failure, the revision and the rerun evidence. A failure is useful information: hiding a bad output or editing a test target after seeing the answer destroys the value of the experiment.\n\nPolicy for this project: Include selling, delivery, checking and support time. Payment-country eligibility must be verified before selling; no false residency, borrowed accounts or bypassing provider restrictions. Learning completion does not require earning money.\n\nProject clinic: Check access before accepting money: seller-country eligibility, supported receiving method, identity and business requirements, currencies, fees, payout timing and refund handling. Record the official source and date, not a guessed green tick. A locally agreed lawful payment route may be more practical than an unavailable global marketplace, but it still needs verification. Outreach must be appropriate, truthful and small enough to personalise. Mention a demonstration as a demonstration; never claim past clients or savings you have not established.",
@@ -10211,11 +10211,11 @@
           "Explain and retain a testable result and its limits."
         ],
         "task": "Verify regional payout and identity rules, then use a small appropriate personalised approach with opt-outs. Open failure-tests.md from the practice pack; keep an unmodified original. Record expected and observed values separately; explain every mismatch. Perform Add a 10-unit refund: net becomes 15 and hourly return 3.75. Keep the result and your reasoning in the lesson notes; do not mark a simulated run as live. Complete access-check.csv using dated official sources; prepare one truthful personalised approach and record actual responses or an explicitly untested offer.",
-        "resourcePack": "/resources/packs/make-mula-practice-pack.zip",
+        "resourcePack": "/resources/packs/earn-by-doing-practice-pack.zip",
         "supportingInputs": []
       },
       {
-        "id": "make-mula-05",
+        "id": "earn-by-doing-05",
         "title": "Deliver ethically and hand over",
         "estimatedMinutes": 35,
         "text": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials.\n\nDefine scope, approvals, rights, revisions, accounting boundaries and support. Review what the fixture cannot establish. Explain who owns the decision, where human approval is needed and which access or professional constraints remain. Do not describe a small educational success as production readiness, certification, legal compliance or a guarantee.\n\nPolicy for this project: Include selling, delivery, checking and support time. Payment-country eligibility must be verified before selling; no false residency, borrowed accounts or bypassing provider restrictions. Learning completion does not require earning money.\n\nFor learners across regions underserved or excluded by mainstream providers: verify country eligibility, language, account/identity requirements, data terms, cost, quota and connectivity before choosing a cloud service. Use only legitimate available alternatives; never bypass restrictions or invent a country/account. No service access? Complete the labelled manual/fixture route without claiming a live AI run.\n\nSupporting practice — Ethical records and professional boundaries: Keep revenue, costs, unpaid time and refunds separate. Preserve consent, client approval and conflicts of interest. Do not describe an educational price sheet as accounting, audit or tax advice. Applicable obligations depend on jurisdiction; involve a qualified professional when required. Add a dated cost ledger, confidentiality rule, conflict disclosure and a professional-review boundary.\n\nProject clinic: Delivery requires agreement on inputs, scope, acceptance, revisions, payment and maintenance. Ask permission before sending client data to any cloud service; a client saying 'use AI' is not a blanket data-processing agreement. Keep a private cost ledger and record refunds accurately. Use the offer template to exclude medical, legal, tax, investment, safety and employment decisions. Hand over an exportable result and explain which changes need fresh checking; do not lock a learner or buyer into an undisclosed subscription.",
@@ -10245,7 +10245,7 @@
           "Explain and retain a testable result and its limits."
         ],
         "task": "Define scope, approvals, rights, revisions, accounting boundaries and support. Open README.md and your evidence log from the practice pack; keep an unmodified original. Record the human decision owner, limitations and any untested service access. Perform one small change and predict its effect before rerunning. Keep the result and your reasoning in the lesson notes; do not mark a simulated run as live. Add a dated cost ledger, confidentiality rule, conflict disclosure and a professional-review boundary. Complete offer-template.md and handoff-checklist.md; retain approvals, record conflicts and keep professional advice outside the offer.",
-        "resourcePack": "/resources/packs/make-mula-practice-pack.zip",
+        "resourcePack": "/resources/packs/earn-by-doing-practice-pack.zip",
         "supportingInputs": [
           34
         ]
@@ -10416,7 +10416,7 @@
         "moduleId": "campaign-evidence"
       },
       {
-        "id": "make-mula-06",
+        "id": "earn-by-doing-06",
         "title": "Decide from actual evidence",
         "estimatedMinutes": 65,
         "text": "An offer connects a narrow customer problem to a checked deliverable and a price hypothesis. AI does not create demand. Learn through real permission-based discovery where possible, but label rehearsals and never fabricate sales, experience or testimonials.\n\nRecord acceptance, refunds and net return if a paid pilot occurred; otherwise report the real market-test result without invention. Deliver a reproducible bundle rather than a screenshot alone. Include inputs, rules, output, failure tests, a short README and residual limitations. Ask another person to follow the instructions if possible; self-review and actual external review must be labelled separately.\n\nPolicy for this project: Include selling, delivery, checking and support time. Payment-country eligibility must be verified before selling; no false residency, borrowed accounts or bypassing provider restrictions. Learning completion does not require earning money.\n\nProject clinic: Decide from evidence rather than the excitement of a launch. Track conversations, relevant interest, offers, paid orders, accepted deliveries, refunds, costs and time as separate stages. A friend praising a demo is not a paid customer. A paid pilot is stronger evidence than an intention to buy, but one sale does not establish typical income or repeatable demand. If no buyer agrees, document the obstacle and choose a smaller test, a different problem or a stop decision. Completion rewards honest work and learning, not earning at any cost.",
@@ -10445,7 +10445,7 @@
           "Explain and retain a testable result and its limits."
         ],
         "task": "Record acceptance, refunds and net return if a paid pilot occurred; otherwise report the real market-test result without invention. Open README.md and your evidence log from the practice pack; keep an unmodified original. Record the human decision owner, limitations and any untested service access. Perform one small change and predict its effect before rerunning. Keep the result and your reasoning in the lesson notes; do not mark a simulated run as live. Write continue/change/stop with evidence for and against; label real, constructed and untested evidence separately and record zero earned income when no payment occurred.",
-        "resourcePack": "/resources/packs/make-mula-practice-pack.zip",
+        "resourcePack": "/resources/packs/earn-by-doing-practice-pack.zip",
         "supportingInputs": []
       }
     ],
@@ -10564,8 +10564,8 @@
       "scoring": "Score each criterion 0 (missing), 1 (partial), or 2 (demonstrated). A self-review pass needs at least 8/10 and 2/2 on the critical safety/limits criterion. This is learner practice feedback, not verified assessment."
     },
     "downloads": {
-      "handbook": "/resources/handbooks/make-mula-handbook.md",
-      "pack": "/resources/packs/make-mula-practice-pack.zip"
+      "handbook": "/resources/handbooks/earn-by-doing-handbook.md",
+      "pack": "/resources/packs/earn-by-doing-practice-pack.zip"
     },
     "sourceListingNumber": 72,
     "supportingInputs": [
@@ -10575,8 +10575,8 @@
     "expansionIndex": 29,
     "modules": [
       {
-        "id": "make-mula",
-        "title": "Make Mula: useful work, honest offers",
+        "id": "earn-by-doing",
+        "title": "Earn by Doing: useful work, honest offers",
         "start": 0,
         "count": 5
       },
@@ -10587,7 +10587,7 @@
         "count": 5
       },
       {
-        "id": "make-mula-capstone",
+        "id": "earn-by-doing-capstone",
         "title": "Combined capstone",
         "start": 10,
         "count": 1
@@ -10599,55 +10599,55 @@
     "fixtureFiles": [
       {
         "title": "README.md",
-        "url": "/resources/curriculum/make-mula/README.md"
+        "url": "/resources/curriculum/earn-by-doing/README.md"
       },
       {
         "title": "access-check.csv",
-        "url": "/resources/curriculum/make-mula/access-check.csv"
+        "url": "/resources/curriculum/earn-by-doing/access-check.csv"
       },
       {
         "title": "evidence-log.csv",
-        "url": "/resources/curriculum/make-mula/evidence-log.csv"
+        "url": "/resources/curriculum/earn-by-doing/evidence-log.csv"
       },
       {
         "title": "expected.json",
-        "url": "/resources/curriculum/make-mula/expected.json"
+        "url": "/resources/curriculum/earn-by-doing/expected.json"
       },
       {
         "title": "failure-tests.md",
-        "url": "/resources/curriculum/make-mula/failure-tests.md"
+        "url": "/resources/curriculum/earn-by-doing/failure-tests.md"
       },
       {
         "title": "handoff-checklist.md",
-        "url": "/resources/curriculum/make-mula/handoff-checklist.md"
+        "url": "/resources/curriculum/earn-by-doing/handoff-checklist.md"
       },
       {
         "title": "hosted-lab.ipynb",
-        "url": "/resources/curriculum/make-mula/hosted-lab.ipynb"
+        "url": "/resources/curriculum/earn-by-doing/hosted-lab.ipynb"
       },
       {
         "title": "input.json",
-        "url": "/resources/curriculum/make-mula/input.json"
+        "url": "/resources/curriculum/earn-by-doing/input.json"
       },
       {
         "title": "lab_engine.py",
-        "url": "/resources/curriculum/make-mula/lab_engine.py"
+        "url": "/resources/curriculum/earn-by-doing/lab_engine.py"
       },
       {
         "title": "market-evidence.md",
-        "url": "/resources/curriculum/make-mula/market-evidence.md"
+        "url": "/resources/curriculum/earn-by-doing/market-evidence.md"
       },
       {
         "title": "offer-template.md",
-        "url": "/resources/curriculum/make-mula/offer-template.md"
+        "url": "/resources/curriculum/earn-by-doing/offer-template.md"
       },
       {
         "title": "reference.py",
-        "url": "/resources/curriculum/make-mula/reference.py"
+        "url": "/resources/curriculum/earn-by-doing/reference.py"
       },
       {
         "title": "requirements.txt",
-        "url": "/resources/curriculum/make-mula/requirements.txt"
+        "url": "/resources/curriculum/earn-by-doing/requirements.txt"
       },
       {
         "title": "campaign-evidence/README.md",

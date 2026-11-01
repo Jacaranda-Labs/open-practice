@@ -33,7 +33,7 @@ for t in TOOLS:
 pages_keys.build()
 
 import importlib
-for name in ['pages_academy', 'pages_learn', 'pages_directory']:
+for name in ['pages_academy', 'pages_learn', 'pages_directory', 'pages_earn']:
     try:
         mod = importlib.import_module(name)
     except ModuleNotFoundError as err:

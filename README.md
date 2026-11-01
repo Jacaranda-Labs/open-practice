@@ -153,8 +153,8 @@ Thirty original six-activity project courses extend the six existing foundations
 
 - **36 paths / 216 path activities**, plus the unchanged **50 standalone activities**: 266 activities in total.
 - **91 library resources**, complete course handbooks and ZIP packs, 30 hosted notebooks, deterministic reference code and independent fixture targets.
-- Full no-JavaScript reading guides: `/builds/index.html`; Make Mula: `/builds/make-mula.html` or `/?course=make-mula`.
-- Make Mula includes original discovery prompts, offer/handoff templates, a regional access worksheet and before-tax economics; no income guarantee or mandatory marketplace.
+- Full no-JavaScript reading guides: `/builds/index.html`; Earn by Doing: `/builds/earn-by-doing.html` or `/?course=earn-by-doing`.
+- Earn by Doing includes original discovery prompts, offer/handoff templates, a regional access worksheet and before-tax economics; no income guarantee or mandatory marketplace.
 - New covers reuse thirty distinct existing original Open Practice illustrations with new course typography; the original six foundation paintings/covers and course sources are unchanged. These are not claimed as thirty newly generated paintings.
 - Exact scope: `curriculum/expansion/scope.json`; topic locators: `topic-index.json`. Subject areas informed the new briefs; no external course lessons were copied and no affiliation is implied.
 - Reference validation: `python scripts/check-expansion.py` after installing test-only dependencies from `curriculum/expansion/requirements-test.txt`. It checks thirty synthetic references and executes 71 notebook code cells; it does not contact external AI providers or validate learner outcomes.

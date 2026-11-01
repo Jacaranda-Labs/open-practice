@@ -15,6 +15,7 @@ NAV = [
     ('Academy', '/academy/', [('All courses', '/academy/', 'Project-based AI courses'), ('Curriculum map', '/curriculum.html', 'How the paths connect'), ('50 activities', '/activities.html', 'Short guided experiments'), ('Free library', '/library.html', 'Handbooks and practice packs'), ('My learning', '/dashboard.html', 'Your saved work')]),
     ('Tools', '/free-tools/', [('39 free tools', '/free-tools/', 'Learn-by-doing workshops, no signup'), ('Tool field desk', '/tools.html', 'Pick a task, get a practice prompt'), ('AI tools directory', '/ai-tools/', 'What each tool is good for'), ('LLM guide', '/llms/', 'Language models explained'), ('Comparisons', '/compare/', 'Side-by-side, honest'), ('Tool finder quiz', '/tool-finder/', 'Find a tool in 5 questions'), ('Prompt library', '/prompts/', '60 prompts to practise')]),
     ('Learn', '/learn/', [('Start here', '/learn/beginners/', 'AI from zero'), ('AI for seniors', '/learn/seniors/', 'Large print, safe steps'), ('AI for kids', '/learn/kids/', 'Make things with a grown-up'), ('Glossary', '/glossary/', 'AI words in plain language'), ('Tutorials', '/tutorials/', 'Step-by-step builds'), ('Use cases', '/use-cases/', 'AI for your kind of work')]),
+    ('Earn', '/earn/', None),
     ('API Keys ✦', '/api-keys/', None),
     ('News', '/news.html', None),
     ('Community', '/community/', None),
@@ -35,7 +36,7 @@ def header(active=''):
 
 FOOTER = ('<footer><div class="hub-footer"><div><a class="brand" href="/"><img src="/brand/open-practice-mark.svg" width="44" height="44" alt="">OPEN PRACTICE</a><p>Free, practical AI learning. Built to be used — not just watched.</p><p class="footer-small">Independent · non-degree · non-accredited<br>A <a href="https://jacarandalabs.pages.dev/">Jacaranda Labs</a> venture<br>Code: MIT · Original lessons: CC BY 4.0</p></div>'
           '<div><h2>Learn</h2><a href="/academy/">Academy courses</a><a href="/learn/beginners/">Start here</a><a href="/learn/seniors/">AI for seniors</a><a href="/learn/kids/">AI for kids</a><a href="/glossary/">Glossary</a><a href="/tutorials/">Tutorials</a></div>'
-          '<div><h2>Build</h2><a href="/free-tools/">39 free tools</a><a href="/prompts/">Prompt library</a><a href="/api-keys/">Free API keys</a><a href="/settings/">Key settings</a><a href="/tool-finder/">Tool finder</a><a href="/library.html">Free library</a></div>'
+          '<div><h2>Build</h2><a href="/free-tools/">39 free tools</a><a href="/earn/">Earn by Doing</a><a href="/prompts/">Prompt library</a><a href="/api-keys/">Free API keys</a><a href="/settings/">Key settings</a><a href="/tool-finder/">Tool finder</a><a href="/library.html">Free library</a></div>'
           '<div><h2>Explore</h2><a href="/ai-tools/">AI tools directory</a><a href="/llms/">LLM guide</a><a href="/compare/">Comparisons</a><a href="/use-cases/">Use cases</a><a href="/news.html">News</a><a href="/community/">Community</a></div>'
           '<div class="policy-links" role="navigation" aria-label="Policies and help"><a href="/about.html">About</a><a href="/help.html">Help & FAQ</a><a href="/privacy.html">Privacy policy</a><a href="/cookies.html">Cookies & storage</a><a href="/terms.html">Terms of use</a><a href="/licensing.html">Licensing</a><a href="/accessibility.html">Accessibility</a><a href="/contact.html">Contact</a></div></div></footer>')
 
@@ -61,7 +62,7 @@ def faq_html(faq, title='Questions people ask'):
         return ''
     return f'<section class="hub-faq"><h2>{e(title)}</h2>' + ''.join(f'<details><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in faq) + '</section>'
 
-def page(url, title, desc, body, crumbs=None, ld=None, scripts=(), active='', priority=0.6, og=None, noindex=False, wide=False, og_type='website'):
+def page(url, title, desc, body, crumbs=None, ld=None, scripts=(), styles=(), active='', priority=0.6, og=None, noindex=False, wide=False, og_type='website'):
     """Write url ('/x/y/') to apps/web/public/x/y/index.html (or the .html path given)."""
     assert url.startswith('/'), url
     desc = re.sub(r'\s+', ' ', desc).strip()
@@ -75,7 +76,7 @@ def page(url, title, desc, body, crumbs=None, ld=None, scripts=(), active='', pr
             f'<title>{e(full_title)}</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{BASE}{url}">'
             + ('<meta name="robots" content="noindex">' if noindex else '') +
             f'<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{SITE}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{BASE}{url}"><meta property="og:image" content="{img}"><meta name="twitter:card" content="summary_large_image">'
-            '<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/hub.css"><link rel="icon" type="image/svg+xml" href="/brand/open-practice-mark.svg"><meta name="color-scheme" content="light"><meta name="theme-color" content="#7c1f16">'
+            '<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/hub.css">' + ''.join(f'<link rel="stylesheet" href="{s}">' for s in styles) + '<link rel="icon" type="image/svg+xml" href="/brand/open-practice-mark.svg"><meta name="color-scheme" content="light"><meta name="theme-color" content="#7c1f16">'
             + ''.join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False).replace('</', '<\\/') + '</script>' for x in lds) + '</head><body>')
     js = ''.join(f'<script type="module" src="{s}"></script>' for s in ('/nav.js', '/learner.js', '/growth.js', *scripts))
     doc = head + SITEBAR + header(active) + f'<main class="hub-main{" wide" if wide else ""}">' + crumbs_html(crumbs) + body + '</main>' + FOOTER + js + '</body></html>'

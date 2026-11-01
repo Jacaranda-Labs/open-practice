@@ -539,27 +539,27 @@
     "image": "/brand/covers/clustering-lab.svg?v=illustrated-20261021"
   },
   {
-    "id": "make-mula-resources",
-    "courseId": "make-mula",
-    "title": "Make Mula: useful work, honest offers",
+    "id": "earn-by-doing-resources",
+    "courseId": "earn-by-doing",
+    "title": "Earn by Doing: useful work, honest offers",
     "kind": "Build path resources",
     "description": "Decide from actual evidence with inputs, tests and a reproducible handoff.. Includes the complete handbook and a practice pack with inputs, reference outputs and test fixtures.",
-    "url": "/resources/handbooks/make-mula-handbook.md",
+    "url": "/resources/handbooks/earn-by-doing-handbook.md",
     "downloads": [
       {
         "label": "Handbook",
         "format": "MD",
-        "url": "/resources/handbooks/make-mula-handbook.md"
+        "url": "/resources/handbooks/earn-by-doing-handbook.md"
       },
       {
         "label": "Practice pack",
         "format": "ZIP",
-        "url": "/resources/packs/make-mula-practice-pack.zip"
+        "url": "/resources/packs/earn-by-doing-practice-pack.zip"
       }
     ],
     "licence": "CC BY 4.0",
     "format": "MD + ZIP",
-    "image": "/brand/covers/make-mula.svg?v=illustrated-20261021"
+    "image": "/brand/covers/earn-by-doing.svg?v=illustrated-20261021"
   },
   {
     "id": "activity-collection-prompt-craft",

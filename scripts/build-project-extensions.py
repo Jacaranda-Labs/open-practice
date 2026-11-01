@@ -77,10 +77,10 @@ plt.close(fig)
 text_alternative='Two bars: A has 8 fictional items and B has 10; total 18. No cause or trend is established.'
 print(text_alternative)
 ''',
-'make-mula':'''from copy import deepcopy
+'earn-by-doing':'''from copy import deepcopy
 refunded=deepcopy(fixture)
 refunded['refund']=10
-actual_refund_case=run('make-mula',refunded)
+actual_refund_case=run('earn-by-doing',refunded)
 assert actual_refund_case['net_before_tax']==15
 assert actual_refund_case['effective_hourly_before_tax']==3.75
 print(actual_refund_case)
