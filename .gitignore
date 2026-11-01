@@ -6,7 +6,7 @@ node_modules/
 .wrangler/
 *.log
 
-data/
+/data/   # local sqlite data only (an unanchored data/ also hid the generated /prompts/data/ page)
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
