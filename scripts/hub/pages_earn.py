@@ -16,12 +16,11 @@ POINTS = [('offer', 'Deliverable'), ('ai', 'AI role'), ('start', '$0 start'), ('
 def method_card(m):
     pts = ''.join(f'<div><b>{e(label)}</b><span>{e(m[k])}</span></div>' for k, label in POINTS if m.get(k))
     words = ' '.join(str(m.get(k, '')) for k in ('title', 'buyer', 'offer', 'ai', 'start', 'boundary', 'firstSale', 'proof', 'recurring', 'model', 'cat')).lower()
-    src = ''.join(f'<a class="text-link" href="{e(u)}" rel="noopener nofollow" target="_blank">Source thread ↗</a>' for u in m.get('src', [])[:1])
     note = f'<p class="method-buyer">{e(m["note"])}</p>' if m.get('note') else ''
     return (f'<article class="card method-card" id="method-{m["n"]}" data-n="{m["n"]}" data-cat="{m["cat"]}" data-text="{e(words)}"><div class="card-body">'
             f'<div class="method-top"><span class="card-track">{CAT_LABEL[m["cat"]]}</span><span class="method-index">#{m["n"]:02d} · {e(m["speed"])}</span></div>'
             f'<h3>{e(m["title"])}</h3><p class="method-buyer"><b>BUYER</b>{e(m["buyer"])}</p><div class="method-points">{pts}</div>{note}'
-            f'<div class="card-bottom"><span>Strength: {e(m["strength"])} · not an earnings forecast</span>{src}</div></div></article>')
+            f'<div class="card-bottom"><span>Strength: {e(m["strength"])} · not an earnings forecast</span></div></div></article>')
 
 
 def build(courses, **_):

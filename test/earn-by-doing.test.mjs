@@ -90,3 +90,13 @@ test('the retired name appears nowhere in public files except the alias tables',
   walk(root);
   assert.deepEqual(bad, []);
 });
+
+test('no forum source is named or linked anywhere on the public site', () => {
+  const root = new URL('../apps/web/public/', import.meta.url).pathname;
+  const banned = new RegExp(['black' + 'hat', '\\bB' + 'HW\\b', 'black hat ' + 'world'].join('|'), 'i');
+  const bad = [];
+  const walk = dir => { for (const f of readdirSync(dir)) { const p = join(dir, f); if (statSync(p).isDirectory()) walk(p); else if (/\.(html|js|json|md|svg|txt|xml|css|py|ipynb|csv)$/.test(f) && banned.test(readFileSync(p, 'utf8'))) bad.push(p.slice(root.length)); } };
+  walk(root);
+  for (const f of ['content/earn/body.html', 'content/earn/methods.json']) if (banned.test(readFileSync(new URL('../' + f, import.meta.url), 'utf8'))) bad.push(f);
+  assert.deepEqual(bad, []);
+});

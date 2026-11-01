@@ -34,14 +34,10 @@
 .method-count strong { color: var(--wine); }
 .no-results { border: 1px solid var(--line); border-radius: 14px; background: #fff; padding: 20px; color: var(--muted); font-size: 13px; }
 
-/* Universal lesson contract and source cards. */
+/* Universal lesson contract. */
 .lesson-card { min-height: 132px; }
 .lesson-card small { color: var(--red); }
 .lesson-card .lesson-why { margin-top: 2px; }
-.source-card { min-height: 150px; }
-.source-card .source-note { color: var(--muted); font-size: 11px; line-height: 1.7; }
-.source-tools { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
-.source-tools a { font-size: 11px; }
 
 @media (max-width: 720px) {
   .catalog-section { margin: 28px 0 34px; }
