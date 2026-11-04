@@ -1,0 +1,79 @@
+name: press
+# Open Practice press: one practice activity a day, with its engine card, on Open Practice's own accounts.
+# Rails without an account (no OP_* secret yet) report "waiting for account" and send nothing. About one billable
+# minute a day, inside the 10-15 min/day Actions budget. Kill switch: repository variable OP_PRESS=off.
+on:
+  schedule:
+    - cron: '35 13 * * *'
+  workflow_dispatch:
+    inputs:
+      rails:
+        description: 'comma list (blank = all)'
+        required: false
+        default: ''
+      force:
+        description: 'ignore the weekday plan and today''s guard'
+        type: boolean
+        default: false
+      dry:
+        description: 'compose only, send nothing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: press
+  cancel-in-progress: false
+
+jobs:
+  press:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q pillow==11.3.0 coincurve websockets==15.0.1
+      - id: day
+        run: echo "day=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache/restore@v4
+        with:
+          path: .press-state
+          key: op-press-${{ steps.day.outputs.day }}-${{ github.run_id }}
+          restore-keys: |
+            op-press-${{ steps.day.outputs.day }}-
+            op-press-
+      - name: post
+        env:
+          OP_PRESS: ${{ vars.OP_PRESS }}
+          OP_BSKY_ID: ${{ secrets.OP_BSKY_ID }}
+          OP_BSKY_PASS: ${{ secrets.OP_BSKY_PASS }}
+          OP_MASTODON_TOKEN: ${{ secrets.OP_MASTODON_TOKEN }}
+          OP_MASTODON_INSTANCE: ${{ vars.OP_MASTODON_INSTANCE }}
+          OP_NOSTR_NSEC: ${{ secrets.OP_NOSTR_NSEC }}
+          OP_DISCORD_WEBHOOK: ${{ secrets.OP_DISCORD_WEBHOOK }}
+          OP_BUFFER_KEY: ${{ secrets.OP_BUFFER_KEY }}
+          OP_PINBOARD: ${{ vars.OP_PINBOARD }}
+          OP_TUMBLR_BLOG: ${{ vars.OP_TUMBLR_BLOG }}
+          OP_TUMBLR_CONSUMER_KEY: ${{ secrets.OP_TUMBLR_CONSUMER_KEY }}
+          OP_TUMBLR_CONSUMER_SECRET: ${{ secrets.OP_TUMBLR_CONSUMER_SECRET }}
+          OP_TUMBLR_TOKEN: ${{ secrets.OP_TUMBLR_TOKEN }}
+          OP_TUMBLR_TOKEN_SECRET: ${{ secrets.OP_TUMBLR_TOKEN_SECRET }}
+          OP_BLOGGER_EMAIL: ${{ secrets.OP_BLOGGER_EMAIL }}
+          OP_SMTP_USER: ${{ secrets.OP_SMTP_USER }}
+          OP_SMTP_PASS: ${{ secrets.OP_SMTP_PASS }}
+          OP_PRESS_STATE: .press-state/state.json
+        run: |
+          args=""
+          [ "${{ inputs.dry }}" = "true" ] || args="--live"
+          [ "${{ inputs.force }}" = "true" ] && args="$args --force"
+          [ -n "${{ inputs.rails }}" ] && args="$args --rails ${{ inputs.rails }}"
+          python3 scripts/press/press.py $args
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .press-state
+          key: op-press-${{ steps.day.outputs.day }}-${{ github.run_id }}

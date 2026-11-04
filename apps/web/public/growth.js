@@ -1,5 +1,5 @@
 const events=new Set(['page_view','activity_started','artifact_saved','self_reviewed','share_created','referral_opened','challenge_started','challenge_completed','return_7d']);
-const sources=new Set(['direct','devto','mastodon','blogger','bluesky','nostr','facilitator','share','challenge','other']);const sent=new Set();
+const sources=new Set(['direct','devto','mastodon','blogger','bluesky','nostr','facilitator','share','challenge','discord','facebook','pinterest','tumblr','other']);const sent=new Set();
 const get=k=>{try{return localStorage.getItem(k)}catch{return null}},put=(k,v)=>{try{localStorage.setItem(k,v);return true}catch{return false}},remove=k=>{try{localStorage.removeItem(k)}catch{}};
 const source=()=>{const q=new URL(location.href).searchParams.get('src');return sources.has(q)?q:'direct'};
 const context=()=>document.body.dataset.growthActivity||new URL(location.href).searchParams.get('activity')||location.pathname.split('/').pop()?.replace('.html','')||'home';

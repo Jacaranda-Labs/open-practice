@@ -1,0 +1,15 @@
+{
+  "name": "Open Practice",
+  "tagline": "Learn AI by doing.",
+  "url": "open-practice.zlnew.workers.dev",
+  "footer_right": "Practical AI engineering",
+  "footer_right_short": "Learn by doing",
+  "logo": "logo.png",
+  "font": "DejaVuSans.ttf",
+  "font_bold": "DejaVuSans-Bold.ttf",
+  "palettes": [
+    {"bg": "#fff8ef", "bg2": "#fbe9cf", "ink": "#5e1209", "mut": "#6b4a3f", "acc": "#a8321e"},
+    {"bg": "#fffbf2", "bg2": "#f6e3c1", "ink": "#4a1a10", "mut": "#6e5243", "acc": "#b7791f"},
+    {"bg": "#5e1209", "bg2": "#7a2015", "ink": "#fff8ef", "mut": "#f1d9c4", "acc": "#e0a526"}
+  ]
+}

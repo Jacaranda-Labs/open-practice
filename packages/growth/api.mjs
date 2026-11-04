@@ -1,7 +1,7 @@
 import {allowedGrowthActivities} from './ids.mjs';
 import {readJSON,equal,randomToken,digest} from '../accounts/api.mjs';
 export const growthEvents=new Set(['page_view','activity_started','artifact_saved','self_reviewed','share_created','referral_opened','challenge_started','challenge_completed','return_7d']);
-export const growthSources=new Set(['direct','devto','mastodon','blogger','bluesky','nostr','facilitator','share','challenge','other']);
+export const growthSources=new Set(['direct','devto','mastodon','blogger','bluesky','nostr','facilitator','share','challenge','discord','facebook','pinterest','tumblr','other']);
 const reply=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 export async function growthAPI(request,env){
  const path=new URL(request.url).pathname,db=env.DB;if(!db)return reply({error:'Analytics storage unavailable.'},503);

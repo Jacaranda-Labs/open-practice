@@ -30,3 +30,4 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r curriculum/expansion/requirements-test.txt
       - run: python scripts/check-expansion.py
+      - run: python -m pip install -q pillow==11.3.0 && python -m unittest discover -s scripts/press   # press: cards + rails
