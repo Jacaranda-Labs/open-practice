@@ -7,7 +7,7 @@
 import {digest,randomToken} from '../accounts/api.mjs';
 import {smtpMail} from './smtp.mjs';
 import {ImapSession,imapDate} from './imap.mjs';
-import {decodeBody,ownWords,isStop,isAutoReply,boxIndex} from './replies.mjs';
+import {decodeBody,ownWords,boxIndex,classifyInbound} from './replies.mjs';
 
 export const outreachV2Schema=`CREATE TABLE IF NOT EXISTS outreach_seq (domain TEXT PRIMARY KEY, organisation TEXT NOT NULL, relevance TEXT NOT NULL, source TEXT NOT NULL, email TEXT, box INTEGER NOT NULL, touches INTEGER NOT NULL DEFAULT 0, first_at INTEGER, next_at INTEGER, msgid TEXT, unsubscribe_token TEXT, unsubscribe_hash TEXT UNIQUE, link_owed INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL, updated_at INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS outreach_tally (day TEXT PRIMARY KEY, sent INTEGER NOT NULL DEFAULT 0, bounced INTEGER NOT NULL DEFAULT 0, stops INTEGER NOT NULL DEFAULT 0);
@@ -75,7 +75,10 @@ export async function sendOne(env,{now=Date.now(),mail=smtpMail,box=0,force=fals
   }
   return {sent:true,kind:row.kind,organisation:row.organisation};
  }catch(error){
-  if(error.code==='recipient_rejected'){await db.prepare("UPDATE outreach_seq SET status='bounced',email=NULL,updated_at=? WHERE domain=?").bind(now,row.domain).run();await tally(db,now,'bounced');return {sent:false,why:'recipient_rejected'}}
+  if(error.code==='recipient_rejected'){
+   // a full / temporarily refusing mailbox is not a bounce (owner 2026-11-04)
+   const soft=/\b(5\.2\.2|4\.\d\.\d+)\b|mailbox (is )?full|over (the )?quota|quota exceeded|insufficient (storage|space)|temporar/i.test(String(error.message||''));
+   await db.prepare("UPDATE outreach_seq SET status=?,email=NULL,updated_at=? WHERE domain=?").bind(soft?'undeliverable':'bounced',now,row.domain).run();if(!soft)await tally(db,now,'bounced');return {sent:false,why:soft?'undeliverable':'recipient_rejected'}}
   // the server may have taken it: never risk a second copy; the owner sees it in the summary
   if(error.uncertain){await db.prepare("UPDATE outreach_seq SET status='delivery_unknown',updated_at=? WHERE domain=?").bind(now,row.domain).run();return {sent:false,why:'delivery_unknown'}}
   return {sent:false,why:error.code||'mail_failed'};
@@ -84,7 +87,7 @@ export async function sendOne(env,{now=Date.now(),mail=smtpMail,box=0,force=fals
 
 /** Hourly: read each box's inbox for replies from organisations in the sequence. Read-only (EXAMINE). */
 export async function readReplies(env,{now=Date.now(),open=(o)=>ImapSession.open(o)}={}){
- const db=env.DB,bx=boxes(env),out={replied:0,stopped:0,bounced:0};if(!db||!bx.length)return out;
+ const db=env.DB,bx=boxes(env),out={replied:0,stopped:0,bounced:0,undeliverable:0};if(!db||!bx.length)return out;
  const {results}=await db.prepare("SELECT * FROM outreach_seq WHERE status='contacted' AND email IS NOT NULL AND first_at>=?").bind(now-30*DAY).all();
  for(let i=0;i<bx.length;i++){
   const mine=(results||[]).filter(r=>r.box===i);if(!mine.length)continue;
@@ -94,15 +97,20 @@ export async function readReplies(env,{now=Date.now(),open=(o)=>ImapSession.open
    const since=imapDate(new Date(Math.min(...mine.map(r=>r.first_at))-DAY));
    for(const r of mine){
     const uids=await s.uidSearch(`SINCE ${since} FROM "${r.email.replace(/"/g,'')}"`);if(!uids.length)continue;
-    const words=ownWords(decodeBody(((await s.fetchText(uids.slice(-1),6000))[0]||{}).text||''));
-    if(words&&isAutoReply(words)&&!isStop(words))continue;
-    if(words&&isStop(words)){await db.prepare("UPDATE outreach_seq SET status='suppressed',email=NULL,link_owed=0,updated_at=? WHERE domain=?").bind(now,r.domain).run();await tally(db,now,'stops');out.stopped++;continue}
+    const text=decodeBody(((await s.fetchText(uids.slice(-1),6000))[0]||{}).text||'');
+    // Owner 2026-11-04: full / unavailable / unmonitored / left is a delivery problem, never a stop.
+    const kind=classifyInbound({from:r.email,text}).kind;
+    if(kind==='auto')continue;
+    if(kind==='soft'||kind==='gone'){await db.prepare("UPDATE outreach_seq SET status='undeliverable',email=NULL,link_owed=0,updated_at=? WHERE domain=?").bind(now,r.domain).run();out.undeliverable++;continue}
+    if(kind==='stop'){await db.prepare("UPDATE outreach_seq SET status='suppressed',email=NULL,link_owed=0,updated_at=? WHERE domain=?").bind(now,r.domain).run();await tally(db,now,'stops');out.stopped++;continue}
     // a real reply: the kit link is owed only if they answered T1 (T2/T3 already carried it)
     await db.prepare("UPDATE outreach_seq SET status='replied',link_owed=?,updated_at=? WHERE domain=?").bind(r.touches===1?1:0,now,r.domain).run();out.replied++;
    }
-   const b=(await s.uidSearch(`SINCE ${since} FROM "mailer-daemon"`)).slice(-10);
-   if(b.length){const t=(await s.fetchText(b)).map(m=>decodeBody(m.text).toLowerCase()).join('\n');
-    for(const r of mine)if(t.includes(r.email.toLowerCase())){await db.prepare("UPDATE outreach_seq SET status='bounced',email=NULL,updated_at=? WHERE domain=? AND status='contacted'").bind(now,r.domain).run();await tally(db,now,'bounced');out.bounced++}}
+   const b=(await s.uidSearch(`SINCE ${since} OR FROM "mailer-daemon" FROM "postmaster"`)).slice(-10);
+   if(b.length){const reps=(await s.fetchText(b)).map(m=>{const t=decodeBody(m.text);return {t:t.toLowerCase(),kind:classifyInbound({from:'mailer-daemon@report',text:t}).kind}});
+    for(const r of mine){const hit=reps.find(x=>x.t.includes(r.email.toLowerCase()));if(!hit)continue;
+     if(hit.kind==='bounce'){const u=await db.prepare("UPDATE outreach_seq SET status='bounced',email=NULL,updated_at=? WHERE domain=? AND status='contacted'").bind(now,r.domain).run();if(u&&u.meta&&u.meta.changes===0)continue;await tally(db,now,'bounced');out.bounced++}
+     else{await db.prepare("UPDATE outreach_seq SET status='undeliverable',email=NULL,updated_at=? WHERE domain=? AND status='contacted'").bind(now,r.domain).run();out.undeliverable++}}}
   }finally{await s.logout()}
  }
  return out;

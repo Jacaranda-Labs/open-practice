@@ -68,3 +68,11 @@ test('outreach v2 replies: a real reply to T1 gets the kit once, in-thread; stop
  assert.equal(outreachV2Schema,await readFile(new URL('../migrations/0004_outreach_v2.sql',import.meta.url),'utf8'));
 }));
 
+
+// Owner 2026-11-04: wrong inbox, full inbox, unavailable, unmonitored are delivery problems, never stop replies.
+import {classifyInbound as _classifyInbound} from '../packages/outreach/inbound.mjs';
+import {readFileSync as _readFx} from 'node:fs';
+test('inbound classifier: shared delivery-problem fixtures', () => {
+ for (const f of JSON.parse(_readFx(new URL('./fixtures/inbound.json', import.meta.url), 'utf8')))
+  assert.equal(_classifyInbound(f).kind, f.kind, f.name);
+});
