@@ -1,13 +1,16 @@
+import {mixedBody} from './pdf.mjs';
 // Server-only SMTP transport. Credentials never enter static assets or logs.
 // Cloudflare's built-in TCP sockets; implicit TLS, certificate validation intact.
 export class MailError extends Error {constructor(code,uncertain=false){super(code);this.code=code;this.uncertain=uncertain}}
-export function mailMessage({from,to,subject,text,id,inReplyTo='',unsubscribe='',fromName='Open Practice'}){
+export function mailMessage({from,to,subject,text,id,inReplyTo='',unsubscribe='',fromName='Open Practice',attachments=[]}){
  const address=/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
  if(!address.test(from)||!address.test(to)||/[\r\n]/.test(subject)||!/^[-a-zA-Z0-9]+$/.test(id))throw new MailError('invalid_message');
  // outreach v2: T2/T3/link answers thread under T1; the one-click opt-out rides in a header, never in T1's body
  if(/[\r\n<>]/.test(inReplyTo.replace(/^<|>$/g,''))||/[\r\n<>\s]/.test(unsubscribe)||/[\r\n<>"]/.test(fromName))throw new MailError('invalid_message');
  const extra=(inReplyTo?`In-Reply-To: ${inReplyTo}\r\nReferences: ${inReplyTo}\r\n`:'')+(unsubscribe?`List-Unsubscribe: <${unsubscribe}>\r\nList-Unsubscribe-Post: List-Unsubscribe=One-Click\r\n`:'');
  const utf8=new TextEncoder().encode(text),encoded=btoa(Array.from(utf8,b=>String.fromCharCode(b)).join('')).match(/.{1,76}/g)?.join('\r\n')||'';
+ // the day-7 follow-up carries its run sheet (owner 2026-11-04): multipart/mixed, the plain text first
+ if(attachments&&attachments.length){const mb=mixedBody(text,attachments);return `From: ${fromName} <${from}>\r\nTo: ${to}\r\nSubject: ${subject}\r\nDate: ${new Date().toUTCString()}\r\nMessage-ID: <${id}@gmail.com>\r\n${extra}MIME-Version: 1.0\r\nContent-Type: ${mb.contentType}\r\n\r\n${mb.body}`}
  return `From: ${fromName} <${from}>\r\nTo: ${to}\r\nSubject: ${subject}\r\nDate: ${new Date().toUTCString()}\r\nMessage-ID: <${id}@gmail.com>\r\n${extra}MIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n${encoded}\r\n`;
 }
 export async function smtpMail(env,message=null,connector=null){

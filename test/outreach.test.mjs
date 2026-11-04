@@ -47,7 +47,10 @@ test('outreach v2 sequence: T2 on day 7 with the kit (threaded), T3 on day 14, t
  assert.equal((await sendOne(env,{now:t0,mail,box:0})).kind,'first');
  assert.equal((await sendOne(env,{now:t0+6*86400000,mail,box:0})).sent,false,'nothing before day 7');
  assert.equal((await sendOne(env,{now:t0+7*86400000,mail,box:0})).kind,'follow');
- assert.match(sent[1].text,/facilitators\.html/);assert.equal(sent[1].inReplyTo,'<'+sent[0].id+'@gmail.com>');assert.match(sent[1].subject,/^Re: /);
+ assert.match(sent[1].text,/facilitators\.html/);
+ assert.equal(sent[1].attachments.length,1,'T2 carries the run sheet');assert.match(sent[1].attachments[0].filename,/^open-practice-ai-taster-hub\.pdf$/);
+ assert.equal(String.fromCharCode(...sent[1].attachments[0].content.subarray(0,5)),'%PDF-');assert.ok(!sent[0].attachments,'T1 has no attachment');
+ assert.match(sent[1].text,/attached is a one-page run sheet/);assert.equal(sent[1].inReplyTo,'<'+sent[0].id+'@gmail.com>');assert.match(sent[1].subject,/^Re: /);
  assert.equal((await sendOne(env,{now:t0+14*86400000,mail,box:0})).kind,'nudge');assert.match(sent[2].text,/I will not write again/);
  assert.equal((await sendOne(env,{now:t0+30*86400000,mail,box:0})).sent,false,'three emails at most');
  assert.equal(sent.length,3);assert.ok(!sent.some(m=>/uncommon/.test(m.to)),'the v1 invitation promised no follow-ups');
@@ -75,4 +78,14 @@ import {readFileSync as _readFx} from 'node:fs';
 test('inbound classifier: shared delivery-problem fixtures', () => {
  for (const f of JSON.parse(_readFx(new URL('./fixtures/inbound.json', import.meta.url), 'utf8')))
   assert.equal(_classifyInbound(f).kind, f.kind, f.name);
+});
+
+test('mailMessage: a T2 with an attachment is multipart/mixed with the text first and the PDF base64',async()=>{
+ const {mailMessage}=await import('../packages/outreach/smtp.mjs');
+ const m=mailMessage({from:'one@gmail.com',to:'hello@hub.zw',subject:'Re: x',text:'Hello again',id:'abc',attachments:[{filename:'sheet.pdf',content:new TextEncoder().encode('%PDF-1.4 test')}]});
+ assert.match(m,/Content-Type: multipart\/mixed; boundary="jl[a-z0-9]+"/);
+ assert.ok(m.indexOf('text/plain')<m.indexOf('application/pdf'));
+ assert.match(m,/filename="sheet\.pdf"/);
+ const plain=mailMessage({from:'one@gmail.com',to:'hello@hub.zw',subject:'x',text:'Hi',id:'abd'});
+ assert.match(plain,/Content-Type: text\/plain/);assert.doesNotMatch(plain,/multipart/);
 });

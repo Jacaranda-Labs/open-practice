@@ -8,6 +8,7 @@ import {digest,randomToken} from '../accounts/api.mjs';
 import {smtpMail} from './smtp.mjs';
 import {ImapSession,imapDate} from './imap.mjs';
 import {decodeBody,ownWords,boxIndex,classifyInbound} from './replies.mjs';
+import {makePdf} from './pdf.mjs';
 
 export const outreachV2Schema=`CREATE TABLE IF NOT EXISTS outreach_seq (domain TEXT PRIMARY KEY, organisation TEXT NOT NULL, relevance TEXT NOT NULL, source TEXT NOT NULL, email TEXT, box INTEGER NOT NULL, touches INTEGER NOT NULL DEFAULT 0, first_at INTEGER, next_at INTEGER, msgid TEXT, unsubscribe_token TEXT, unsubscribe_hash TEXT UNIQUE, link_owed INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL, updated_at INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS outreach_tally (day TEXT PRIMARY KEY, sent INTEGER NOT NULL DEFAULT 0, bounced INTEGER NOT NULL DEFAULT 0, stops INTEGER NOT NULL DEFAULT 0);
@@ -29,9 +30,28 @@ export function compose(lead,kind,postal=''){
  const subj='A free, hands-on AI hour for the adults you serve?',re='Re: '+subj;
  const kit=`${BASE}/facilitators.html?src=facilitator`,demo=`${BASE}/demonstrations/valid-json-wrong-facts.html?src=facilitator`;
  if(kind==='first')return {subject:subj,text:`Hello ${lead.organisation} team,\n\nI came across your work while looking for adult learning communities: I noticed ${lead.relevance}.\n\nMany adults are told AI matters for their work, but have never had a calm, safe hour to actually try it and see where it goes wrong. I run Open Practice, an independent, non-accredited collection of free practical AI learning materials, built for exactly that hour. Could a small, optional 60-minute taster complement an existing session?\n\nIn the taster, people do three real things with fictional inputs: test an editor, inspect JSON, and measure colour contrast. They leave having done it, not just watched it. No paid AI plan, account signup or mailing list is needed, and there are manual fixtures for rooms without AI access. This is an invitation, not a claim of partnership or pilot results.\n\nWould it help if I sent the free facilitator kit? Just reply and I will. If this is not relevant, no reply is needed, and thank you for reading.\n\nOpen Practice, a Jacaranda Labs venture${post}\n\nYour public organisational inbox was found on your own website. No personal contact list or tracking pixel is used.${stop}`};
- if(kind==='follow')return {subject:re,text:`Hello again,\n\nIn case it is useful, here is the free facilitator kit and instructions: ${kit}\n\nAnd a short example of the kind of thing adults practise (valid JSON, wrong facts): ${demo}\n\nIf a 60-minute taster could fit an existing session, I would be glad to hear which cohort and date might work.\n\nOpen Practice${post}${stop}`};
+ if(kind==='follow')return {subject:re,attachments:[runSheet(lead,postal)],text:`Hello again,\n\nRather than ask twice, I made something you can use straight away: attached is a one-page run sheet for a 60-minute hands-on AI taster, written with ${lead.organisation} in mind. It has the minute-by-minute plan, what the room needs, how to run it with no internet or AI account, and what to note afterwards.\n\nThe hour is built around one moment: an adult who has been told "AI matters for your work" finally tries it, watches it get something confidently wrong, and realises they can catch it. People tend to walk out of that moment less anxious and more curious.\n\nThe full kit (fixtures, observation sheet, participant link) is free here: ${kit}\n\nAnd a short example of what people practise (valid JSON, wrong facts): ${demo}\n\nIf a taster could fit an existing session, I would be glad to hear which group and date might work.\n\nOpen Practice${post}${stop}`};
  if(kind==='nudge')return {subject:re,text:`Last note from me, and thank you for reading. If a hands-on AI hour for adults ever becomes useful to ${lead.organisation}, the free kit stays here: ${kit}\n\nI will not write again.\n\nOpen Practice${post}`};
  return {subject:re,text:`Thank you for writing back. Here is the free facilitator kit and instructions: ${kit}\n\nA short example adults can try first (valid JSON, wrong facts): ${demo}\n\nNo signup or paid AI plan is needed. Happy to answer anything here.\n\nOpen Practice`};
+}
+
+/** The T2 attachment: a one-page run sheet for the 60-minute taster (facts from facilitators.html only). */
+export function runSheet(lead,postal=''){
+ const day=new Date().toISOString().slice(0,10),name=String(lead.organisation||'your team').slice(0,90);
+ const slug=name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'taster';
+ return {filename:`open-practice-ai-taster-${slug}.pdf`,content:makePdf({
+  title:'A 60-minute hands-on AI taster',
+  subtitle:`Run sheet prepared for ${name}, ${day}. Free, independent, non-accredited practical AI learning material from Open Practice.`,
+  accent:'#0f5c4d',
+  sections:[
+   {heading:'Why this hour',paras:[`We wrote to you because we noticed ${String(lead.relevance||'your work with adult learners').slice(0,240)}. Many adults are told AI matters for their work but have never had a calm, safe hour to try it and see where it goes wrong. This hour gives them that: three real tasks with fictional inputs, done by their own hands.`]},
+   {heading:'The 60 minutes',bullets:['8 minutes: boundaries, fictional data, privacy and the tool routes available in the room.','12 minutes: test a bounded editor against correct and messy sentences.','12 minutes: tell apart valid JSON, agreed field types and true source values.','12 minutes: measure the supplied colour contrast pairs.','10 minutes: save one artefact and one limitation; sharing is optional.','6 minutes: collect aggregate friction and choose one next step.']},
+   {heading:'What the room needs',bullets:['A consenting adult group (18+), a named facilitator, an agreed date and venue.','A tested offline fallback: download the fixtures before relying on connectivity. Manual fixtures work in rooms with no AI access.','No paid AI plan, account sign-up or mailing list is needed. Accounts are optional.']},
+   {heading:'Boundaries',bullets:['Never ask participants for AI keys, passwords or private documents.','Use the fictional inputs supplied; do not upload attendee lists.']},
+   {heading:'What to note afterwards',bullets:['Attendance, first artefacts kept, the biggest usability obstacle and one improvement.','Keep aggregate notes without names.']},
+   {heading:'The full kit, free',paras:[`Facilitator plan, fixtures, observation sheet and the participant starter link: ${BASE}/facilitators.html?src=facilitator`,'This sheet is an invitation, not a claim of partnership, booking or results.']},
+  ],
+  footer:`Open Practice, a Jacaranda Labs venture${postal?' - '+postal:''}`})};
 }
 
 /** File a verified organisation (official domain, robots allowed, role inbox on that domain) for the sequence. */
@@ -63,7 +83,7 @@ export async function sendOne(env,{now=Date.now(),mail=smtpMail,box=0,force=fals
  const m=compose(row,row.kind,env.POSTAL_ADDRESS||'');
  const id=randomToken();
  try{
-  const r=await mail(env,{to:row.email,id,box:bx[box],subject:m.subject,text:m.text,inReplyTo:row.kind==='first'?'':(row.msgid||''),
+  const r=await mail(env,{to:row.email,id,box:bx[box],subject:m.subject,text:m.text,...(m.attachments?{attachments:m.attachments}:{}),inReplyTo:row.kind==='first'?'':(row.msgid||''),
    unsubscribe:row.kind==='link'?'':BASE+'/api/outreach/unsubscribe?t='+token});
   const msgid=(r&&r.messageId)||`<${id}@gmail.com>`;
   if(row.kind==='link')await db.prepare("UPDATE outreach_seq SET link_owed=0,status='replied',updated_at=? WHERE domain=?").bind(now,row.domain).run();
