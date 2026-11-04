@@ -1,4 +1,5 @@
 import {outreachAPI,runOutreach} from '../../packages/outreach/api.mjs';
+import {outreachHourly} from '../../packages/outreach/v2.mjs';
 import {growthAPI} from '../../packages/growth/api.mjs';
 import {database} from './database.mjs';
 export {LearnerDatabase} from './database.mjs';
@@ -6,7 +7,11 @@ import {accountAPI} from '../../packages/accounts/api.mjs';
 import {practiceAPI} from '../../packages/ai/practice.mjs';
 import {createAPI} from '../../packages/core/api.mjs';
 import {REDIRECTS} from '../../packages/core/redirects.mjs';
-export default {async scheduled(event,env){const db=database(env);if(db)await db.batch([db.prepare('DELETE FROM sessions WHERE expires_at < ?').bind(Date.now()),db.prepare('DELETE FROM learning_events WHERE created_at < ?').bind(Date.now()-90*86400000),db.prepare('DELETE FROM growth_events WHERE created_at < ?').bind(Date.now()-90*86400000),db.prepare('DELETE FROM growth_optouts WHERE expires_at < ?').bind(Date.now())]);if(db)await runOutreach({...env,DB:db})},async fetch(request,env){
+export default {async scheduled(event,env){const db=database(env);
+ // hourly cron (outreach v2): the cleanup, lead verification and discovery stay once a day at 03:00 UTC
+ if(db)await outreachHourly({...env,DB:db}).catch(()=>{});
+ if(new Date(event?.scheduledTime||Date.now()).getUTCHours()!==3)return;
+ if(db)await db.batch([db.prepare('DELETE FROM sessions WHERE expires_at < ?').bind(Date.now()),db.prepare('DELETE FROM learning_events WHERE created_at < ?').bind(Date.now()-90*86400000),db.prepare('DELETE FROM growth_events WHERE created_at < ?').bind(Date.now()-90*86400000),db.prepare('DELETE FROM growth_optouts WHERE expires_at < ?').bind(Date.now())]);if(db)await runOutreach({...env,DB:db})},async fetch(request,env){
  // Redirect cleartext before routing; this does not repair a failed TLS handshake.
  {const url=new URL(request.url);if(url.protocol==='http:'){url.protocol='https:';return new Response(null,{status:301,headers:{Location:url.toString()}})}}
  env={...env}; // Keep request-scoped database adapters out of the shared binding object.

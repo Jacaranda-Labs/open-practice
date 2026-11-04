@@ -47,7 +47,9 @@
     "APPROVED_MODELS": "groq:openai/gpt-oss-20b",
     "DB_OBJECT_ID": "f115804ba08ae5a0d76f801dee718c06cb6b32fe509c5a3051358a5e2f02a80b",
     "OUTREACH_ENABLED": "true",
-    "OUTREACH_SEND_ENABLED": "false"
+    "OUTREACH_SEND_ENABLED": "true",
+    "OUTREACH_DAILY": "50",
+    "POSTAL_ADDRESS": "Jacaranda Labs, P.O. Box 900, Bulawayo, Zimbabwe"
   },
   "durable_objects": {
     "bindings": [
@@ -64,7 +66,7 @@
   ],
   "triggers": {
     "crons": [
-      "0 3 * * *"
+      "0 * * * *"
     ]
   }
 }

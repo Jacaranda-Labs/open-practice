@@ -1,4 +1,5 @@
 import {outreachSchema} from '../../packages/outreach/api.mjs';
+import {outreachV2Schema} from '../../packages/outreach/v2.mjs';
 import {growthSchema} from '../../packages/growth/schema.mjs';
 // SQLite Durable Object adapter with a D1-like minimal interface.
 // Core account code remains SQL-based; replace this adapter with D1 on migration.
@@ -9,7 +10,7 @@ CREATE TABLE IF NOT EXISTS workspaces (learner_id TEXT NOT NULL REFERENCES learn
 CREATE TABLE IF NOT EXISTS learning_events (id TEXT PRIMARY KEY, learner_id TEXT NOT NULL REFERENCES learners(id) ON DELETE CASCADE, event TEXT NOT NULL, course_id TEXT NOT NULL, created_at INTEGER NOT NULL);
 CREATE INDEX IF NOT EXISTS events_date ON learning_events(created_at);`;
 export class LearnerDatabase {
- constructor(ctx){this.ctx=ctx;this.sql=ctx.storage.sql;this.sql.exec(schema);this.sql.exec(growthSchema);this.sql.exec(outreachSchema)}
+ constructor(ctx){this.ctx=ctx;this.sql=ctx.storage.sql;this.sql.exec(schema);this.sql.exec(growthSchema);this.sql.exec(outreachSchema);this.sql.exec(outreachV2Schema)}
  async fetch(request){
   try{
    const {statements}=await request.json();

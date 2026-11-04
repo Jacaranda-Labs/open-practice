@@ -1,5 +1,6 @@
 import {equal,digest,randomToken} from '../accounts/api.mjs';
 import {smtpMail} from './smtp.mjs';
+import {enqueue,boxes} from './v2.mjs';
 export const outreachSchema=`CREATE TABLE IF NOT EXISTS outreach_leads (domain TEXT PRIMARY KEY, organisation TEXT NOT NULL, source TEXT NOT NULL, email_hash TEXT UNIQUE, email TEXT, unsubscribe_hash TEXT UNIQUE, status TEXT NOT NULL, detail TEXT NOT NULL, updated_at INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS outreach_runs (day TEXT PRIMARY KEY, created_at INTEGER NOT NULL, result TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS outreach_discovery (url TEXT PRIMARY KEY, title TEXT NOT NULL, found_at INTEGER NOT NULL);\n`;
@@ -69,15 +70,25 @@ export async function runOutreach(env,{fetcher=fetch,mail=smtpMail,now=Date.now(
    if(env.OUTREACH_SEND_ENABLED!=='true'){
     await db.prepare('INSERT OR IGNORE INTO outreach_leads (domain,organisation,source,email_hash,email,status,detail,updated_at) VALUES (?,?,?,?,?,?,?,?)').bind(lead.domain,lead.organisation,contact.url,emailHash,email,'eligible','Official source and role inbox found; not contacted. Sender disabled.',now).run();result='research_only_sender_disabled';continue;
    }
-   if(prior?.status==='eligible')await db.prepare("UPDATE outreach_leads SET status='sending',unsubscribe_hash=?,email=?,updated_at=? WHERE domain=? AND status='eligible'").bind(unsubscribeHash,email,now,lead.domain).run();
-   await db.prepare('INSERT OR IGNORE INTO outreach_leads (domain,organisation,source,email_hash,email,unsubscribe_hash,status,detail,updated_at) VALUES (?,?,?,?,?,?,?,?,?)').bind(lead.domain,lead.organisation,contact.url,emailHash,email,unsubscribeHash,'sending','One pilot invitation; no follow-up sequence.',now).run();
-   // Re-read ownership after insert; only the successfully inserted send claim can proceed.
-   const owned=await db.prepare('SELECT * FROM outreach_leads WHERE domain=?').bind(lead.domain).first();if(owned?.unsubscribe_hash!==unsubscribeHash)continue;
-   try{
-    await mail(env,{to:email,id,...invitation({...lead,source:contact.url},BASE+'/api/outreach/unsubscribe?t='+token)});
-    result='smtp_accepted';await db.prepare("UPDATE outreach_leads SET status=?,email=NULL,detail=?,updated_at=? WHERE domain=? AND status='sending'").bind(result,'SMTP accepted; delivery, reply and pilot are not confirmed.',now,lead.domain).run();
-   }catch(error){result=error.uncertain?'delivery_unknown':error.code==='recipient_rejected'?'recipient_rejected':'transport_blocked';await db.prepare("UPDATE outreach_leads SET status=?,email=NULL,detail=?,updated_at=? WHERE domain=? AND status='sending'").bind(result,['sender_authentication_failed','sender_not_configured','transport_timeout','transport_closed','transport_unavailable','recipient_rejected'].includes(error.code)?error.code:'mail_failed',now,lead.domain).run()}
-   return {result,organisation:lead.organisation};
+   // outreach v2 (2026-11-04): a verified organisation joins the sequence (T1 without links, the kit on reply or day 7,
+   // a last note on day 14). Sending happens on the hourly cron, one message per box at a time (v2.mjs).
+   if(await enqueue(db,{domain:lead.domain,organisation:lead.organisation,relevance:lead.relevance,source:contact.url,email},now,boxes(env).length))result='queued';
+  }
+  if(env.OUTREACH_SEND_ENABLED==='true'){
+   // Search results that pass the same bar as the approved pool (their own https domain, robots allowed, a public
+   // organisational role inbox on that domain) become organisations in the sequence. Five a day at most.
+   const {results:found}=await db.prepare('SELECT url,title FROM outreach_discovery WHERE found_at>=? ORDER BY found_at DESC LIMIT 5').bind(now-2*86400000).all();
+   for(const f of found||[]){
+    try{
+     const u=new URL(f.url),domain=u.hostname.replace(/^www\./,'');
+     if(await db.prepare('SELECT 1 FROM outreach_seq WHERE domain=? UNION SELECT 1 FROM outreach_leads WHERE domain=?').bind(domain,domain).first())continue;
+     const robots=await pageFetch('https://'+domain+'/robots.txt',domain,fetcher);if(robots.status!==404&&!robotsAllow(robots.text,u.pathname))continue;
+     const page=await pageFetch(f.url,domain,fetcher);if(page.status!==200)continue;
+     const email=contactAddress(page.text,domain);if(!email)continue;
+     const organisation=String(f.title).split(/\s[|\-\u2013\u2014:]\s/)[0].trim().slice(0,80)||domain;
+     if(await enqueue(db,{domain,organisation,relevance:`your page "${String(f.title).slice(0,120)}"`,source:page.url,email},now,boxes(env).length))result='queued';
+    }catch{}
+   }
   }
   return {result};
  }finally{await db.prepare('UPDATE outreach_runs SET result=? WHERE day=?').bind(result,day).run()}
@@ -85,13 +96,17 @@ export async function runOutreach(env,{fetcher=fetch,mail=smtpMail,now=Date.now(
 export async function outreachAPI(request,env){
  const url=new URL(request.url),db=env.DB;if(!db)return reply({error:'Storage unavailable.'},503);
  if(url.pathname==='/api/outreach/unsubscribe'){
-  if(request.method!=='GET')return reply({error:'GET required.'},405);
+  if(request.method!=='GET'&&request.method!=='POST')return reply({error:'GET or POST required.'},405);   // POST = RFC 8058 one-click
   const token=url.searchParams.get('t')||'';if(!/^[a-f0-9]{64}$/.test(token))return reply({error:'Invalid opt-out link.'},400);
-  await db.prepare('UPDATE outreach_leads SET status=?,email=NULL,detail=?,updated_at=? WHERE unsubscribe_hash=?').bind('suppressed','Opted out. Hash retained only to prevent recontact.',Date.now(),await digest(token)).run();return new Response('You will not receive further Open Practice pilot invitations. No login is needed.',{headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'no-referrer'}});
+  const h=await digest(token);
+  await db.prepare('UPDATE outreach_leads SET status=?,email=NULL,detail=?,updated_at=? WHERE unsubscribe_hash=?').bind('suppressed','Opted out. Hash retained only to prevent recontact.',Date.now(),h).run();
+  await db.prepare("UPDATE outreach_seq SET status='suppressed',email=NULL,link_owed=0,updated_at=? WHERE unsubscribe_hash=?").bind(Date.now(),h).run();
+  if(request.method==='POST')return new Response('Done.',{headers:{'Cache-Control':'no-store'}});return new Response('You will not receive further Open Practice pilot invitations. No login is needed.',{headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','Referrer-Policy':'no-referrer'}});
  }
  if(!env.GROWTH_ADMIN_KEY||!equal(request.headers.get('Authorization')?.replace(/^Bearer /,'')||'',env.GROWTH_ADMIN_KEY))return reply({error:'Operator authorization required.'},401);
  if(request.method==='GET'&&url.pathname==='/api/outreach/summary'){
-  const [leads,runs,research]=await Promise.all([db.prepare('SELECT organisation,domain,source,status,detail,updated_at FROM outreach_leads ORDER BY updated_at DESC').all(),db.prepare('SELECT * FROM outreach_runs ORDER BY day DESC LIMIT 30').all(),db.prepare('SELECT * FROM outreach_discovery ORDER BY found_at DESC LIMIT 50').all()]);return reply({enabled:env.OUTREACH_ENABLED==='true',sendingEnabled:env.OUTREACH_SEND_ENABLED==='true',limits:'One attempt/day, three approved organisations total, one message/domain, no follow-ups. New search results are research-only.',leads:leads.results,runs:runs.results,research:research.results.filter(x=>relevantResearch(x.title))});
+  const sequence=(await db.prepare('SELECT organisation,domain,status,touches,link_owed,updated_at FROM outreach_seq ORDER BY updated_at DESC LIMIT 100').all()).results;
+  const [leads,runs,research]=await Promise.all([db.prepare('SELECT organisation,domain,source,status,detail,updated_at FROM outreach_leads ORDER BY updated_at DESC').all(),db.prepare('SELECT * FROM outreach_runs ORDER BY day DESC LIMIT 30').all(),db.prepare('SELECT * FROM outreach_discovery ORDER BY found_at DESC LIMIT 50').all()]);return reply({enabled:env.OUTREACH_ENABLED==='true',sendingEnabled:env.OUTREACH_SEND_ENABLED==='true',limits:'Outreach v2: first email has no links; the kit goes out on a reply or on day 7; a last note on day 14, then silence. Two boxes, one organisation per box, weekdays 07:00-17:00 UTC, ramp 10/25/50 a day, brake on >5% bounces or >3% stops. Public organisational role inboxes on the organisation\'s own domain only. v1 pilot invitations are never followed up.',leads:leads.results,runs:runs.results,research:research.results.filter(x=>relevantResearch(x.title)),sequence});
  }
  if(request.method==='POST'&&url.pathname==='/api/outreach/test-sender'){
   try{return reply(await (env.SEND_MAIL||smtpMail)(env,null))}catch(error){return reply({authenticated:false,sent:false,error:error.code||'transport_unavailable'},502)}
