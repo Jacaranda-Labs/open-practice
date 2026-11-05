@@ -21,7 +21,7 @@ export function boxes(env){
   .filter(([u,p])=>u&&p).map(([user,pass])=>({user:String(user).trim(),pass:String(pass).replace(/\s+/g,'')}));
 }
 export function ramp(now,start='2026-11-05'){const d=Math.floor((now-Date.parse(start+'T00:00:00Z'))/DAY);return d<0?0:d<7?10:d<14?25:50}
-export function brake({sent=0,bounced=0,stops=0}={}){if(sent<20)return '';if(bounced/sent>0.05)return 'bounces';if(stops/sent>0.03)return 'stops';return ''}
+export function brake({sent=0,bounced=0,stops=0}={}){if(sent<20)return '';/* owner 2026-11-04: a wrong address or missing domain is not a failure; it never brakes or pauses outreach */if(stops/sent>0.03)return 'stops';return ''}
 export const inWindow=(now)=>{const d=new Date(now),h=d.getUTCHours(),w=d.getUTCDay();return w>0&&w<6&&h>=7&&h<17};
 
 /** kind: 'first' (T1, no links) | 'follow' (T2, day 7) | 'nudge' (T3, day 14) | 'link' (answer to a reply). */

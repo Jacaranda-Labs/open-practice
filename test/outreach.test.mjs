@@ -67,7 +67,7 @@ test('outreach v2 replies: a real reply to T1 gets the kit once, in-thread; stop
  const lk=await sendOne(env,{now:t0+3600000,mail,box:0});assert.equal(lk.kind,'link');assert.match(sent[3].text,/facilitators\.html/);assert.equal(sent[3].unsubscribe,'');assert.ok(sent[3].inReplyTo);
  const st=Object.fromEntries((await db.prepare('SELECT domain,status FROM outreach_seq').all()).results.map(x=>[x.domain,x.status]));assert.deepEqual(st,{'a.zw':'replied','b.zw':'suppressed','c.zw':'contacted'});
  assert.deepEqual([ramp(Date.parse('2026-11-04T12:00Z')),ramp(Date.parse('2026-11-05T12:00Z')),ramp(Date.parse('2026-11-12T12:00Z')),ramp(Date.parse('2026-11-19T12:00Z'))],[0,10,25,50]);
- assert.equal(brake({sent:19,bounced:5}),'');assert.equal(brake({sent:40,bounced:3}),'bounces');assert.equal(brake({sent:40,stops:2}),'stops');
+ assert.equal(brake({sent:19,bounced:5}),'');assert.equal(brake({sent:40,bounced:20}),'');assert.equal(brake({sent:40,stops:2}),'stops');
  assert.equal(outreachV2Schema,await readFile(new URL('../migrations/0004_outreach_v2.sql',import.meta.url),'utf8'));
 }));
 
