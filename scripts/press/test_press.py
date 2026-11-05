@@ -30,16 +30,19 @@ class Compose(unittest.TestCase):
         self.assertEqual(len({press.pick(d, acts)["id"] for d in days}), 50, "50 consecutive days cover every activity once")
         self.assertEqual(press.pick(DAY, acts)["id"], press.pick(DAY, acts)["id"])
 
-    def test_every_rail_text_fits_and_carries_its_tracked_link(self):
+    def test_v3_every_activity_on_every_rail_passes_the_findability_gate_with_its_tracked_link(self):
         for a in press.activities():
             item = press.compose(DAY, a)
-            tx = press.texts(item)
-            self.assertLessEqual(len(tx["bsky"]), 300, a["id"])
-            self.assertLessEqual(len(tx["mastodon"]), 500, a["id"])
-            self.assertLessEqual(len(tx["pinterest"]), 500, a["id"])
-            for r in ("bsky", "mastodon", "nostr", "discord", "facebook"):
-                self.assertIn(f"/activities/{a['id']}.html?src={press.SRC[r]}", tx[r], (a["id"], r))
-            self.assertEqual(len(re.findall(r"#\w+", tx["mastodon"])), 5)
+            tx, st = press.texts(item), press.story(item)
+            for r in press.RAILS:
+                link = press.link(item, r)
+                self.assertEqual(press.native.gate(r, tx[r], {**st, "url": link}), [], (a["id"], r))
+                blob = json.dumps(tx[r])
+                if r != "blogger":  # the article links the blogger URL inside long_html
+                    self.assertIn(f"/activities/{a['id']}.html?src={press.SRC[r]}", blob, (a["id"], r))
+            self.assertNotIn("#", tx["pinterest"]["description"], a["id"])
+            self.assertTrue(tx["pinterest"]["title"].lower().startswith(st["keyphrase"].lower()), a["id"])
+            self.assertTrue(3 <= len(re.findall(r"#\w+", tx["mastodon"]["text"])) <= 5, a["id"])
 
     def test_sources_are_ones_the_growth_counter_knows(self):
         api = (press.ROOT / "packages" / "growth" / "api.mjs").read_text()
@@ -143,7 +146,8 @@ class Rails(unittest.TestCase):
                 return 200, {"accessJwt": "j", "did": "did:x", "handle": "op.bsky.social"}
             if url.endswith("uploadBlob"):
                 return 200, {"blob": {"ref": "b"}}
-            return 200, {"uri": "at://did:x/app.bsky.feed.post/abc"}
+            n = sum(1 for u, _ in seen if u.endswith("createRecord"))
+            return 200, {"uri": "at://did:x/app.bsky.feed.post/" + ("abc" if n == 1 else f"r{n}"), "cid": f"c{n}"}
         item = press.compose(DAY)
         text = press.texts(item)["bsky"]
         with with_env(OP_BSKY_ID="op.bsky.social", OP_BSKY_PASS="p"), mock.patch.object(press, "http", fake):
@@ -152,9 +156,14 @@ class Rails(unittest.TestCase):
         self.assertEqual(seen[1][1]["raw"][:4], b"\x89PNG")
         rec = seen[2][1]["data"]["record"]
         kinds = [f["features"][0]["$type"].rsplit("#", 1)[1] for f in rec["facets"]]
-        self.assertEqual(kinds.count("link"), 1)
+        self.assertEqual(kinds.count("link"), 0)   # v3: the link card carries the link; the last reply repeats it
         self.assertEqual(kinds.count("tag"), 2)
         self.assertEqual(rec["embed"]["external"]["thumb"], {"ref": "b"})
+        self.assertIn("?src=bluesky", rec["embed"]["external"]["uri"])
+        self.assertTrue(rec["tags"])
+        last = seen[-1][1]["data"]["record"]
+        self.assertEqual(last["reply"]["root"]["uri"], "at://did:x/app.bsky.feed.post/abc")
+        self.assertIn("?src=bluesky", last["text"])
 
     def test_buffer_posts_carry_the_card_and_alt_text(self):
         posted = []

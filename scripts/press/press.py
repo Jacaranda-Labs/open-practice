@@ -38,25 +38,27 @@ sys.path.insert(0, str(HERE))
 import mediakit  # noqa: E402
 import oauth1  # noqa: E402
 
+import native  # noqa: E402  press v3: one story, written natively per platform (playbook/PRESS-V3.md)
+
 SITE = os.getenv("OP_SITE_URL", "https://open-practice.zlnew.workers.dev").rstrip("/")
 UA = "OpenPractice-press/1.0 (+https://open-practice.zlnew.workers.dev)"
 PUBLIC = ROOT / "apps" / "web" / "public"
 CARDS = PUBLIC / "brand" / "press"
 NOSTR_RELAYS = ["wss://relay.damus.io", "wss://nos.lol", "wss://relay.primal.net", "wss://nostr.mom", "wss://relay.snort.social"]
-RAILS = ["bsky", "mastodon", "nostr", "discord", "facebook", "pinterest", "tumblr", "blogger"]
+RAILS = ["bsky", "mastodon", "nostr", "discord", "facebook", "pinterest", "tumblr", "blogger", "linkedin"]
 LABELS = {"bsky": "Bluesky", "mastodon": "Mastodon", "nostr": "Nostr", "discord": "Discord", "facebook": "Facebook page (Buffer)",
-          "pinterest": "Pinterest (Buffer)", "tumblr": "Tumblr", "blogger": "Blogger (post by email)"}
+          "pinterest": "Pinterest (Buffer)", "tumblr": "Tumblr", "blogger": "Blogger (post by email)", "linkedin": "LinkedIn (Buffer)"}
 NEED = {"bsky": ["OP_BSKY_ID", "OP_BSKY_PASS"], "mastodon": ["OP_MASTODON_TOKEN"], "nostr": ["OP_NOSTR_NSEC"],
         "discord": ["OP_DISCORD_WEBHOOK"], "facebook": ["OP_BUFFER_KEY"], "pinterest": ["OP_BUFFER_KEY", "OP_PINBOARD"],
         "tumblr": ["OP_TUMBLR_BLOG", "OP_TUMBLR_CONSUMER_KEY", "OP_TUMBLR_CONSUMER_SECRET", "OP_TUMBLR_TOKEN", "OP_TUMBLR_TOKEN_SECRET"],
-        "blogger": ["OP_BLOGGER_EMAIL", "OP_SMTP_USER", "OP_SMTP_PASS"]}
+        "blogger": ["OP_BLOGGER_EMAIL", "OP_SMTP_USER", "OP_SMTP_PASS"], "linkedin": ["OP_BUFFER_KEY"]}
 # weekdays (Mon=0) each rail posts on; the daily rails post every day
 DAYS = {"bsky": range(7), "mastodon": range(7), "nostr": range(7), "discord": range(7), "facebook": range(5),
-        "pinterest": (0, 2, 4), "tumblr": range(5), "blogger": (1, 3, 5)}
+        "pinterest": (0, 2, 4), "tumblr": range(5), "blogger": (1, 3, 5), "linkedin": (0, 2, 4)}
 SHAPE_OF = {"bsky": "wide", "discord": "wide", "blogger": "wide", "mastodon": "square", "nostr": "square", "facebook": "square",
-            "tumblr": "square", "pinterest": "pin"}
+            "tumblr": "square", "pinterest": "pin", "linkedin": "wide"}
 SRC = {"bsky": "bluesky", "mastodon": "mastodon", "nostr": "nostr", "discord": "discord", "facebook": "facebook",
-       "pinterest": "pinterest", "tumblr": "tumblr", "blogger": "blogger"}  # ?src= values packages/growth/api.mjs counts
+       "pinterest": "pinterest", "tumblr": "tumblr", "blogger": "blogger", "linkedin": "linkedin"}  # ?src= values packages/growth/api.mjs counts
 BASE_TAGS = ["AI", "LearnByDoing", "AIEngineering", "PromptEngineering", "AISkills"]
 COLLECTION_TAGS = {"assistants-workflows": "AIAssistants", "prompt-craft": "PromptCraft", "learning-reasoning": "CriticalThinking",
                    "design-decisions": "DesignThinking", "workplace-writing": "AIWriting", "verify-trust": "FactChecking",
@@ -196,27 +198,54 @@ def steps_line(item: dict, n: int = 3) -> str:
     return "\n".join(f"{i + 1}. {s['title']}" for i, s in enumerate((item["activity"].get("steps") or [])[:n]) if s.get("title"))
 
 
+KEYPHRASE = {"assistants-workflows": "AI workflow", "prompt-craft": "prompt engineering", "learning-reasoning": "critical thinking with AI",
+             "design-decisions": "AI design", "workplace-writing": "AI writing", "verify-trust": "fact-checking AI",
+             "vision-editing": "AI image editing", "data-structures": "data skills with AI", "research-evidence": "AI research",
+             "creative-production": "creative AI"}
+HOOKS = ["Reading about AI will not make you good at it. {mins} minutes of doing will.",
+         "Pick one thing to build today. This one takes {mins} minutes.",
+         "You learn {kp} the way you learn to cook: by making something, then tasting it.",
+         "The fastest way to understand {kp} is to break a small version of it on purpose."]
+LI_HOOKS = ["Most of what I know about {kp} came from doing small builds, not from reading threads.",
+            "A {mins}-minute exercise teaches more about {kp} than an hour of slides.",
+            "If your team is learning {kp}, give them one small build a day, not one big course."]
+QUESTIONS = ["What would you build with this at work?", "Which step would trip you up first?", "Would you do this alone or with a colleague?"]
+
+
+def story(item: dict) -> dict:
+    """The day's activity as a press v3 story: what you build, the steps, how long it takes. All from the activity file."""
+    if "_story" in item:
+        return item["_story"]
+    a = item["activity"]
+    n = (dt.date.fromisoformat(item["day"]) - dt.date(2026, 1, 1)).days
+    kp = KEYPHRASE.get(a.get("collection") or "", "AI skills")
+    Kp = kp[:1].upper() + kp[1:]
+    fmt = {"mins": item["mins"], "kp": kp}
+    steps = [s["title"] for s in (a.get("steps") or []) if s.get("title")][:4]
+    checks = [c for c in (a.get("checks") or []) if c]
+    st = {"id": item["id"], "url": item["page"], "keyphrase": kp,
+          "title": f"{Kp} exercise: {item['title']}", "pin_title": f"{Kp} exercise: {item['title']} ({item['mins']} min, {item['level'].lower()})",
+          "blog_title": f"{item['title']}: a {item['mins']}-minute {kp} exercise",
+          "hook": HOOKS[n % len(HOOKS)].format(**fmt), "hooks": {"linkedin": LI_HOOKS[n % len(LI_HOOKS)].format(**fmt)},
+          "lede": f"Today's practice: {item['title']}. {item['goal']}",
+          "summary": f"{item['title']} is a {item['mins']}-minute {item['level'].lower()} {kp} exercise from Open Practice. {item['goal']}",
+          "points": [f"Step {i + 1}: {t}" for i, t in enumerate(steps)], "points_title": "Build it, step by step",
+          "takeaway": f"You are done when: {checks[0][:1].lower() + checks[0][1:]}" if checks else "Keep what you build: it is your evidence.",
+          "question": QUESTIONS[n % len(QUESTIONS)], "hashtags": item["hashtags"],
+          "topics": [kp.lower(), "learn by doing", "ai skills", "ai engineering", "prompt engineering", str(item.get("collection") or "").lower(), "ai practice", "open practice"],
+          "alt": mediakit.alt_text("stat", card_data(a)), "link_text": f"Open the activity: {item['title']}", "long_html": long_html(item)}
+    item["_story"] = st
+    return st
+
+
 def texts(item: dict) -> dict:
-    """Per-rail text, inside each platform's limit, every one with the link and its hashtags."""
-    t, g = item["title"], item["goal"]
-    head = f"Today's practice: {t} ({item['mins']} min, {item['level'].lower()})."
-    hs = lambda n: " ".join("#" + h for h in item["hashtags"][:n])  # noqa: E731
-    bsky_tail = f"\n\n{link(item, 'bsky')} {hs(2)}"
-    room = 300 - len(bsky_tail) - 2
-    bsky = fit(head + "\n\n" + g, room) + bsky_tail
-    mast = f"{head}\n\n{g}\n\n{steps_line(item)}\n\n{link(item, 'mastodon')}\n\n{hs(5)}"
-    if len(mast) > 500:
-        mast = f"{head}\n\n{fit(g, 160)}\n\n{link(item, 'mastodon')}\n\n{hs(5)}"
-    return {
-        "bsky": bsky,
-        "mastodon": mast,
-        "nostr": f"{head}\n\n{g}\n\n{steps_line(item, 5)}\n\n{link(item, 'nostr')}\n\n{hs(5)}",
-        "discord": f"**{head}**\n{g}\n{link(item, 'discord')}",
-        "facebook": f"{head}\n\n{g}\n\nThe steps:\n{steps_line(item, 5)}\n\nOpen it, follow the steps, keep what you build: {link(item, 'facebook')}\n\n{hs(3)}",
-        "pinterest": f"{fit(g, 300)} A {item['mins']}-minute guided build, {item['level'].lower()}. {hs(4)}",
-        "tumblr": f"{head} {g}",
-        "blogger": head,
-    }
+    """Per-rail posts, each written natively for its platform (press v3, native.py) and carrying its own tracked link."""
+    st = story(item)
+    return {r: native.COMPOSE[r]({**st, "url": link(item, r)}) for r in RAILS}
+
+
+def _post(item: dict, rail: str, post) -> dict:
+    return post if isinstance(post, dict) else native.COMPOSE[rail]({**story(item), "url": link(item, rail)})
 
 
 def long_html(item: dict, img: dict | None = None) -> str:
@@ -245,7 +274,11 @@ def long_html(item: dict, img: dict | None = None) -> str:
         out.append(f"<h2>Before you move on</h2>\n<p>{E(a['reflection'])}</p>")
     out.append(f'<p>Open the full activity, with the prompt to adapt, a worked reference and a place to keep your evidence: <a href="{E(url)}">{E(item["title"])}</a>. '
                "Open Practice teaches AI engineering by doing: bring your own key, or follow the guided template without one.</p>")
-    out.append("<p>" + " ".join("#" + E(h) for h in item["hashtags"]) + "</p>")
+    out.append("<h2>Frequently asked questions</h2>")
+    for q_, a_ in ((f"How long does {item['title']} take?", f"About {item['mins']} minutes, at {str(a.get('level') or item['level']).lower()} level."),
+                   ("Do I need an API key?", "No. Bring your own key to run it against a model, or follow the guided template without one."),
+                   ("What do I keep at the end?", "What you built, plus the checks you ran on it. Open Practice keeps it as your evidence.")):
+        out.append(f"<h3>{E(q_)}</h3>\n<p>{E(a_)}</p>")
     return "\n".join(out)
 
 
@@ -256,28 +289,49 @@ def _span(text: str, part: str) -> tuple[int, int]:
     return s, s + len(part.encode("utf-8"))
 
 
+def bsky_facets(text: str) -> list:
+    out = []
+    for m in re.finditer(r"https?://\S+", text):
+        b0 = len(text[:m.start()].encode())
+        out.append({"index": {"byteStart": b0, "byteEnd": b0 + len(m.group(0).encode())}, "features": [{"$type": "app.bsky.richtext.facet#link", "uri": m.group(0)}]})
+    for m in re.finditer(r"(?<!\S)#([A-Za-z][A-Za-z0-9]{1,63})", text):
+        t0 = len(text[:m.start()].encode())
+        out.append({"index": {"byteStart": t0, "byteEnd": t0 + len(m.group(0).encode())}, "features": [{"$type": "app.bsky.richtext.facet#tag", "tag": m.group(1)}]})
+    return out
+
+
 def pub_bsky(item, text):
+    p = _post(item, "bsky", text)
     s, d = http("POST", "https://bsky.social/xrpc/com.atproto.server.createSession", data={"identifier": env("OP_BSKY_ID"), "password": env("OP_BSKY_PASS")})
     sess = ok_or_raise(s, d, "login")
     auth = {"Authorization": f"Bearer {sess['accessJwt']}"}
     url = link(item, "bsky")
-    b0, b1 = _span(text, url)
-    facets = [{"index": {"byteStart": b0, "byteEnd": b1}, "features": [{"$type": "app.bsky.richtext.facet#link", "uri": url}]}]
-    for m in re.finditer(r"(?<!\S)#([A-Za-z][A-Za-z0-9]{1,63})", text):
-        t0 = len(text[:m.start()].encode())
-        facets.append({"index": {"byteStart": t0, "byteEnd": t0 + len(m.group(0).encode())}, "features": [{"$type": "app.bsky.richtext.facet#tag", "tag": m.group(1)}]})
     img = media(item, "wide")
-    external = {"uri": url, "title": f"{item['title']} | Open Practice"[:300], "description": fit(item["goal"], 280)}
+    external = {"uri": url, "title": p["card"]["title"], "description": p["card"]["description"]}
     s2, up = http("POST", "https://bsky.social/xrpc/com.atproto.repo.uploadBlob", raw=img["png"], headers={**auth, "Content-Type": "image/png"})
     external["thumb"] = ok_or_raise(s2, up, "image upload")["blob"]
-    rec = {"$type": "app.bsky.feed.post", "text": text, "createdAt": now_iso(), "langs": ["en"], "facets": facets,
+    rec = {"$type": "app.bsky.feed.post", "text": p["text"], "createdAt": now_iso(), "langs": ["en"], "facets": bsky_facets(p["text"]),
            "embed": {"$type": "app.bsky.embed.external", "external": external}}
+    if p.get("tags"):
+        rec["tags"] = p["tags"][:8]
     s, d = http("POST", "https://bsky.social/xrpc/com.atproto.repo.createRecord", headers=auth, data={"repo": sess["did"], "collection": "app.bsky.feed.post", "record": rec})
     d = ok_or_raise(s, d, "post")
+    root = parent = {"uri": d["uri"], "cid": d.get("cid", "")}
+    for i, t in enumerate(p.get("replies") or []):  # the steps, then the finish line and the link
+        try:
+            r = {"$type": "app.bsky.feed.post", "text": t, "createdAt": now_iso(), "langs": ["en"], "facets": bsky_facets(t), "reply": {"root": root, "parent": parent}}
+            s3, d3 = http("POST", "https://bsky.social/xrpc/com.atproto.repo.createRecord", headers=auth, data={"repo": sess["did"], "collection": "app.bsky.feed.post", "record": r})
+            d3 = ok_or_raise(s3, d3, f"reply {i + 1}")
+            parent = {"uri": d3["uri"], "cid": d3.get("cid", "")}
+        except Exception as e:  # noqa: BLE001  the main post is up; never re-posted
+            print(f"  bsky reply {i + 1} failed: {type(e).__name__}: {str(e)[:120]}", flush=True)
+            break
     return f"https://bsky.app/profile/{sess.get('handle') or env('OP_BSKY_ID')}/post/{d['uri'].rsplit('/', 1)[-1]}"
 
 
 def pub_mastodon(item, text):
+    p = _post(item, "mastodon", text)
+    text = p["text"]
     inst = env("OP_MASTODON_INSTANCE", "https://mastodon.social").rstrip("/")
     auth = {"Authorization": f"Bearer {env('OP_MASTODON_TOKEN')}"}
     img = media(item, "square")
@@ -295,6 +349,7 @@ def pub_mastodon(item, text):
 
 
 def pub_discord(item, text):
+    text = _post(item, "discord", text)["text"]
     url = env("OP_DISCORD_WEBHOOK")
     img = media(item, "wide")
     embed = {"title": item["title"][:256], "url": link(item, "discord"), "description": fit(item["goal"], 400), "color": 0xA8321E, "image": {"url": img["url"]}}
@@ -379,6 +434,7 @@ async def _relay_send(url: str, ev: dict, timeout: float = 12.0) -> bool:
 
 
 def pub_nostr(item, text):
+    text = _post(item, "nostr", text)["text"]
     img = media(item, "square")
     tags = [["t", t] for t in dict.fromkeys(h.lower() for h in item["hashtags"])] + [["r", link(item, "nostr")]]
     text = f"{text}\n\n{img['url']}"
@@ -427,6 +483,7 @@ def buffer_post(inp: dict) -> str:
 
 
 def pub_facebook(item, text):
+    text = _post(item, "facebook", text)["text"]
     ch = buffer_channel("facebook")
     img = media(item, "square")
     return buffer_post({"channelId": ch["id"], "text": text, "mode": "shareNow", "schedulingType": "automatic",
@@ -434,20 +491,35 @@ def pub_facebook(item, text):
 
 
 def pub_pinterest(item, text):
+    """Pinterest is a search engine: keyword-first title, a natural description with no hashtags, real alt text."""
+    p = _post(item, "pinterest", text)
     ch = buffer_channel("pinterest")
     img = media(item, "pin")
-    return buffer_post({"channelId": ch["id"], "text": text, "mode": "shareNow", "schedulingType": "automatic",
-                        "assets": [{"image": {"url": img["url"], "metadata": {"altText": img["alt"][:500]}}}],
-                        "metadata": {"pinterest": {"boardServiceId": env("OP_PINBOARD"), "title": fit(item["title"], 100), "url": link(item, "pinterest")}}})
+    return buffer_post({"channelId": ch["id"], "text": p["description"], "mode": "shareNow", "schedulingType": "automatic",
+                        "assets": [{"image": {"url": img["url"], "metadata": {"altText": (p.get("alt") or img["alt"])[:500]}}}],
+                        "metadata": {"pinterest": {"boardServiceId": env("OP_PINBOARD"), "title": p["title"], "url": link(item, "pinterest")}}})
+
+
+def pub_linkedin(item, text):
+    """LinkedIn through Buffer: waits, never fails, until a LinkedIn channel is connected."""
+    p = _post(item, "linkedin", text)
+    try:
+        ch = buffer_channel("linkedin")
+    except Exception as e:  # noqa: BLE001
+        raise WaitingError("LinkedIn is not connected in Buffer yet") from e
+    img = media(item, "wide")
+    return buffer_post({"channelId": ch["id"], "text": p["text"], "mode": "shareNow", "schedulingType": "automatic",
+                        "assets": [{"image": {"url": img["url"], "metadata": {"altText": (p.get("alt") or img["alt"])[:1000]}}}]})
 
 
 def pub_tumblr(item, text):
+    """A titled text post: Tumblr search reads the title, the text and up to 30 tags. Shorter than the blog article."""
+    p = _post(item, "tumblr", text)
     blog = env("OP_TUMBLR_BLOG")
     url = f"https://api.tumblr.com/v2/blog/{blog}.tumblr.com/post"
     img = media(item, "square")
-    tags = list(dict.fromkeys([t for t in item["tags"] if t] + [re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h).lower() for h in item["hashtags"]]))[:20]
-    caption = f"<h2>{E(item['title'])}</h2>\n" + long_html(item).replace("src=blogger", "src=tumblr")
-    form = {"type": "photo", "source": img["url"], "caption": caption, "link": link(item, "tumblr"), "tags": ",".join(tags)}
+    pic = f'<p><img src="{E(img["url"], quote=True)}" alt="{E(p.get("alt") or img["alt"], quote=True)}"></p>'
+    form = {"type": "text", "format": "html", "title": p["title"], "body": pic + p["html"], "tags": ",".join(p["tags"]), "slug": p["slug"]}
     h = oauth1.auth_header("POST", url, form, env("OP_TUMBLR_CONSUMER_KEY"), env("OP_TUMBLR_CONSUMER_SECRET"), env("OP_TUMBLR_TOKEN"), env("OP_TUMBLR_TOKEN_SECRET"))
     st, body = http("POST", url, form=form, headers={"Authorization": h})
     resp = (ok_or_raise(st, body, "tumblr") or {}).get("response") or {}
@@ -464,7 +536,7 @@ def send_mail(to: str, subject: str, html_body: str) -> None:  # patched in test
 
 def pub_blogger(item, text):
     """Our own blog, by Blogger's post-by-email address (one mail to our own blog, not outreach)."""
-    send_mail(env("OP_BLOGGER_EMAIL"), f"{item['title']}: a {item['mins']}-minute AI practice", long_html(item, media(item, "wide")) + "\n#end")
+    send_mail(env("OP_BLOGGER_EMAIL"), _post(item, "blogger", text)["title"], long_html(item, media(item, "wide")) + "\n#end")
     return "sent to the blog's post-by-email address"
 
 
@@ -473,7 +545,7 @@ class WaitingError(Exception):
 
 
 PUBLISH = {"bsky": pub_bsky, "mastodon": pub_mastodon, "nostr": pub_nostr, "discord": pub_discord, "facebook": pub_facebook,
-           "pinterest": pub_pinterest, "tumblr": pub_tumblr, "blogger": pub_blogger}
+           "pinterest": pub_pinterest, "tumblr": pub_tumblr, "blogger": pub_blogger, "linkedin": pub_linkedin}
 
 
 def creds(rail: str) -> bool:
@@ -504,8 +576,11 @@ def run(day: str, live: bool, rails: list[str], force: bool, state_path: Path, p
             row.update(status="not today", detail="posts on " + ",".join("MTWTFSS"[d] for d in DAYS[r]))
         elif today.get(r) and not force:
             row.update(status="already posted", detail=today[r])
+        elif probs := native.gate(r, tx[r], {**story(item), "url": link(item, r)}):
+            failed += 1
+            row.update(status="held", detail="findability gate: " + "; ".join(probs)[:180])  # never post a weak or broken post
         elif not live:
-            row.update(status="dry", detail=tx[r][:120].replace("\n", " "))
+            row.update(status="dry", detail=(tx[r].get("text") or tx[r].get("title") or "")[:120].replace("\n", " "))
         else:
             try:
                 where = publish[r](item, tx[r])
