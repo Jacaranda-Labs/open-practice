@@ -255,8 +255,18 @@ class TumblrTitle(unittest.TestCase):
         self.assertEqual(social._tumblr_title("Practice, not tutorials.\n\nBody here."),
                          "Practice, not tutorials")
 
-    def test_a_long_first_line_falls_back_to_the_brand(self):
-        self.assertEqual(social._tumblr_title("x" * 200), "Open Practice")
+    def test_a_paragraph_first_line_is_cut_at_its_first_sentence(self):
+        self.assertEqual(
+            social._tumblr_title("A practice record is not a certificate, and that is the point. Keep the work."),
+            "A practice record is not a certificate, and that is the point")
+
+    def test_a_single_long_sentence_is_cut_at_a_word_boundary(self):
+        out = social._tumblr_title("word " * 40)
+        self.assertLessEqual(len(out), 120)
+        self.assertTrue(out.startswith("word word"))
+
+    def test_no_usable_line_falls_back_to_the_brand(self):
+        self.assertEqual(social._tumblr_title("   "), "Open Practice")
 
 
 class PostExitCode(unittest.TestCase):

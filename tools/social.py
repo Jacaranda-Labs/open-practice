@@ -284,9 +284,21 @@ def tumblr_armed() -> bool:
 
 
 def _tumblr_title(text: str) -> str:
-    """Tumblr themes render a title above the body; the first line is usually the better title."""
-    first = (text.splitlines() or [""])[0].strip().rstrip(".")
-    return first[:120] if 0 < len(first) <= 120 else "Open Practice"
+    """Tumblr themes render a title above the body; the first line is usually the better title.
+
+    If that line is a whole paragraph, cut it at the end of its first sentence and then at a word
+    boundary — a title of "Open Practice" on every post tells a reader nothing.
+    """
+    first = (text.splitlines() or [""])[0].strip()
+    if not first:
+        return "Open Practice"
+    sentence = first.split(". ")[0].strip().rstrip(".")
+    if 0 < len(sentence) <= 120:
+        return sentence
+    if len(first) <= 120:
+        return first.rstrip(".")
+    cut = first[:120].rsplit(" ", 1)[0]
+    return cut.rstrip(".,;:—- ") or "Open Practice"
 
 
 def post_tumblr(text: str, tags: list[str] | None = None) -> tuple[bool, str]:

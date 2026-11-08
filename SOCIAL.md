@@ -19,7 +19,7 @@ python3 tools/social.py armed          # which rails this process can post to
 python3 tools/social.py verify         # read back every identity; exits 1 if one is dead
 python3 tools/social.py post --text "…" --link https://open-practice.open-practice.workers.dev/
 python3 tools/social.py post --rails nostr --text "…" --dry
-python3 -m unittest discover -s tools/tests -p "test_social.py"     # 23 tests, no network
+python3 -m unittest discover -s tools/tests -p "test_social.py"     # 29 tests, no network
 ```
 
 ## Pinterest goes through Buffer
@@ -57,8 +57,9 @@ The request-token secret is written to `~/.op_tumblr_pending.json` (0600) becaus
 exchange needs both halves and the secret is issued exactly once. It is kept separate from the
 Mechanism Audit pending file so the two desks cannot clobber each other.
 
-Text posts carry a `title`: Tumblr themes render it above the body, and the first line is usually
-the better title. `/v2/blog/{blog}/post` (singular, form-encoded) returns 201; the plural `/posts`
+Text posts carry a `title`: Tumblr themes render it above the body. The first line is used, cut at
+its first sentence if it is a paragraph, then at a word boundary if still over 120 characters — a
+fallback of "Open Practice" on every post tells a reader nothing. `/v2/blog/{blog}/post` (singular, form-encoded) returns 201; the plural `/posts`
 route is NPF and wants a JSON content array.
 
 **Blog title and description:** `POST /v2/blog/{blog}/settings` returns 400 `Bad Request` for every
@@ -71,6 +72,15 @@ not an API one.
   `open-practice-social-pack.md`.
 - **Facebook, Instagram, Threads, YouTube, TikTok, GBP** — empty cells in the workbook. Connecting any
   of them to the same Buffer account turns it into a one-line addition here, no new code.
+
+## Two checks that exist because they were missing
+
+- **`verify` reads identities back**, it does not trust that variables exist. Tumblr answers with the
+  blog name and its post count, and fails if the configured blog is not on the authorised account.
+- **`post` fails the run when any rail fails.** It used to succeed if *any* rail worked, which is how
+  a Pinterest refusal reported "success". A test now compares the secrets `social.py` reads against
+  the ones `social.yml` passes in, because CI once posted to five rails while Tumblr sat silently
+  "not configured".
 
 ## Secrets
 
