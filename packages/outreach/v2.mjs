@@ -13,7 +13,7 @@ import {makePdf} from './pdf.mjs';
 export const outreachV2Schema=`CREATE TABLE IF NOT EXISTS outreach_seq (domain TEXT PRIMARY KEY, organisation TEXT NOT NULL, relevance TEXT NOT NULL, source TEXT NOT NULL, email TEXT, box INTEGER NOT NULL, touches INTEGER NOT NULL DEFAULT 0, first_at INTEGER, next_at INTEGER, msgid TEXT, unsubscribe_token TEXT, unsubscribe_hash TEXT UNIQUE, link_owed INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL, updated_at INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS outreach_tally (day TEXT PRIMARY KEY, sent INTEGER NOT NULL DEFAULT 0, bounced INTEGER NOT NULL DEFAULT 0, stops INTEGER NOT NULL DEFAULT 0);
 `;
-const BASE='https://open-practice.zlnew.workers.dev',DAY=86400000;
+const BASE='https://open-practice.open-practice.workers.dev',DAY=86400000;
 const V1_DONE=['suppressed','smtp_accepted','recipient_rejected','delivery_unknown','transport_blocked','sending'];
 
 export function boxes(env){

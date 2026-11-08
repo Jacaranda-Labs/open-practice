@@ -3,83 +3,83 @@
 > Free, independent, practical AI learning. Every lesson and tool is learn-by-doing: brief → make → check → improve → ship. No signup needed; learners can bring their own free AI key or use guided templates without AI. Original lessons are CC BY 4.0; code is MIT.
 
 ## Sections
-- [Free tools (learn by doing)](https://open-practice.zlnew.workers.dev/free-tools/)
-- [Free AI API keys and guides](https://open-practice.zlnew.workers.dev/api-keys/)
-- [Academy courses](https://open-practice.zlnew.workers.dev/academy/)
-- [Learn: beginners, seniors, kids](https://open-practice.zlnew.workers.dev/learn/)
-- [Earn by Doing: useful work, honest offers](https://open-practice.zlnew.workers.dev/earn/)
-- [Earn by Doing starter builds (12 workshops, 40 starter kits)](https://open-practice.zlnew.workers.dev/earn/builds/)
-- [AI glossary](https://open-practice.zlnew.workers.dev/glossary/)
-- [Prompt library](https://open-practice.zlnew.workers.dev/prompts/)
-- [AI tools directory](https://open-practice.zlnew.workers.dev/ai-tools/)
-- [LLM guide](https://open-practice.zlnew.workers.dev/llms/)
-- [Comparisons](https://open-practice.zlnew.workers.dev/compare/)
-- [Tutorials](https://open-practice.zlnew.workers.dev/tutorials/)
-- [Use cases](https://open-practice.zlnew.workers.dev/use-cases/)
-- [Tool finder quiz](https://open-practice.zlnew.workers.dev/tool-finder/)
-- [News](https://open-practice.zlnew.workers.dev/news.html)
-- [Community](https://open-practice.zlnew.workers.dev/community/)
+- [Free tools (learn by doing)](https://open-practice.open-practice.workers.dev/free-tools/)
+- [Free AI API keys and guides](https://open-practice.open-practice.workers.dev/api-keys/)
+- [Academy courses](https://open-practice.open-practice.workers.dev/academy/)
+- [Learn: beginners, seniors, kids](https://open-practice.open-practice.workers.dev/learn/)
+- [Earn by Doing: useful work, honest offers](https://open-practice.open-practice.workers.dev/earn/)
+- [Earn by Doing starter builds (12 workshops, 40 starter kits)](https://open-practice.open-practice.workers.dev/earn/builds/)
+- [AI glossary](https://open-practice.open-practice.workers.dev/glossary/)
+- [Prompt library](https://open-practice.open-practice.workers.dev/prompts/)
+- [AI tools directory](https://open-practice.open-practice.workers.dev/ai-tools/)
+- [LLM guide](https://open-practice.open-practice.workers.dev/llms/)
+- [Comparisons](https://open-practice.open-practice.workers.dev/compare/)
+- [Tutorials](https://open-practice.open-practice.workers.dev/tutorials/)
+- [Use cases](https://open-practice.open-practice.workers.dev/use-cases/)
+- [Tool finder quiz](https://open-practice.open-practice.workers.dev/tool-finder/)
+- [News](https://open-practice.open-practice.workers.dev/news.html)
+- [Community](https://open-practice.open-practice.workers.dev/community/)
 
 ## Free tools
-- [Chrome Extension Creator](https://open-practice.zlnew.workers.dev/free-tools/chrome-extension-creator/): Free Chrome extension creator: answer 4 questions, get a working Manifest V3 extension ZIP, load it in Chrome and learn what every file does.
-- [Website Generator](https://open-practice.zlnew.workers.dev/free-tools/website-generator/): Free website generator: describe your business, download a clean HTML/CSS site and publish it free on GitHub Pages or Cloudflare Pages.
-- [Telegram Bot Creator](https://open-practice.zlnew.workers.dev/free-tools/telegram-bot-creator/): Free Telegram bot creator: define commands, download a secure webhook bot for Cloudflare Workers and deploy it on the free plan. Optional AI replies.
-- [PWA Mobile App Creator](https://open-practice.zlnew.workers.dev/free-tools/pwa-app-creator/): Free PWA creator: generate an installable, offline-capable mobile web app (checklist, habit tracker or notes). No app store needed.
-- [Google Sheets Script Generator](https://open-practice.zlnew.workers.dev/free-tools/google-sheets-script/): Free Google Sheets script generator: clean a column, highlight duplicates or build a summary with a custom menu — non-destructive and explained.
-- [Landing Page Generator](https://open-practice.zlnew.workers.dev/free-tools/landing-page-generator/): Free landing page generator: headline, problem, benefits and one call to action in a single fast HTML file, checked for clarity and honest claims.
-- [Discord Bot Creator](https://open-practice.zlnew.workers.dev/free-tools/discord-bot-creator/): Free Discord bot creator: define slash commands and deploy a signature-verified interactions bot on Cloudflare Workers — no always-on server.
-- [AI Chatbot Widget Creator](https://open-practice.zlnew.workers.dev/free-tools/ai-chatbot-widget/): Free chatbot widget creator: an embeddable help bubble that answers from your FAQ — free with no AI, or AI-powered via your own secure Worker.
-- [Zapier Automation Builder](https://open-practice.zlnew.workers.dev/free-tools/zapier-automation/): Free automation builder workshop: design a Zapier, Make or n8n flow with trigger, filter, actions, field mapping, tests and a stop switch.
-- [WordPress Plugin Generator](https://open-practice.zlnew.workers.dev/free-tools/wordpress-plugin-generator/): Free WordPress plugin generator: a notice shortcode, reading-time label or footer text — with the security basics every plugin needs.
-- [Blog Post Writer](https://open-practice.zlnew.workers.dev/free-tools/blog-post-writer/): Free blog post writer workshop: plan, draft and check a 600–1,200 word article with your own AI key or a guided template. No signup.
-- [Email Writer](https://open-practice.zlnew.workers.dev/free-tools/email-writer/): Free email writer workshop: write professional emails with one clear ask, the right tone and a subject line. Use your own AI key or a guided template.
-- [Email Subject Line Generator](https://open-practice.zlnew.workers.dev/free-tools/email-subject-lines/): Free email subject line generator workshop: write and test 10 subject lines for length, clarity and spam triggers. Own AI key or guided template.
-- [Cold Email Writer](https://open-practice.zlnew.workers.dev/free-tools/cold-email-writer/): Free cold email writer workshop: write short, honest outreach with real personalisation, one ask and an easy opt-out. Own AI key or guided template.
-- [Cover Letter Writer](https://open-practice.zlnew.workers.dev/free-tools/cover-letter-writer/): Free cover letter writer workshop: match your evidence to a job ad, write 250–400 words and check for specifics. Own AI key or guided template.
-- [Product Description Generator](https://open-practice.zlnew.workers.dev/free-tools/product-description/): Free product description generator workshop: turn features into benefits, add specs and check for honest claims. Own AI key or guided template.
-- [FAQ Generator](https://open-practice.zlnew.workers.dev/free-tools/faq-generator/): Free FAQ generator workshop: collect real questions, write short accurate answers and check them for clarity. Own AI key or guided template.
-- [Press Release Generator](https://open-practice.zlnew.workers.dev/free-tools/press-release/): Free press release generator workshop: news angle, the 5 Ws, a real quote and contact details — checked for structure. Own AI key or guided template.
-- [YouTube Description Generator](https://open-practice.zlnew.workers.dev/free-tools/youtube-description/): Free YouTube description generator workshop: summary, timestamps, links and search phrases — checked for format. Own AI key or guided template.
-- [YouTube Title Generator](https://open-practice.zlnew.workers.dev/free-tools/youtube-title-generator/): Free YouTube title generator workshop: 10 titles under 60 characters using proven angles, checked for honesty and length. Own AI key or guided template.
-- [TikTok Script Writer](https://open-practice.zlnew.workers.dev/free-tools/tiktok-script/): Free TikTok script writer workshop: hook, beats, on-screen text and call to action for Reels, Shorts and TikTok. Own AI key or guided template.
-- [Viral Hook Generator](https://open-practice.zlnew.workers.dev/free-tools/viral-hook-generator/): Free hook generator workshop: write 10 opening lines for posts and videos using proven patterns, checked for length and honesty. Own AI key or guided template.
-- [Social Media Bio Generator](https://open-practice.zlnew.workers.dev/free-tools/social-bio/): Free social media bio generator workshop: who you help, how, and proof — within each platform’s character limit. Own AI key or guided template.
-- [Hashtag Generator](https://open-practice.zlnew.workers.dev/free-tools/hashtag-generator/): Free hashtag generator workshop: build a mix of broad, niche and local hashtags and check for count and relevance. Own AI key or guided template.
-- [Business Name Generator](https://open-practice.zlnew.workers.dev/free-tools/business-name-generator/): Free business name generator workshop: generate names, then check length, pronunciation and availability steps. Own AI key or guided template.
-- [SWOT Analysis Generator](https://open-practice.zlnew.workers.dev/free-tools/swot-analysis/): Free SWOT analysis generator workshop: evidence-based strengths, weaknesses, opportunities and threats plus actions. Own AI key or guided template.
-- [Job Description Generator](https://open-practice.zlnew.workers.dev/free-tools/job-description-generator/): Free job description generator workshop: outcomes, must-haves vs nice-to-haves, pay and inclusive language checks. Own AI key or guided template.
-- [Meeting Agenda Generator](https://open-practice.zlnew.workers.dev/free-tools/meeting-agenda/): Free meeting agenda generator workshop: purpose, timed items, owners and decisions needed — checked for timing. Own AI key or guided template.
-- [Prompt Generator](https://open-practice.zlnew.workers.dev/free-tools/prompt-generator/): Free AI prompt generator workshop: turn a vague request into a structured, testable prompt. Use your own AI key or a guided template.
-- [Image Prompt Generator](https://open-practice.zlnew.workers.dev/free-tools/image-prompt-generator/): Free image prompt generator workshop: subject, style, composition, lighting and exclusions for any AI image tool. Own AI key or guided template.
-- [AI Workflow Builder](https://open-practice.zlnew.workers.dev/free-tools/ai-workflow-builder/): Free AI workflow builder workshop: map a repetitive task into steps, choose where AI helps, and add human review and failure plans.
-- [LinkedIn Bio Generator](https://open-practice.zlnew.workers.dev/free-tools/linkedin-bio/): Free LinkedIn bio generator workshop: headline under 220 characters and an About section with proof and a call to action. Own AI key or guided template.
-- [JSON Formatter & Validator](https://open-practice.zlnew.workers.dev/free-tools/json-formatter/): Free JSON formatter and validator: pretty-print, minify and find the exact line of a JSON error — in your browser. Includes a fix-the-JSON challenge.
-- [Base64 Encoder / Decoder](https://open-practice.zlnew.workers.dev/free-tools/base64-encoder/): Free Base64 encoder and decoder that handles emoji and every language, with URL-safe mode. Runs in your browser. Includes a decoding challenge.
-- [Markdown to HTML Converter](https://open-practice.zlnew.workers.dev/free-tools/markdown-to-html/): Free Markdown to HTML converter with live preview: headings, lists, links, bold, code and quotes. Safe output, runs in your browser.
-- [AI Token Counter](https://open-practice.zlnew.workers.dev/free-tools/token-counter/): Free AI token counter: estimate tokens, words and context-window use for any prompt. Learn why shorter prompts cost less. Runs in your browser.
-- [AI API Cost Calculator](https://open-practice.zlnew.workers.dev/free-tools/api-cost-calculator/): Free AI API cost calculator: requests, input and output tokens and price per million → monthly cost. Editable prices, runs in your browser.
+- [Chrome Extension Creator](https://open-practice.open-practice.workers.dev/free-tools/chrome-extension-creator/): Free Chrome extension creator: answer 4 questions, get a working Manifest V3 extension ZIP, load it in Chrome and learn what every file does.
+- [Website Generator](https://open-practice.open-practice.workers.dev/free-tools/website-generator/): Free website generator: describe your business, download a clean HTML/CSS site and publish it free on GitHub Pages or Cloudflare Pages.
+- [Telegram Bot Creator](https://open-practice.open-practice.workers.dev/free-tools/telegram-bot-creator/): Free Telegram bot creator: define commands, download a secure webhook bot for Cloudflare Workers and deploy it on the free plan. Optional AI replies.
+- [PWA Mobile App Creator](https://open-practice.open-practice.workers.dev/free-tools/pwa-app-creator/): Free PWA creator: generate an installable, offline-capable mobile web app (checklist, habit tracker or notes). No app store needed.
+- [Google Sheets Script Generator](https://open-practice.open-practice.workers.dev/free-tools/google-sheets-script/): Free Google Sheets script generator: clean a column, highlight duplicates or build a summary with a custom menu — non-destructive and explained.
+- [Landing Page Generator](https://open-practice.open-practice.workers.dev/free-tools/landing-page-generator/): Free landing page generator: headline, problem, benefits and one call to action in a single fast HTML file, checked for clarity and honest claims.
+- [Discord Bot Creator](https://open-practice.open-practice.workers.dev/free-tools/discord-bot-creator/): Free Discord bot creator: define slash commands and deploy a signature-verified interactions bot on Cloudflare Workers — no always-on server.
+- [AI Chatbot Widget Creator](https://open-practice.open-practice.workers.dev/free-tools/ai-chatbot-widget/): Free chatbot widget creator: an embeddable help bubble that answers from your FAQ — free with no AI, or AI-powered via your own secure Worker.
+- [Zapier Automation Builder](https://open-practice.open-practice.workers.dev/free-tools/zapier-automation/): Free automation builder workshop: design a Zapier, Make or n8n flow with trigger, filter, actions, field mapping, tests and a stop switch.
+- [WordPress Plugin Generator](https://open-practice.open-practice.workers.dev/free-tools/wordpress-plugin-generator/): Free WordPress plugin generator: a notice shortcode, reading-time label or footer text — with the security basics every plugin needs.
+- [Blog Post Writer](https://open-practice.open-practice.workers.dev/free-tools/blog-post-writer/): Free blog post writer workshop: plan, draft and check a 600–1,200 word article with your own AI key or a guided template. No signup.
+- [Email Writer](https://open-practice.open-practice.workers.dev/free-tools/email-writer/): Free email writer workshop: write professional emails with one clear ask, the right tone and a subject line. Use your own AI key or a guided template.
+- [Email Subject Line Generator](https://open-practice.open-practice.workers.dev/free-tools/email-subject-lines/): Free email subject line generator workshop: write and test 10 subject lines for length, clarity and spam triggers. Own AI key or guided template.
+- [Cold Email Writer](https://open-practice.open-practice.workers.dev/free-tools/cold-email-writer/): Free cold email writer workshop: write short, honest outreach with real personalisation, one ask and an easy opt-out. Own AI key or guided template.
+- [Cover Letter Writer](https://open-practice.open-practice.workers.dev/free-tools/cover-letter-writer/): Free cover letter writer workshop: match your evidence to a job ad, write 250–400 words and check for specifics. Own AI key or guided template.
+- [Product Description Generator](https://open-practice.open-practice.workers.dev/free-tools/product-description/): Free product description generator workshop: turn features into benefits, add specs and check for honest claims. Own AI key or guided template.
+- [FAQ Generator](https://open-practice.open-practice.workers.dev/free-tools/faq-generator/): Free FAQ generator workshop: collect real questions, write short accurate answers and check them for clarity. Own AI key or guided template.
+- [Press Release Generator](https://open-practice.open-practice.workers.dev/free-tools/press-release/): Free press release generator workshop: news angle, the 5 Ws, a real quote and contact details — checked for structure. Own AI key or guided template.
+- [YouTube Description Generator](https://open-practice.open-practice.workers.dev/free-tools/youtube-description/): Free YouTube description generator workshop: summary, timestamps, links and search phrases — checked for format. Own AI key or guided template.
+- [YouTube Title Generator](https://open-practice.open-practice.workers.dev/free-tools/youtube-title-generator/): Free YouTube title generator workshop: 10 titles under 60 characters using proven angles, checked for honesty and length. Own AI key or guided template.
+- [TikTok Script Writer](https://open-practice.open-practice.workers.dev/free-tools/tiktok-script/): Free TikTok script writer workshop: hook, beats, on-screen text and call to action for Reels, Shorts and TikTok. Own AI key or guided template.
+- [Viral Hook Generator](https://open-practice.open-practice.workers.dev/free-tools/viral-hook-generator/): Free hook generator workshop: write 10 opening lines for posts and videos using proven patterns, checked for length and honesty. Own AI key or guided template.
+- [Social Media Bio Generator](https://open-practice.open-practice.workers.dev/free-tools/social-bio/): Free social media bio generator workshop: who you help, how, and proof — within each platform’s character limit. Own AI key or guided template.
+- [Hashtag Generator](https://open-practice.open-practice.workers.dev/free-tools/hashtag-generator/): Free hashtag generator workshop: build a mix of broad, niche and local hashtags and check for count and relevance. Own AI key or guided template.
+- [Business Name Generator](https://open-practice.open-practice.workers.dev/free-tools/business-name-generator/): Free business name generator workshop: generate names, then check length, pronunciation and availability steps. Own AI key or guided template.
+- [SWOT Analysis Generator](https://open-practice.open-practice.workers.dev/free-tools/swot-analysis/): Free SWOT analysis generator workshop: evidence-based strengths, weaknesses, opportunities and threats plus actions. Own AI key or guided template.
+- [Job Description Generator](https://open-practice.open-practice.workers.dev/free-tools/job-description-generator/): Free job description generator workshop: outcomes, must-haves vs nice-to-haves, pay and inclusive language checks. Own AI key or guided template.
+- [Meeting Agenda Generator](https://open-practice.open-practice.workers.dev/free-tools/meeting-agenda/): Free meeting agenda generator workshop: purpose, timed items, owners and decisions needed — checked for timing. Own AI key or guided template.
+- [Prompt Generator](https://open-practice.open-practice.workers.dev/free-tools/prompt-generator/): Free AI prompt generator workshop: turn a vague request into a structured, testable prompt. Use your own AI key or a guided template.
+- [Image Prompt Generator](https://open-practice.open-practice.workers.dev/free-tools/image-prompt-generator/): Free image prompt generator workshop: subject, style, composition, lighting and exclusions for any AI image tool. Own AI key or guided template.
+- [AI Workflow Builder](https://open-practice.open-practice.workers.dev/free-tools/ai-workflow-builder/): Free AI workflow builder workshop: map a repetitive task into steps, choose where AI helps, and add human review and failure plans.
+- [LinkedIn Bio Generator](https://open-practice.open-practice.workers.dev/free-tools/linkedin-bio/): Free LinkedIn bio generator workshop: headline under 220 characters and an About section with proof and a call to action. Own AI key or guided template.
+- [JSON Formatter & Validator](https://open-practice.open-practice.workers.dev/free-tools/json-formatter/): Free JSON formatter and validator: pretty-print, minify and find the exact line of a JSON error — in your browser. Includes a fix-the-JSON challenge.
+- [Base64 Encoder / Decoder](https://open-practice.open-practice.workers.dev/free-tools/base64-encoder/): Free Base64 encoder and decoder that handles emoji and every language, with URL-safe mode. Runs in your browser. Includes a decoding challenge.
+- [Markdown to HTML Converter](https://open-practice.open-practice.workers.dev/free-tools/markdown-to-html/): Free Markdown to HTML converter with live preview: headings, lists, links, bold, code and quotes. Safe output, runs in your browser.
+- [AI Token Counter](https://open-practice.open-practice.workers.dev/free-tools/token-counter/): Free AI token counter: estimate tokens, words and context-window use for any prompt. Learn why shorter prompts cost less. Runs in your browser.
+- [AI API Cost Calculator](https://open-practice.open-practice.workers.dev/free-tools/api-cost-calculator/): Free AI API cost calculator: requests, input and output tokens and price per million → monthly cost. Editable prices, runs in your browser.
 
 ## Courses
-- [AI, without the guesswork](https://open-practice.zlnew.workers.dev/builds/prompt.html): Write a reliable research brief
-- [Your first business assistant](https://open-practice.zlnew.workers.dev/builds/replies.html): Build a customer-reply prompt kit
-- [Make messy data useful](https://open-practice.zlnew.workers.dev/builds/sheets.html): Create a checked expense summary
-- [From idea to working page](https://open-practice.zlnew.workers.dev/builds/web.html): Publish a useful one-page tool
-- [Automate the boring bit—safely](https://open-practice.zlnew.workers.dev/builds/automation.html): Design an approval-first workflow
-- [A cloud lab someone else can rerun](https://open-practice.zlnew.workers.dev/builds/reproducible-cloud-lab.html): Ship a reproducibility bundle with inputs, tests and a reproducible handoff.
-- [Direct an illustration with a measurable brief](https://open-practice.zlnew.workers.dev/builds/visual-brief.html): Deliver an approved visual pack with inputs, tests and a reproducible handoff.
-- [Build a prediction and an honest baseline](https://open-practice.zlnew.workers.dev/builds/measured-ml.html): Ship a model card and test record with inputs, tests and a reproducible handoff.
-- [Make a document assistant that knows when to stop](https://open-practice.zlnew.workers.dev/builds/evidence-assistant.html): Hand off a bounded assistant with inputs, tests and a reproducible handoff.
-- [Turn records into a tested Python report](https://open-practice.zlnew.workers.dev/builds/python-records.html): Package a script another learner can inspect with inputs, tests and a reproducible handoff.
-- [Test one AI claim in the real world](https://open-practice.zlnew.workers.dev/builds/ai-fieldwork.html): Keep an evidence-based verdict with inputs, tests and a reproducible handoff.
-- [Build a report that reconciles to its source](https://open-practice.zlnew.workers.dev/builds/data-report.html): Deliver an auditable report pack with inputs, tests and a reproducible handoff.
-- [Connect an AI API without trusting every response](https://open-practice.zlnew.workers.dev/builds/api-integration.html): Ship an integration with a teardown note with inputs, tests and a reproducible handoff.
-- [Classify feedback with an uncertainty bucket](https://open-practice.zlnew.workers.dev/builds/text-classification.html): Ship an annotation and error guide with inputs, tests and a reproducible handoff.
-- [Build a small project plan you can verify](https://open-practice.zlnew.workers.dev/builds/project-planning.html): Deliver a plan and retrospective template with inputs, tests and a reproducible handoff.
-- [Audit a tool with evidence, not an ethics slogan](https://open-practice.zlnew.workers.dev/builds/responsible-ai.html): Deliver a reviewable risk record with inputs, tests and a reproducible handoff.
-- [Join two datasets without multiplying the truth](https://open-practice.zlnew.workers.dev/builds/data-wrangling.html): Deliver a wrangling pipeline with inputs, tests and a reproducible handoff.
-- [Use a pipeline and a genuinely held-out set](https://open-practice.zlnew.workers.dev/builds/sklearn-lab.html): Ship a versioned experiment bundle with inputs, tests and a reproducible handoff.
-- [Find clusters—and show why they are not facts](https://open-practice.zlnew.workers.dev/builds/clustering-lab.html): Ship a clustering exploration note with inputs, tests and a reproducible handoff.
-- [Earn by Doing: useful work, honest offers](https://open-practice.zlnew.workers.dev/builds/earn-by-doing.html): Decide from actual evidence with inputs, tests and a reproducible handoff.
+- [AI, without the guesswork](https://open-practice.open-practice.workers.dev/builds/prompt.html): Write a reliable research brief
+- [Your first business assistant](https://open-practice.open-practice.workers.dev/builds/replies.html): Build a customer-reply prompt kit
+- [Make messy data useful](https://open-practice.open-practice.workers.dev/builds/sheets.html): Create a checked expense summary
+- [From idea to working page](https://open-practice.open-practice.workers.dev/builds/web.html): Publish a useful one-page tool
+- [Automate the boring bit—safely](https://open-practice.open-practice.workers.dev/builds/automation.html): Design an approval-first workflow
+- [A cloud lab someone else can rerun](https://open-practice.open-practice.workers.dev/builds/reproducible-cloud-lab.html): Ship a reproducibility bundle with inputs, tests and a reproducible handoff.
+- [Direct an illustration with a measurable brief](https://open-practice.open-practice.workers.dev/builds/visual-brief.html): Deliver an approved visual pack with inputs, tests and a reproducible handoff.
+- [Build a prediction and an honest baseline](https://open-practice.open-practice.workers.dev/builds/measured-ml.html): Ship a model card and test record with inputs, tests and a reproducible handoff.
+- [Make a document assistant that knows when to stop](https://open-practice.open-practice.workers.dev/builds/evidence-assistant.html): Hand off a bounded assistant with inputs, tests and a reproducible handoff.
+- [Turn records into a tested Python report](https://open-practice.open-practice.workers.dev/builds/python-records.html): Package a script another learner can inspect with inputs, tests and a reproducible handoff.
+- [Test one AI claim in the real world](https://open-practice.open-practice.workers.dev/builds/ai-fieldwork.html): Keep an evidence-based verdict with inputs, tests and a reproducible handoff.
+- [Build a report that reconciles to its source](https://open-practice.open-practice.workers.dev/builds/data-report.html): Deliver an auditable report pack with inputs, tests and a reproducible handoff.
+- [Connect an AI API without trusting every response](https://open-practice.open-practice.workers.dev/builds/api-integration.html): Ship an integration with a teardown note with inputs, tests and a reproducible handoff.
+- [Classify feedback with an uncertainty bucket](https://open-practice.open-practice.workers.dev/builds/text-classification.html): Ship an annotation and error guide with inputs, tests and a reproducible handoff.
+- [Build a small project plan you can verify](https://open-practice.open-practice.workers.dev/builds/project-planning.html): Deliver a plan and retrospective template with inputs, tests and a reproducible handoff.
+- [Audit a tool with evidence, not an ethics slogan](https://open-practice.open-practice.workers.dev/builds/responsible-ai.html): Deliver a reviewable risk record with inputs, tests and a reproducible handoff.
+- [Join two datasets without multiplying the truth](https://open-practice.open-practice.workers.dev/builds/data-wrangling.html): Deliver a wrangling pipeline with inputs, tests and a reproducible handoff.
+- [Use a pipeline and a genuinely held-out set](https://open-practice.open-practice.workers.dev/builds/sklearn-lab.html): Ship a versioned experiment bundle with inputs, tests and a reproducible handoff.
+- [Find clusters—and show why they are not facts](https://open-practice.open-practice.workers.dev/builds/clustering-lab.html): Ship a clustering exploration note with inputs, tests and a reproducible handoff.
+- [Earn by Doing: useful work, honest offers](https://open-practice.open-practice.workers.dev/builds/earn-by-doing.html): Decide from actual evidence with inputs, tests and a reproducible handoff.
 
 ## Facts
 - Not accredited; self-review is not assessment.

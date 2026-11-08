@@ -66,4 +66,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

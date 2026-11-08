@@ -10,8 +10,8 @@
 
 ## Practise it first
 Best starter build: Build 10 · Build a weekly business report
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/weekly-report/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/10-weekly-report.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/weekly-report/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/10-weekly-report.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (clean responses, code themes, quantify results and create an action summary) for one real prospect (buyer: colleges, NGOs, events and businesses) and send it to them personally.
@@ -115,4 +115,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

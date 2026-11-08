@@ -1,12 +1,12 @@
 # Live access — 0.8.0 / 21 October 2026
 
-- Platform: https://open-practice.zlnew.workers.dev
-- My learning: https://open-practice.zlnew.workers.dev/dashboard.html
-- Activity studio: https://open-practice.zlnew.workers.dev/activities.html
-- Curriculum: https://open-practice.zlnew.workers.dev/curriculum.html
-- Library: https://open-practice.zlnew.workers.dev/library.html
-- News: https://open-practice.zlnew.workers.dev/news.html
-- Privacy: https://open-practice.zlnew.workers.dev/privacy.html
+- Platform: https://open-practice.open-practice.workers.dev
+- My learning: https://open-practice.open-practice.workers.dev/dashboard.html
+- Activity studio: https://open-practice.open-practice.workers.dev/activities.html
+- Curriculum: https://open-practice.open-practice.workers.dev/curriculum.html
+- Library: https://open-practice.open-practice.workers.dev/library.html
+- News: https://open-practice.open-practice.workers.dev/news.html
+- Privacy: https://open-practice.open-practice.workers.dev/privacy.html
 - Repository: https://github.com/king-kunta-cpu/open-practice
 
 The existing repository was renamed, not duplicated. The existing learner namespace/object were preserved during the Worker transfer. An account created before transfer signed in on the new host and retrieved the same notes and progress. A stale update was rejected with HTTP 409. The company tutor returned an actual Groq response. Daily retention cleanup is configured at 03:00 UTC.

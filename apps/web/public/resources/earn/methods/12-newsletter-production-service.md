@@ -10,8 +10,8 @@
 
 ## Practise it first
 Best starter build: Build 07 · Package a month of social content
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/content-month/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/07-content-month.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/content-month/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/07-content-month.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (interview-to-newsletter package with subject lines and archive copy) for one real prospect (buyer: associations, training centres, local businesses and creators) and send it to them personally.
@@ -112,4 +112,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

@@ -79,6 +79,6 @@ Now change one thing at a time: add a trailing comma, make rating a string, use 
 I maintain Open Practice, an independent, non-accredited collection of practical AI activities. The complete exercise includes a fictional fixture, a local JSON checker, editable notes and an offline export. Learning materials are free; optional hosted AI tools have their own limits. You can inspect the reference manually without an AI account.
 
 
-Try the complete exercise: https://open-practice.zlnew.workers.dev/activities/json-data.html?src=devto
+Try the complete exercise: https://open-practice.open-practice.workers.dev/activities/json-data.html?src=devto
 
-Original source: https://open-practice.zlnew.workers.dev/demonstrations/valid-json-wrong-facts.html
+Original source: https://open-practice.open-practice.workers.dev/demonstrations/valid-json-wrong-facts.html

@@ -7,7 +7,7 @@ I run Open Practice, an independent, non-accredited collection of free practical
 Participants use fictional inputs to test an editor, inspect structured data and measure contrast. They keep an artifact and a limitation rather than just watching a presentation. No paid AI plan, account signup, public sharing or mailing-list enrolment is required. Hosted AI availability and limits are disclosed; manual fixtures are available.
 
 The facilitator kit and starter are here:
-https://open-practice.zlnew.workers.dev/facilitators.html
+https://open-practice.open-practice.workers.dev/facilitators.html
 
 If relevant, may we discuss a suitable facilitator, cohort size and date? If not, no follow-up is needed. I will not add you to an automated sequence.
 

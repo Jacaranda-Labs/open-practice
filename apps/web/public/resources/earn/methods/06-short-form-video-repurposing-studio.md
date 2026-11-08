@@ -11,8 +11,8 @@
 
 ## Practise it first
 Best starter build: Build 05 · Turn one recording into a clip pack
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/clip-pack/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/05-clip-pack.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/clip-pack/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/05-clip-pack.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (turn one approved long video into 8–12 captioned clips) for one real prospect (buyer: coaches, agents, churches, NGOs and local experts) and send it to them personally.
@@ -114,4 +114,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

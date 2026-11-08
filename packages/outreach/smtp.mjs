@@ -25,7 +25,7 @@ export async function smtpMail(env,message=null,connector=null){
  async function command(line,expected,kind='smtp_rejected'){await bounded(writer.write(new TextEncoder().encode(line+'\r\n')));if(await response()!==expected)throw new MailError(kind,dataStarted)}
  try{
   socket=connect({hostname:'smtp.gmail.com',port:465},{secureTransport:'on'});await bounded(socket.opened);reader=socket.readable.getReader();writer=socket.writable.getWriter();if(await response()!==220)throw new MailError('smtp_greeting_rejected');
-  await command('EHLO open-practice.zlnew.workers.dev',250);
+  await command('EHLO open-practice.open-practice.workers.dev',250);
   await command('AUTH PLAIN '+btoa('\0'+user+'\0'+pass),235,'sender_authentication_failed');
   if(!message)return {authenticated:true,sent:false};
   const {box:_box,...msg}=message;const content=mailMessage({...msg,from:user});

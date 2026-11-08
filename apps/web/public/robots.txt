@@ -4,4 +4,4 @@ Disallow: /operator-metrics.html
 Disallow: /api/
 Disallow: /settings/
 
-Sitemap: https://open-practice.zlnew.workers.dev/sitemap.xml
+Sitemap: https://open-practice.open-practice.workers.dev/sitemap.xml

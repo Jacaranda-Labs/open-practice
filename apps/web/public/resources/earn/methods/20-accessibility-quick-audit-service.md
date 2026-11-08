@@ -11,8 +11,8 @@
 
 ## Practise it first
 Best starter build: Build 02 · Build a local business page
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/local-page-kit/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/02-local-page-kit.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/local-page-kit/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/02-local-page-kit.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (keyboard, contrast, labels, headings, alt-text and mobile review with prioritized fixes) for one real prospect (buyer: small website owners) and send it to them personally.
@@ -114,4 +114,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

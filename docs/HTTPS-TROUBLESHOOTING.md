@@ -1,6 +1,6 @@
 # HTTPS access: unsupported protocol
 
-Canonical address: **https://open-practice.zlnew.workers.dev/**
+Canonical address: **https://open-practice.open-practice.workers.dev/**
 
 Use that literal address. Do not copy Markdown brackets, parentheses, a second URL, or add `www.`.
 

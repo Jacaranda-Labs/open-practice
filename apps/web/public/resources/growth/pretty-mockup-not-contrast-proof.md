@@ -21,6 +21,6 @@ Choose one failing pair. Change the actual text colour or background in an edita
 Open Practice is an independent, non-accredited collection of practical activities. The local calculator, fictional inputs and offline materials are free. An image generator is optional and its output is not an accessibility certificate.
 
 
-Try the complete exercise: https://open-practice.zlnew.workers.dev/activities/contrast-check.html?src=devto
+Try the complete exercise: https://open-practice.open-practice.workers.dev/activities/contrast-check.html?src=devto
 
-Original source: https://open-practice.zlnew.workers.dev/demonstrations/pretty-mockup-not-contrast-proof.html
+Original source: https://open-practice.open-practice.workers.dev/demonstrations/pretty-mockup-not-contrast-proof.html

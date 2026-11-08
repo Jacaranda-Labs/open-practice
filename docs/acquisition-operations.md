@@ -36,7 +36,7 @@ Authenticated operations:
 - `POST /api/outreach/test-sender` — authenticates only; **does not send**.
 - `POST /api/outreach/run` — respects both switches and the daily claim.
 
-To enable sending: run `curl -X POST -H "Authorization: Bearer $GROWTH_ADMIN_KEY" https://open-practice.zlnew.workers.dev/api/outreach/test-sender`. If it reports a successful login, set `OUTREACH_SEND_ENABLED` to `"true"` in `adapters/cloudflare/wrangler.jsonc` and deploy. The sender is a personal Gmail with an app password (2-Step Verification on, myaccount.google.com/apppasswords; no Google Cloud project): see [GMAIL.md](GMAIL.md) for limits and error codes.
+To enable sending: run `curl -X POST -H "Authorization: Bearer $GROWTH_ADMIN_KEY" https://open-practice.open-practice.workers.dev/api/outreach/test-sender`. If it reports a successful login, set `OUTREACH_SEND_ENABLED` to `"true"` in `adapters/cloudflare/wrangler.jsonc` and deploy. The sender is a personal Gmail with an app password (2-Step Verification on, myaccount.google.com/apppasswords; no Google Cloud project): see [GMAIL.md](GMAIL.md) for limits and error codes.
 
 No SMTP password, social token, Nostr key or publishing credential belongs in a static asset, repository, screenshot, log or URL. Credentials pasted into chat should be rotated. Social publishing is a separately authorised manual operator action, not an unattended posting bot.
 

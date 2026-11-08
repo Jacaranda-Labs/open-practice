@@ -10,8 +10,8 @@
 
 ## Practise it first
 Best starter build: Build 08 · Audit a public customer journey
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/journey-audit/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/08-journey-audit.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/journey-audit/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/08-journey-audit.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (form-to-sheet intake, notification, draft response and follow-up checklist) for one real prospect (buyer: service firms losing enquiries) and send it to them personally.
@@ -112,4 +112,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

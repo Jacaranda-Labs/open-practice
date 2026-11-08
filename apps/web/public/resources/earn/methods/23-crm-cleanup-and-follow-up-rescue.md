@@ -11,8 +11,8 @@
 
 ## Practise it first
 Best starter build: Build 04 · Clean a real spreadsheet safely
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/spreadsheet-cleanup/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/04-spreadsheet-cleanup.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/spreadsheet-cleanup/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/04-spreadsheet-cleanup.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (deduplicate, classify stage, identify stale opportunities and draft follow-ups) for one real prospect (buyer: firms with neglected lead sheets) and send it to them personally.
@@ -114,4 +114,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

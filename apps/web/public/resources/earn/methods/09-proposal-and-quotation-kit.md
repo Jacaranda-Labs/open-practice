@@ -11,8 +11,8 @@
 
 ## Practise it first
 Best starter build: Build 01 · Make an offer someone can say yes to
-- Workshop: https://open-practice.zlnew.workers.dev/earn/builds/offer-sheet/
-- Practice pack: https://open-practice.zlnew.workers.dev/resources/earn/packs/01-offer-sheet.zip
+- Workshop: https://open-practice.open-practice.workers.dev/earn/builds/offer-sheet/
+- Practice pack: https://open-practice.open-practice.workers.dev/resources/earn/packs/01-offer-sheet.zip
 
 ## First sale, step by step
 Start here: make one private sample of the deliverable (reusable scope, quotation, assumptions and follow-up templates) for one real prospect (buyer: contractors and freelancers) and send it to them personally.
@@ -114,4 +114,4 @@ _Time log, free-tier limits, delivery cost, price and a reinvestment trigger._
 - I will reinvest when:
 
 ---
-Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.zlnew.workers.dev/earn/
+Open Practice · Earn by Doing · CC BY 4.0 · https://open-practice.open-practice.workers.dev/earn/

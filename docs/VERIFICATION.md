@@ -1,6 +1,6 @@
 # Verification — 0.8.0 / 2026-10-21
 
-**Current status: deployed to https://open-practice.zlnew.workers.dev.** The final automated suite has 45 passing tests; the production browser suite also passes. Earlier local-only sections below are retained as a chronological record. The production-deployment section contains the final migration evidence.
+**Current status: deployed to https://open-practice.open-practice.workers.dev.** The final automated suite has 45 passing tests; the production browser suite also passes. Earlier local-only sections below are retained as a chronological record. The production-deployment section contains the final migration evidence.
 
 ## Earlier local verification phase
 38 automated tests pass under Node 22 with no skips. Chromium checks use the local Node preview, not the production Worker. External namespace transfer, remote repository rename/push and production deployment have **not** been executed for this release.
@@ -44,7 +44,7 @@ Start the Node server, install Playwright in a separate QA environment, then run
 No external push, hostname transfer, account-store migration or production deployment was performed. The running preview is the current verified build.
 
 ## Production deployment / 21 October 2026
-The 0.7.0 release is now live at https://open-practice.zlnew.workers.dev. The previous local-only notes above describe earlier verification stages, not the final deployment status.
+The 0.7.0 release is now live at https://open-practice.open-practice.workers.dev. The previous local-only notes above describe earlier verification stages, not the final deployment status.
 
 - Rehearsed cross-Worker SQLite transfer on disposable Workers; identical namespace ID and retained row verified. Test Workers were then removed.
 - Captured an encrypted, transaction-consistent snapshot of account/session/workspace/event tables before transfer. Recovery material is kept out of source and release ZIPs; a complete snapshot-restore rehearsal is still pending.

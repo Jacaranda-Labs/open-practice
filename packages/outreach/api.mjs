@@ -9,8 +9,8 @@ export const pilotPool=[
  {domain:'uncommon.org',organisation:'Uncommon.org',path:'/contact',relevance:'your adult technology bootcamp programme'},
  {domain:'bongohive.co.zm',organisation:'BongoHive',path:'/get-in-touch/',relevance:'your entrepreneurship and Data & AI work'}
 ];
-const BASE='https://open-practice.zlnew.workers.dev',reply=(body,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
-const agent='OpenPracticePilot/0.9 (+https://open-practice.zlnew.workers.dev/facilitators.html)';
+const BASE='https://open-practice.open-practice.workers.dev',reply=(body,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
+const agent='OpenPracticePilot/0.9 (+https://open-practice.open-practice.workers.dev/facilitators.html)';
 export const relevantResearch=title=>/digital|skills|technolog|community|innovation|hub|entrepreneur|bootcamp|training|librar/i.test(title);
 export function contactAddress(html,domain){
  // Public organisational role inboxes only: never infer or extract personal contacts.

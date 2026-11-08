@@ -23,6 +23,6 @@ Count attendance manually without names. Count participants who keep a first art
 ## After the session
 Record: date, host permission, aggregate attendance, first artifacts kept, biggest friction, next improvement and whether a follow-up was invited. No real session is claimed until a host and participants actually run it.
 
-Starter: https://open-practice.zlnew.workers.dev/starter.html?src=facilitator
-Full guides: https://open-practice.zlnew.workers.dev/practice.html
+Starter: https://open-practice.open-practice.workers.dev/starter.html?src=facilitator
+Full guides: https://open-practice.open-practice.workers.dev/practice.html
 Original materials: CC BY 4.0.

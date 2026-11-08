@@ -63,10 +63,10 @@ branding/                Original artwork and licensed display font
 ```
 
 ## Live release / 0.8.0
-- Platform: https://open-practice.zlnew.workers.dev
-- My learning: https://open-practice.zlnew.workers.dev/dashboard.html
-- Curriculum: https://open-practice.zlnew.workers.dev/curriculum.html
-- Library: https://open-practice.zlnew.workers.dev/library.html
+- Platform: https://open-practice.open-practice.workers.dev
+- My learning: https://open-practice.open-practice.workers.dev/dashboard.html
+- Curriculum: https://open-practice.open-practice.workers.dev/curriculum.html
+- Library: https://open-practice.open-practice.workers.dev/library.html
 - Repository: https://github.com/king-kunta-cpu/open-practice
 
 The editorial-collection interface and expanded curriculum are deployed. The existing Durable Object namespace was transferred without changing its ID or original database object selector. A pre-transfer account and saved workspace were successfully retrieved on the new hostname. The previous address redirects; sign in again on the new hostname because sessions are host-scoped. Existing browser-local drafts on the former origin do not automatically move; cloud-saved work is retained. Keep exported files if you still have unsynced local work.
@@ -130,10 +130,10 @@ The final ten original AI-generated editorial illustrations and matching self-co
 
 ## Discover, practice and facilitate (0.9.0)
 
-- [50 illustrated, readable activity guides](https://open-practice.zlnew.workers.dev/practice.html)
-- [Three-activity starter challenge](https://open-practice.zlnew.workers.dev/starter.html) (120 estimated minutes)
-- [Adult facilitator taster kit](https://open-practice.zlnew.workers.dev/facilitators.html) (60-minute taster, not full completion)
-- [Useful worked demonstrations](https://open-practice.zlnew.workers.dev/demonstrations.html)
+- [50 illustrated, readable activity guides](https://open-practice.open-practice.workers.dev/practice.html)
+- [Three-activity starter challenge](https://open-practice.open-practice.workers.dev/starter.html) (120 estimated minutes)
+- [Adult facilitator taster kit](https://open-practice.open-practice.workers.dev/facilitators.html) (60-minute taster, not full completion)
+- [Useful worked demonstrations](https://open-practice.open-practice.workers.dev/demonstrations.html)
 - [Alternate HTTPS reading/download mirror](https://king-kunta-cpu.github.io/open-practice/) — explicitly not an account/cloud-saving host
 
 Consent-first funnel counts are off by default. Sharing is optional and local. The existing daily Worker schedule performs bounded research; invitation sending remains disabled until Gmail authentication succeeds. The three-organisation pilot has strict caps, public role contacts only, opt-out and no automatic follow-ups. Research results and SMTP acceptance are never represented as learner outcomes. See [operator instructions](docs/acquisition-operations.md).
