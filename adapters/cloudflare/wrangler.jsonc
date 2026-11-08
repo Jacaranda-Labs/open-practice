@@ -45,7 +45,6 @@
     "CLOUDFLARE_MODEL": "",
     "POLLINATIONS_MODEL": "",
     "APPROVED_MODELS": "groq:openai/gpt-oss-20b",
-    // empty = derive the object from a stable name inside this account's namespace
     "DB_OBJECT_ID": "",
     "OUTREACH_ENABLED": "true",
     "OUTREACH_SEND_ENABLED": "true",
@@ -62,7 +61,6 @@
   },
   "migrations": [
     {
-      // fresh namespace on the open-practice account: this deploy creates the class
       "tag": "v1-learners",
       "new_sqlite_classes": [
         "LearnerDatabase"
