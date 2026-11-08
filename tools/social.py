@@ -461,7 +461,18 @@ def verify() -> dict:
         st, r = _req(wh)
         out["discord"] = f"webhook '{r.get('name')}' ch {r.get('channel_id')}" if st == 200 and isinstance(r, dict) else f"FAIL {st}"
     if tumblr_armed():
-        out["tumblr"] = "armed"
+        # read the blog back rather than trusting that five env vars exist
+        ck, cs, tok, tsec = env("OP_TUMBLR_CK", "OP_TUMBLR_CS", "OP_TUMBLR_TOKEN", "OP_TUMBLR_TOKEN_SECRET")
+        url = "https://api.tumblr.com/v2/user/info"
+        st, r = _req(url, headers={"Authorization": _oauth1("GET", url, {}, ck, cs, tok, tsec)})
+        if st == 200 and isinstance(r, dict):
+            blogs = ((r.get("response") or {}).get("user") or {}).get("blogs") or []
+            want = env("OP_TUMBLR_BLOG")[0]
+            hit = next((b for b in blogs if b.get("name") == want), None)
+            out["tumblr"] = (f"blog {hit['name']} ({hit.get('posts')} posts)" if hit
+                             else f"FAIL blog '{want}' not on this account: {[b.get('name') for b in blogs]}")
+        else:
+            out["tumblr"] = f"FAIL {st}"
     if env("OP_BUFFER_TOKEN")[0]:
         chans = buffer_channels()
         out["pinterest"] = ("channel " + ", ".join(f"{c['service']}/{c['name']}" for c in chans)) if chans else "FAIL no channels"
