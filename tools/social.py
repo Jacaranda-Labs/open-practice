@@ -283,13 +283,20 @@ def tumblr_armed() -> bool:
                    "OP_TUMBLR_TOKEN_SECRET", "OP_TUMBLR_BLOG"))
 
 
+def _tumblr_title(text: str) -> str:
+    """Tumblr themes render a title above the body; the first line is usually the better title."""
+    first = (text.splitlines() or [""])[0].strip().rstrip(".")
+    return first[:120] if 0 < len(first) <= 120 else "Open Practice"
+
+
 def post_tumblr(text: str, tags: list[str] | None = None) -> tuple[bool, str]:
     ck, cs, tok, tsec, blog = env("OP_TUMBLR_CK", "OP_TUMBLR_CS", "OP_TUMBLR_TOKEN",
                                   "OP_TUMBLR_TOKEN_SECRET", "OP_TUMBLR_BLOG")
     if not all([ck, cs, tok, tsec, blog]):
         return False, "skip: tumblr needs the OAuth exchange first (see tumblr_connect.py)"
     url = f"https://api.tumblr.com/v2/blog/{blog}/post"      # singular: the form-encoded route
-    body = {"type": "text", "format": "markdown", "body": text[:3000]}
+    body = {"type": "text", "format": "markdown", "title": _tumblr_title(text),
+            "body": text[:3000]}
     if tags:
         body["tags"] = ",".join(t.replace("#", "")[:40] for t in tags[:5])
     st, resp = _req(url, urllib.parse.urlencode(body).encode(),

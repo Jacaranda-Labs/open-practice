@@ -248,3 +248,12 @@ class OpenPracticeRails(unittest.TestCase):
         self.assertTrue(ok, detail)
         img = seen["input"]["assets"][0]["image"]["url"]
         self.assertEqual(img, "https://open-practice.open-practice.workers.dev/brand/card-activities.png")
+
+
+class TumblrTitle(unittest.TestCase):
+    def test_first_line_becomes_the_title(self):
+        self.assertEqual(social._tumblr_title("Practice, not tutorials.\n\nBody here."),
+                         "Practice, not tutorials")
+
+    def test_a_long_first_line_falls_back_to_the_brand(self):
+        self.assertEqual(social._tumblr_title("x" * 200), "Open Practice")
