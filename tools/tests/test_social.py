@@ -287,3 +287,22 @@ class PostExitCode(unittest.TestCase):
             ok, detail = social.post_buffer("body", image="https://x/i.png")
         self.assertTrue(ok)
         self.assertIn("dedupe", detail)
+
+
+class WorkflowWiring(unittest.TestCase):
+    """Every OP_ secret the rails read must reach the workflow, or a rail silently skips in CI.
+
+    This is the bug that shipped: the Tumblr secrets were in the repo, the Tumblr rail was armed
+    locally, and CI posted to five rails because the env block never named them.
+    """
+
+    def test_every_secret_the_rails_read_is_wired_into_the_workflow(self):
+        import re
+        from pathlib import Path
+        root = Path(__file__).resolve().parents[2]
+        src = (root / "tools" / "social.py").read_text()
+        used = set(re.findall(r'env\(\s*"?(OP_[A-Z_]+)', src)) | set(re.findall(r'"(OP_[A-Z_]+)"', src))
+        used = {u for u in used if not u.endswith("SITE_URL") and not u.endswith("RELAYS") and not u.endswith("KIT")}
+        wf = (root / ".github" / "workflows" / "social.yml").read_text()
+        missing = sorted(u for u in used if u not in wf)
+        self.assertEqual(missing, [], f"secrets read by social.py but missing from social.yml: {missing}")
