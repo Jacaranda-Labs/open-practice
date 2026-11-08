@@ -19,13 +19,14 @@ import sys
 KIT = os.environ.get("OP_KIT", os.path.expanduser("~/open-practice-brand"))
 PUB = "apps/web/public"
 BRAND = os.path.join(PUB, "brand")
-SITE = "https://open-practice.zlnew.workers.dev"
+SITE = "https://open-practice.open-practice.workers.dev"
 
 COPIES = {
     "icons/favicon-32.png": "brand/favicon-32.png",
     "icons/apple-touch-icon.png": "brand/apple-touch-icon.png",
     "icons/icon-192.png": "brand/icon-192.png",
     "icons/icon-512.png": "brand/icon-512.png",
+    "favicon.ico": "favicon.ico",
     "banners/og-1200x630.png": "brand/og-1200x630.png",
     "banners/x-header-1500x500.png": "brand/x-header-1500x500.png",
     "banners/github-social-1280x640.png": "brand/github-social-1280x640.png",

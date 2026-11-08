@@ -45,7 +45,8 @@
     "CLOUDFLARE_MODEL": "",
     "POLLINATIONS_MODEL": "",
     "APPROVED_MODELS": "groq:openai/gpt-oss-20b",
-    "DB_OBJECT_ID": "f115804ba08ae5a0d76f801dee718c06cb6b32fe509c5a3051358a5e2f02a80b",
+    // empty = derive the object from a stable name inside this account's namespace
+    "DB_OBJECT_ID": "",
     "OUTREACH_ENABLED": "true",
     "OUTREACH_SEND_ENABLED": "true",
     "OUTREACH_DAILY": "50",
@@ -61,7 +62,11 @@
   },
   "migrations": [
     {
-      "tag": "v1-account-transfer"
+      // fresh namespace on the open-practice account: this deploy creates the class
+      "tag": "v1-learners",
+      "new_sqlite_classes": [
+        "LearnerDatabase"
+      ]
     }
   ],
   "triggers": {
