@@ -379,7 +379,11 @@ def post_buffer(text: str, link: str = "", image: str = "", title: str = "") -> 
     res = (d.get("data") or {}).get("createPost") or {}
     if "post" in res:
         return True, f"pin {res['post'].get('id')} ({res['post'].get('status')})"
-    return False, str(res.get("message") or res)[:180]
+    msg = str(res.get("message") or res)
+    # Buffer refuses the identical pin twice in a row. That is a duplicate, not a dead channel.
+    if "already got this one" in msg or "same thing twice" in msg:
+        return True, "skipped: buffer dedupe (identical pin posted recently)"
+    return False, msg[:180]
 
 
 # ----------------------------------------------------------------------------- orchestration
@@ -512,10 +516,17 @@ def main() -> int:
     tags = [t.strip() for t in a.tags.split(",") if t.strip()]
     rails = [r.strip() for r in a.rails.split(",") if r.strip()] or None
     res = post(a.text, link=a.link, tags=tags, rails=rails, dry=a.dry)
-    good = 0
+    good = failed = 0
     for k, (ok, detail) in res.items():
         print(f"  {'OK  ' if ok else 'FAIL'} {k:9s} {detail}")
         good += bool(ok)
+        failed += (not ok and not str(detail).startswith("skip"))
+    # One rail failing must fail the run. Reporting success because four of five worked is how a
+    # dead Pinterest channel goes unnoticed for a week.
+    if failed:
+        print(f"  {failed} RAIL(S) FAILED: {', '.join(sorted(k for k, (ok, d) in res.items() if not ok and not str(d).startswith('skip')))}",
+              file=sys.stderr)
+        return 1
     return 0 if good else 1
 
 

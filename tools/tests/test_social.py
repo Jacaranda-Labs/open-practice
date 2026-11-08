@@ -257,3 +257,33 @@ class TumblrTitle(unittest.TestCase):
 
     def test_a_long_first_line_falls_back_to_the_brand(self):
         self.assertEqual(social._tumblr_title("x" * 200), "Open Practice")
+
+
+class PostExitCode(unittest.TestCase):
+    """A partial failure has to be visible to CI: one dead rail must not hide behind four good ones."""
+
+    def test_one_failed_rail_fails_the_run(self):
+        with mock.patch.object(social, "post", return_value={
+                "bsky": (True, "at://x"), "pinterest": (False, "Invalid post")}), \
+             mock.patch("sys.argv", ["social.py", "post", "--text", "hi"]):
+            self.assertEqual(social.main(), 1)
+
+    def test_skips_do_not_fail_the_run(self):
+        with mock.patch.object(social, "post", return_value={
+                "bsky": (True, "at://x"), "tumblr": (False, "skip: not configured")}), \
+             mock.patch("sys.argv", ["social.py", "post", "--text", "hi"]):
+            self.assertEqual(social.main(), 0)
+
+    def test_a_buffer_duplicate_is_a_skip_not_a_failure(self):
+        os.environ["OP_BUFFER_TOKEN"] = "t"
+        os.environ["OP_PINTEREST_BOARD"] = "1"
+        def fake(query, variables=None):
+            if "organizations" in query:
+                return {"data": {"account": {"organizations": [{"id": "o"}]}}}
+            if "channels(input" in query:
+                return {"data": {"channels": [{"id": "c", "service": "pinterest", "name": "p"}]}}
+            return {"data": {"createPost": {"message": "Whoops, it looks like you've already got this one scheduled or posted around the same time. We're not able to post the same thing twice so close together."}}}
+        with mock.patch.object(social, "_buffer", fake):
+            ok, detail = social.post_buffer("body", image="https://x/i.png")
+        self.assertTrue(ok)
+        self.assertIn("dedupe", detail)
